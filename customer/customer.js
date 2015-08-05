@@ -1,21 +1,37 @@
-// Déclaration du module 'home'
-angular.module('ecDesktopApp.home', [
+// Déclaration du module 'Customer'
+angular.module('ecDesktopApp.customer', [
     'ngRoute',
     'ecDesktopApp.shared'
 ]);
 
 // Configuration du module 'home'
-angular.module('ecDesktopApp.home').config(function($routeProvider) {
+angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
-    // TODO Définir les routes spécifiques au module 'home' ici
+    $routeProvider
+    .when("/customer/createCustomer",{
+        templateUrl : "customer/template/createCustomer.tpl.html",
+        controller: "CreateCustomerController",
+        controllerAs: "createCustomer"
+
+    });
+
 });
 
-// Contrôleur principal du module 'home'
+// Contrôleur principal du module 'createCustomer'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService) {
+angular.module('ecDesktopApp.customer').controller('createCustomer', function(customerService) {
 
-    var self = this;
+    var createCustomer = this;
 
-    // ...
+    createCustomer.addCustomer = function(form){
+        if (form.$invalid) {return;}
+        var clone = angular.copy(createCustomer.emp);
+        customerService.addCustomer(clone)
+        
+
+
+    };
+
+
 
 });
