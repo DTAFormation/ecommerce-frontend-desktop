@@ -1,4 +1,4 @@
-describe('homeServiceTest', function() {
+describe('customerServiceTest', function() {
 
     // Tests
 
