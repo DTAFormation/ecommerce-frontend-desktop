@@ -14,7 +14,11 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
 
     $routeProvider
-        //.when("/",{redirectTo:'/home'})
+        .when('/product/listproduct', { //
+            templateUrl : "product/template/listproduct.html",
+            controller : "productCtrl",
+            controllerAs : "productCtrl"
+        })
         .otherwise({redirectTo:'/home'});
 });
 
