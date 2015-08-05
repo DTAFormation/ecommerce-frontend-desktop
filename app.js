@@ -3,7 +3,8 @@ angular.module('ecDesktopApp', [
     'ngRoute',
     'ngAnimate',
     'ecDesktopApp.shared',
-    'ecDesktopApp.home'
+    'ecDesktopApp.home',
+    'ecDesktopApp.product'
 ]);
 
 angular.module('ecDesktopApp').config(function($routeProvider) {
@@ -12,6 +13,7 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
     $routeProvider.otherwise({redirectTo:'/home'});
+
 });
 
 angular.module('ecDesktopApp').run(function($rootScope) {

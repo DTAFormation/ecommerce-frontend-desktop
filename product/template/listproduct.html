@@ -7,11 +7,11 @@
   <div class="col-md-2">prix</div>
 </div>
 
-<div ng-repeat="(key, value) in dataset" class="row">
+<div ng-repeat="produit in productCtrl.products" class="row">
   <div class="col-md-2">{{produit.id}}</div>
   <div class="col-md-2">{{produit.libelle}}</div>
   <div class="col-md-2">{{produit.caracteristique}}</div>
-  <div class="col-md-2">{{produit.catagorie}}</div>
+  <div class="col-md-2">{{produit.categorie}}</div>
   <div class="col-md-2">{{produit.image}}</div>
   <div class="col-md-2">{{produit.prix}}</div>
 </div>
