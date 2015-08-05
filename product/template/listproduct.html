@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-2">id</div>
+  <div class="col-md-2">libelle</div>
+  <div class="col-md-2">caractéristique</div>
+  <div class="col-md-2">catégorie</div>
+  <div class="col-md-2">image</div>
+  <div class="col-md-2">prix</div>
+</div>
+
+<div ng-repeat="(key, value) in dataset" class="row">
+  <div class="col-md-2">{{produit.id}}</div>
+  <div class="col-md-2">{{produit.libelle}}</div>
+  <div class="col-md-2">{{produit.caracteristique}}</div>
+  <div class="col-md-2">{{produit.catagorie}}</div>
+  <div class="col-md-2">{{produit.image}}</div>
+  <div class="col-md-2">{{produit.prix}}</div>
+</div>
+
