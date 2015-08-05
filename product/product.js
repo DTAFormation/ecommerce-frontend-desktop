@@ -28,7 +28,6 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
 	var self = this;
 	self.products = productService.getProducts();
 
-
 // ...
 
 });
@@ -36,10 +35,6 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function (productService) {
 
 	var self = this;
-	self.products = productService.listProducts();
-
-
-
 // ...
 
 });

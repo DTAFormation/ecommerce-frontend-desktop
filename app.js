@@ -17,7 +17,11 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
     $routeProvider
-        //.when("/",{redirectTo:'/home'})
+        .when('/product/listproduct', { //
+            templateUrl : "product/template/listproduct.html",
+            controller : "productCtrl",
+            controllerAs : "productCtrl"
+        })
         .otherwise({redirectTo:'/home'});
 
 
