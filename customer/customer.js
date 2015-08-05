@@ -26,7 +26,7 @@ angular.module('ecDesktopApp.customer').controller('createCustomer', function(cu
     createCustomer.addCustomer = function(form){
         if (form.$invalid) {return;}
         var clone = angular.copy(createCustomer.emp);
-        customerService.addCustomer(clone)
+        customerService.addCustomer(clone);
         
 
 

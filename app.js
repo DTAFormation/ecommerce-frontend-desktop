@@ -4,7 +4,7 @@
     'ngAnimate',
     'ecDesktopApp.shared',
     'ecDesktopApp.home',
-    'ecDesktopApp.product'
+    'ecDesktopApp.product',
     'ecDesktopApp.customer'
 
 ]);
