@@ -11,7 +11,10 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
-    $routeProvider.otherwise({redirectTo:'/home'});
+
+    $routeProvider
+        //.when("/",{redirectTo:'/home'})
+        .otherwise({redirectTo:'/home'});
 });
 
 angular.module('ecDesktopApp').run(function($rootScope) {
