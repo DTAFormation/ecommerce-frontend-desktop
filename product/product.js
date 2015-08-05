@@ -19,7 +19,7 @@ controllerAs : "productCtrl"
 angular.module('ecDesktopApp.product').controller('productCtrl', function (productService) {
 
 var self = this;
-self.products = productService.listProducts();
+self.products = productService.getProducts();
 
 
 // ...
