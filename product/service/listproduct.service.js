@@ -1,10 +1,18 @@
 angular.module('ecDesktopApp.product').service('productService', function($http) {
 
-// Fonction qui récupère les données dans le json. les affiches dans la console comme promise.
-this.getProducts = function(){
-     var bouchonproduct="data/bouchonproduct.json";
-     console.log($http.get(bouchonproduct)); 
-     return $http.get(bouchonproduct);  
+	var apiUrl="http://localhost:9001/data/bouchonproduct.json";
+
+	//recupere la liste des produits
+	this.getProducts = function(){
+		var bouchonproduct="data/bouchonproduct.json";
+		console.log($http.get(bouchonproduct)); 
+		return $http.get(bouchonproduct);
+    };
+
+    //créé un produit en base
+	this.addProduct = function(product){
+		console.log("service de creation de produit");
+		return $http.post(apiUrl,product);
     };
 
 });

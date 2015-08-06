@@ -45,7 +45,12 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
 //controlleur pour formulaire de creation des produits
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function (productService) {
 
-    var self = this;
+
+	var self = this;
+	self.addProd = function(product){
+		productService.addProduct(product);
+	};
+
 // ...
 
 });
