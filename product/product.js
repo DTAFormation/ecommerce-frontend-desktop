@@ -14,7 +14,6 @@ angular.module('ecDesktopApp.product').config(function ($routeProvider) {
 		controllerAs:"createProductCtrl",
 		})
 	.when('/product/listproduct', { //
-		templateUrl : "product/template/listproduct.html",
 		controller : "productCtrl",
 		controllerAs : "productCtrl"
 	});
@@ -26,7 +25,15 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
 
 
 	var self = this;
-	self.products = productService.getProducts();
+	productService.getProducts().then(
+				function(response) {
+					return response.data;
+				})
+			.then(
+				function (product) {
+					console.log(product);
+					self.products = product;
+				});
 
 // ...
 
