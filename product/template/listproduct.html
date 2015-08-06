@@ -1,20 +1,27 @@
 <a href="#/product/createProduct">Créer un produit</a>
 
-<div class="row">
-  <div class="col-md-2">id</div>
-  <div class="col-md-2">libelle</div>
-  <div class="col-md-2">caractéristique</div>
-  <div class="col-md-2">catégorie</div>
-  <div class="col-md-2">image</div>
-  <div class="col-md-2">prix</div>
-</div>
-
-<div ng-repeat="produit in productCtrl.products" class="row">
-  <div class="col-md-2">{{produit.id}}</div>
-  <div class="col-md-2">{{produit.libelle}}</div>
-  <div class="col-md-2">{{produit.caracteristique}}</div>
-  <div class="col-md-2">{{produit.categorie}}</div>
-  <div class="col-md-2">{{produit.image}}</div>
-  <div class="col-md-2">{{produit.prix}}</div>
-</div>
-
+<table class="table table-hover">
+  <caption>
+  Liste des produits.
+  </caption>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>libelle</th>
+      <th>caractéristique</th>
+      <th>catégorie</th>
+      <th>image</th>
+      <th>prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="produit in productCtrl.products">
+      <td>{{produit.id}}</td>
+      <td>{{produit.libelle}}</td>
+      <td>{{produit.caracteristique}}</td>
+      <td>{{produit.categorie}}</td>
+      <td>{{produit.image}}</td>
+      <td>{{produit.prix}}</td>
+    </tr>
+  </tbody> 
+</table>
