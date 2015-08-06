@@ -1,18 +1,18 @@
 // Déclaration du module 'product'
 angular.module('ecDesktopApp.product', [
 	'ngRoute',
-]);
+	]);
 
 // Configuration du module 'product'
 angular.module('ecDesktopApp.product').config(function ($routeProvider) {
 
 // TODO Définir les routes spécifiques au module 'product' ici
-	$routeProvider
+$routeProvider
 	.when('/product/createProduct', {   //quand tu vois la route /product/createProduct utilise le template createProduct
 		templateUrl:'/product/template/createProduct.tpl.html',
 		controller : "createProductCtrl",
 		controllerAs:"createProductCtrl",
-		})
+	})
 	.when('/product/listproduct', { //
 		controller : "productCtrl",
 		controllerAs : "productCtrl"
@@ -26,14 +26,14 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
 
 	var self = this;
 	productService.getProducts().then(
-				function(response) {
-					return response.data;
-				})
-			.then(
-				function (product) {
-					console.log(product);
-					self.products = product;
-				});
+		function(response) {
+			return response.data;
+		})
+	.then(
+		function (product) {
+			console.log(product);
+			self.products = product;
+		});
 
 // ...
 
@@ -50,8 +50,7 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function 
 		},function(error){ //en cas d'erreur
 			console.log("erreur lors de la requete de post");
 			self.err=true;
-
-		});
+	});
 	};
 // ...
 
