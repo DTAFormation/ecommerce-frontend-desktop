@@ -48,7 +48,15 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function 
 
 	var self = this;
 	self.addProd = function(product){
-		productService.addProduct(product);
+		productService.addProduct(product)
+		.then(function(response){ //en cas de succes
+			console.log("succes lors de la requete de post");
+			self.err=false;
+		},function(error){ //en cas d'erreur
+			console.log("erreur lors de la requete de post");
+			self.err=true;
+
+		});
 	};
 
 // ...

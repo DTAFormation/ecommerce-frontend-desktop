@@ -29,5 +29,7 @@
      <input type="submit" value="Créer" />
   </form>
 
-  <pre>form = {{ product | json}}</pre>
+  <pre>form = {{ product | json }}</pre>
 </div>
+
+<p ng-show="createProductCtrl.err"> La requete a échoué</p>
