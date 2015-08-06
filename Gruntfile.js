@@ -70,10 +70,10 @@ module.exports = function (grunt) {
         singleRun: true
       },
       all_tests: {
-        browsers: ['PhantomJS'] // 'Chrome', 'Firefox']
+        browsers: ['Chrome'] // 'Chrome', 'Firefox']
       },
       during_watch: {
-        browsers: ['PhantomJS']
+        browsers: ['Chrome']
       },
     }
   });
