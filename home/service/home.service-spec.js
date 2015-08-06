@@ -1,5 +1,3 @@
 describe('homeServiceTest', function() {
 
-    // Tests
-
 });

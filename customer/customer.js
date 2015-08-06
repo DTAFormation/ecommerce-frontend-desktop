@@ -1,7 +1,7 @@
 // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
-    'ecDesktopApp.shared'
+   // 'ecDesktopApp.shared'
 ]);
 
 // Configuration du module 'home'
@@ -13,6 +13,10 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
         controller: "CreateCustomerController",
         controllerAs: "createCustomer"
 
+    })
+    .when('/customer/listcustomer', { //
+        controller : "customerCtrl",
+        controllerAs : "customerCtrl"
     });
 
 });
@@ -35,3 +39,24 @@ angular.module('ecDesktopApp.customer').controller('createCustomer', function(cu
 
 
 });
+
+//controlleur pour formulaire liste des clients
+angular.module('ecDesktopApp.customer').controller('customerCtrl', function (customerService) {
+
+
+    var self = this;
+    customerService.getCustomers().then(
+                function(response) {
+                    return response.data;
+                })
+            .then(
+                function (customer) {
+                    console.log(customer);
+                    self.customers = customer;
+                });
+
+// ...
+
+});
+
+

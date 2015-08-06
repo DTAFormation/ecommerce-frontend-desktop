@@ -5,8 +5,7 @@
     "prenom": "Rosalie",
     "login": "Hammond",
     "email": "rosaliehammond@helixo.com",
-    "password": "hogan",
-    "adress": "12 rue tomtom"
+    "motdepasse": "hogan"
   },
   {
     "id": 2,
@@ -14,8 +13,7 @@
     "prenom": "Emilia",
     "login": "Cobb",
     "email": "emiliacobb@helixo.com",
-    "password": "jenny",
-    "adress": "14 rue nana"
+    "motdepasse": "jenny"
   },
   {
     "id": 3,
@@ -23,8 +21,7 @@
     "prenom": "Kirkland",
     "login": "Gates",
     "email": "kirklandgates@helixo.com",
-    "password": "audrey",
-    "adress": "28 rue pluton"
+    "motdepasse": "audrey"
   },
   {
     "id": 4,
@@ -32,7 +29,6 @@
     "prenom": "Ray",
     "login": "Parker",
     "email": "rayparker@helixo.com",
-    "password": "flores",
-    "adress": "29 rue loin"
+    "motdepasse": "flores"
   }
 ]
