@@ -25,15 +25,17 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
  
     
     this.addCustomer = function(customer){
-        
-       // if (customer.$invalid) {return;}
-       
-        var clone = angular.copy(customer);
-       customerService.addCustomer(clone).then(function(){
-            $location.path("/home");
-        });
-        
 
+        var clone = angular.copy(customer);
+       customerService.addCustomer(clone)
+       .then(function(response){
+            this.err = false;
+        },function(error){
+             console.log("erreur de requette"); 
+            this.err = true;
+            console.log(this.err);
+            
+        });
 
     };
 
