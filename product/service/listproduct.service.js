@@ -17,9 +17,9 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
     };
 
     //supprimer un produit en base
-    this.delProduct = function(product){
-        console.log("tentative de suppression d'un produit");
-        return $http.del(delUrl+product.id+"/bouchonproduct.json");
+    this.deleteProduct = function(product){
+        console.log("tentative de suppression d'un produit"+product);
+        return $http.delete(delUrl+product.id+"/bouchonproduct.json");
     };
 
 });

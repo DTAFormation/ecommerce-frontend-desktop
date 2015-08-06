@@ -18,6 +18,7 @@ $routeProvider
     controller : "productCtrl",
     controllerAs : "productCtrl"
 });
+
 });
 
 // Contrôleur principal du module 'product'
@@ -29,15 +30,20 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function (produ
     //afficher la liste des produit récupéré par "getProduct".
     productService.getProducts().then(
         function(response) {
-           return response.data;
-       }, function(response) {
+         return response.data;
+     }, function(response) {
         return "impossible d'afficher des produits";
     })
     .then(
         function (product) {
-           console.log(product);
-           self.products = product;
-       });
+         console.log(product);
+         self.products = product;
+     });
+
+    //lancer le traitement de supprimer produit.
+    self.delProduct = function(product){
+        productService.deleteProduct(product);
+    };
 
 // ...
 
@@ -55,11 +61,3 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function 
 
 });
 
-angular.module('ecDesktopApp.product').controller('deleteProductCtrl', function (productService){
-
-    var self=this;
-    //lancer le traitement de supprimer produit.
-    self.delProduct = function(product){
-        productService.deleteProduct(product);
-    };
-});
