@@ -1,0 +1,25 @@
+<a href="#/customer/createCustomer">Créer un client</a>
+
+<table class="table table-bordered">
+  <caption>Liste des clients</caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Login</th>
+      <th>Mot de Passe</th>
+      <th>Adresse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="c in customerCtrl.customers">
+      <td> {{c.id}}</td>
+      <td> {{c.nom}}</td>
+      <td> {{c.prenom}}</td>
+      <td> {{c.login}}</td>
+      <td> {{c.password}}</td>
+      <td> {{c.adress}}</td>
+    </tr>
+  </tbody>
+</table>
