@@ -147,5 +147,3 @@ var createFolderGlobs = function(fileTypePatterns) {
           })
           .concat(fileTypePatterns);
 };
-
-console.log(createFolderGlobs('*.js'));
