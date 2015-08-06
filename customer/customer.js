@@ -1,3 +1,4 @@
+
 // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
@@ -19,14 +20,18 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
 // Contrôleur principal du module 'createCustomer'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.customer').controller('createCustomer', function(customerService) {
+angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function(customerService, $location) {
 
-    var createCustomer = this;
-
-    createCustomer.addCustomer = function(form){
-        if (form.$invalid) {return;}
-        var clone = angular.copy(createCustomer.emp);
-        customerService.addCustomer(clone);
+ 
+    
+    this.addCustomer = function(customer){
+        
+       // if (customer.$invalid) {return;}
+       
+        var clone = angular.copy(customer);
+       customerService.addCustomer(clone).then(function(){
+            $location.path("/home");
+        });
         
 
 
