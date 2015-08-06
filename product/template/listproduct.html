@@ -2,7 +2,7 @@
 
 <table class="table table-bordered">
   <caption>
-  Liste des produits.
+    Liste des produits.
   </caption>
   <thead>
     <tr>
@@ -22,6 +22,10 @@
       <td>{{produit.categorie}}</td>
       <td>{{produit.image}}</td>
       <td>{{produit.prix}}</td>
+      <td>
+        <button ng-click="">Modifier Produit</button>
+        <button ng-click="self.delProduct">Supprimer Produit</button>
+      </td>
     </tr>
   </tbody> 
 </table>
