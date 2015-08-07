@@ -13,16 +13,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="c in customerCtrl.customers">
-      <td> {{c.id}}</td>
-      <td> {{c.nom}}</td>
-      <td> {{c.prenom}}</td>
-      <td> {{c.login}}</td>
-      <td> {{c.password}}</td>
-      <td> {{c.adress}}</td>
+    <tr ng-repeat="customer in customerCtrl.customers | orderBy:'id'">
+      <td> {{customer.id}}</td>
+      <td> {{customer.nom}}</td>
+      <td> {{customer.prenom}}</td>
+      <td> {{customer.login}}</td>
+      <td> {{customer.password}}</td>
+      <td> {{customer.adress}}</td>
       <td>
-        <button >Modifier Client</button>
+        <a href="#/customer/updateCustomer" onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'">Modifier client</a>
       </td>
+      
     </tr>
   </tbody>
 </table>
