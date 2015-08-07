@@ -1,4 +1,4 @@
-angular.module('ecDesktopApp.authentification').service('authentificationService', function($http) {
+angular.module('ecDesktopApp.home').service('homeService', function($http) {
 
 // TODO Service Home
 
