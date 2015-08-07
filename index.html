@@ -141,21 +141,44 @@
   					</button>
   					<ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
 
-  						<li ng-repeat="choice in productFunctions">
+  						<li ng-repeat="choice in productsFunctions">
   							<a href='{{choice.url}}'>{{choice.affichage}}</a>
   						</li>
   					</ul>
   				</div>
-  				<div class="btn-group" dropdown>
-  					<button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Trucmuche
-  						<span class="caret"></span>
-  					</button>
-  					<ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-  						<li ng-repeat="choice in trucmucheFunctions">
-  							<a href='{{choice.url}}'>{{choice.affichage}}</a>
-  						</li>
-  					</ul>
-  				</div>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+              <li ng-repeat="choice in clientsFunctions">
+                <a href='{{choice.url}}'>{{choice.affichage}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+              <li ng-repeat="choice in ordersFunctions">
+                <a href='{{choice.url}}'>{{choice.affichage}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+              <li ng-repeat="choice in statsFunctions">
+                <a href='{{choice.url}}'>{{choice.affichage}}</a>
+              </li>
+            </ul>
+          </div>
   			</div>
   		</div>
   		<ul class="nav navbar-nav navbar-right">

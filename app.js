@@ -7,7 +7,7 @@
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
     'ui.bootstrap'
-]);
+    ]);
 
 angular.module('ecDesktopApp').config(function($routeProvider) {
 
@@ -26,7 +26,7 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
 
-});
+    });
 
 angular.module('ecDesktopApp').run(function($rootScope) {
 
@@ -38,22 +38,36 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
 });
 
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
-    $scope.productFunctions= [
+    $scope.productsFunctions= [
     {affichage:'Afficher Produits',url:'#/aaaaa'},
     {affichage:'Créer Produit',url:'#/bbbbb'},
     {affichage:'Modifier Produit',url:'#/ccccc'},
     {affichage:'Supprimer Produit',url:'#/ddddd'}
     ];
 
-  $scope.trucmucheFunctions = [
-    {affichage:'1function1',url:'#/1'},
-    {affichage:'2function2',url:'#/2'},
-    {affichage:'3function3',url:'#/3'}
-  ];
+    $scope.clientsFunctions= [
+    {affichage:'Afficher Clients',url:'#/aaaaa'},
+    {affichage:'Créer Clients',url:'#/bbbbb'},
+    {affichage:'Modifier Clients',url:'#/ccccc'},
+    {affichage:'Supprimer Clients',url:'#/ddddd'}
+    ];
 
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
+    $scope.ordersFunctions= [
+    {affichage:'Afficher Commandes',url:'#/aaaaa'},
+    {affichage:'Annuler Commande',url:'#/bbbbb'},
+    {affichage:'Rehercher Commande par ID,Client,...',url:'#/ccccc'}
+    ];
+
+    $scope.statsFunctions= [
+    {affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
+    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
+    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
+    ];
+
+    $scope.toggleDropdown = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.status.isopen = !$scope.status.isopen;
+    };
 });
