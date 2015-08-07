@@ -33,4 +33,14 @@ describe('listproductServiceTest', function(){
         $httpBackend.flush();
 
     }));
+
+    it("est ce que la fonction delete essaye de supprimer quelque chose? ", inject(function(productService,$httpBackend ){
+
+        var reponseSimule={id : 1, libelle : "libelle" , caracteristique : "carac", categorie : "categorie", image : "image" , prix : 0.10};
+        $httpBackend.expectDELETE('http://localhost:9001/data/1/bouchonproduct.json', reponseSimule).respond(200, '');
+        var reponsePromesse=productService.deleteProduct(reponseSimule);
+        $httpBackend.flush();
+
+    }));
+
 });
