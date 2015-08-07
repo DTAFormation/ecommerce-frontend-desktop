@@ -1,6 +1,8 @@
 # ECommerce Frontend Desktop
 Application Desktop d'administration des données
 
+Application auto déployée : http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/
+
 ## Suivi du projet
 Le projet est réalisé en suivant la méthodologie Scrum :
 * [Le Backlog du produit](https://github.com/DTAFormation/ecommerce-frontend-desktop/wiki/Backlog-Produit)
@@ -29,3 +31,6 @@ bower install
 ```
 grunt serve
 ```
+## Utilisation de l'application
+* Aller sur l'adresse
+[http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/](http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/)
