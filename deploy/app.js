@@ -40,20 +40,20 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
 angular.module('ecDesktopApp').run(function($rootScope, $location, $cookieStore, $http) {
     //Maintenir la connexion à chaque changement de page.
-    $rootScope.globals = $cookieStore.get('globals')||{};
+    // $rootScope.globals = $cookieStore.get('globals')||{};
 
-    if ($rootScope.globals.currentUser) {
-             $http.defaults.headers.common['Authorization'] = 'Basic ' + 
-             $rootScope.globals.currentUser.authdata; // jshint ignore:line
-         }
-    $rootScope.$on('$locationChangeStart', function(event, next, current){
-        //redirection vers la page de login si non logger.
-        var restrictedPage = $.inArray($location.path(), '/login');
-        var loggedIn = $rootScope.globals.currentUser;
-        if (restrictedPage && !loggedIn){
-            $location.path('/login');
-        }
-    });
+    // if ($rootScope.globals.currentUser) {
+    //          $http.defaults.headers.common['Authorization'] = 'Basic ' + 
+    //          $rootScope.globals.currentUser.authdata; // jshint ignore:line
+    //      }
+    // $rootScope.$on('$locationChangeStart', function(event, next, current){
+    //     //redirection vers la page de login si non logger.
+    //     var restrictedPage = $.inArray($location.path(), '/login');
+    //     var loggedIn = $rootScope.globals.currentUser;
+    //     if (restrictedPage && !loggedIn){
+    //         $location.path('/login');
+    //     }
+    // });
 });
 
 // Contrôleur qui pilote globalement l'application
