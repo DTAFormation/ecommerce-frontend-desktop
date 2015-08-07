@@ -38,7 +38,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
     }]);
 
-angular.module('ecDesktopApp').run(function($rootScope, $location, $cookieStore, $http) {
+angular.module('ecDesktopApp').run(function($rootScope, $location, /*$cookieStore,*/ $http) {
     //Maintenir la connexion à chaque changement de page.
     // $rootScope.globals = $cookieStore.get('globals')||{};
 
