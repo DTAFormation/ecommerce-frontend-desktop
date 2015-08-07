@@ -44,10 +44,10 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
 
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     $scope.productsFunctions= [
-    {affichage:'Afficher Produits',url:'#/aaaaa'},
-    {affichage:'Créer Produit',url:'#/bbbbb'},
-    {affichage:'Modifier Produit',url:'#/ccccc'},
-    {affichage:'Supprimer Produit',url:'#/ddddd'}
+    {affichage:'Afficher Produits',url:'#/product/listproduct'},
+    {affichage:'Créer Produit',url:'#/product/createProduct'},
+    {affichage:'Modifier Produit',url:'#/product/listproduct'},
+    {affichage:'Supprimer Produit',url:'#/product/listproduct'}
     ];
 
     $scope.clientsFunctions= [
@@ -60,7 +60,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     $scope.ordersFunctions= [
     {affichage:'Afficher Commandes',url:'#/aaaaa'},
     {affichage:'Annuler Commande',url:'#/bbbbb'},
-    {affichage:'Rehercher Commande par ID,Client,...',url:'#/ccccc'}
+    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
     ];
 
     $scope.statsFunctions= [
@@ -69,10 +69,4 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
-
-    $scope.toggleDropdown = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.status.isopen = !$scope.status.isopen;
-    };
 });
