@@ -37,7 +37,7 @@ describe('DropdownCtrl', function() {
 		var testOrdersFunctions= [
 		{affichage:'Afficher Commandes',url:'#/aaaaa'},
 		{affichage:'Annuler Commande',url:'#/bbbbb'},
-		{affichage:'Rehercher Commande par ID,Client,...',url:'#/ccccc'}
+		{affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
 		];
 
 		var testStatsFunctions= [
@@ -47,8 +47,6 @@ describe('DropdownCtrl', function() {
 		{affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
 		];
 
-		console.log(testProductsFunctions);
-		console.log(scope.productsFunctions);
 		expect(angular.equals(scope.productsFunctions,testProductsFunctions)).toBe(true);
 		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(true);
 		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(true);

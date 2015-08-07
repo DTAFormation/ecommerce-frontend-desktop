@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <label for="Adresse">Adresse :</label>
-      <input type="text" class="form-control" id="adresse" placeholder="Entrer une adresse" ng-model="customer.adress">
+      <input type="text" class="form-control" id="adresse" placeholder="Entrer une adresse" ng-model="customer.address">
     </div>
     <div class="form-group">
       <label for="login">Login :</label>
@@ -24,5 +24,6 @@
     </div>
     <input type="submit" class="btn btn-default" value="Créer un Client" ></input>
   </form>
-   
 </div>
+     <p ng-show="createCustomer.err"> Le client n'a pas été créé</p>
+
