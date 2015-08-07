@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nom": "Dillon",
+    "prenom": "Rosalie",
+    "login": "Hammond",
+    "email": "rosaliehammond@helixo.com",
+    "password": "hogan",
+    "adress": "12 rue tomtom"
+  },
+  {
+    "id": 2,
+    "nom": "Valencia",
+    "prenom": "Emilia",
+    "login": "Cobb",
+    "email": "emiliacobb@helixo.com",
+    "password": "jenny",
+    "adress": "14 rue nana"
+  },
+  {
+    "id": 3,
+    "nom": "Ball",
+    "prenom": "Kirkland",
+    "login": "Gates",
+    "email": "kirklandgates@helixo.com",
+    "password": "audrey",
+    "adress": "28 rue pluton"
+  },
+  {
+    "id": 4,
+    "nom": "Gibson",
+    "prenom": "Ray",
+    "login": "Parker",
+    "email": "rayparker@helixo.com",
+    "password": "flores",
+    "adress": "29 rue loin"
+  }
+]

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="ecDesktopApp" ng-controller="ecDesktopCtrl as ecDesktopCtrl">
+<head>
+	<title ng-bind="ecDesktopCtrl.title"></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link href="app.css" type="text/css" rel="stylesheet/css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="app.css">
+</head>
+<body>
+
+	<!-- Livereload script for development only (stripped during dist build) -->
+	<script src="http://localhost:35729/livereload.js" data-concat="false"></script>
+
+	<!-- JS from Bower Components -->
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+	<!-- Add New Bower Component JS Above -->
+
+	<!-- Main App JS -->
+	<script src="shared/shared.js"></script>
+	<script src="shared/service/user.service.js"></script>
+	<script src="home/home.js"></script>
+	<script src="home/service/home.service.js"></script>
+	<script src="app.js"></script>
+
+  <!--  Ajout des appels de products -->
+  <script src="product/product.js"></script>
+  <script src="product/service/product.service.js"></script>
+  <!--  Ajout des appels clients-->
+  <script src="customer/customer.js"></script>
+  <script src="customer/service/customer.service.js"></script>
+
+  <!-- Add New Component JS Above -->
+
+
+  <div>
+    <div id="content" class="container">
+     <div class="row">
+      <h1>ECommerce Desktop</h1>
+      <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+        <div class="navbar-header">
+         <a class="navbar-brand" href="#/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+       </div>
+       <div ng-controller="DropdownCtrl">
+         <div class="nav navbar-nav">
+          <div class="btn-group" dropdown>
+           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+            <li ng-repeat="choice in productsFunctions">
+             <a href='{{choice.url}}'>{{choice.affichage}}</a>
+           </li>
+         </ul>
+       </div>
+       <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+          <li ng-repeat="choice in clientsFunctions">
+            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+          <li ng-repeat="choice in ordersFunctions">
+            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+
+          <li ng-repeat="choice in statsFunctions">
+            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <div role="navigation">
+        <button type="button" class="btn btn-default navbar-btn loginEcommerce">Login</button>
+      </div>
+    </li>
+    <li>
+      <div role="navigation">
+        <button type="button" class="btn btn-default navbar-btn logoutEcommerce">Logout</button>
+      </div>
+    </li>
+  </ul>
+</div>
+</nav>
+
+<div ng-view>
+</div>
+</div>
+</div>
+</div>
+
+</body>
+</html>

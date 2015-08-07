@@ -1,0 +1,28 @@
+<div class="container">
+   <a href="#/customer/listcustomer">Liste des clients</a>
+  <h2>Formulaire de création de client</h2>
+  <form role="form" ng-submit="createCustomer.addCustomer(customer)" >
+    <div class="form-group">
+      <label for="nom">Nom:</label>
+      <input type="text" class="form-control" id="nom" placeholder="Entrer un Nom" ng-model="customer.name">
+    </div>
+    <div class="form-group">
+      <label for="Prénom">Prénom :</label>
+      <input type="text" class="form-control" id="categorie" placeholder="Entrer un Prénom" ng-model="customer.firstname">
+    </div>
+    <div class="form-group">
+      <label for="Adresse">Adresse :</label>
+      <input type="text" class="form-control" id="adresse" placeholder="Entrer une adresse" ng-model="customer.adress">
+    </div>
+    <div class="form-group">
+      <label for="login">Login :</label>
+      <input type="text" class="form-control" id="login" placeholder="Entrer un login" ng-model="customer.login">
+    </div>
+        <div class="form-group">
+      <label for="motDePasse">Mot de Passe :</label>
+      <input type="text" class="form-control" id="motDePasse" placeholder="Entrer un mot de passe" ng-model="customer.password">
+    </div>
+    <input type="submit" class="btn btn-default" value="Créer un Client" ></input>
+  </form>
+   
+</div>
