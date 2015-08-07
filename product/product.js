@@ -10,12 +10,12 @@ angular.module('ecDesktopApp.product').config(function($routeProvider) {
 // TODO Définir les routes spécifiques au module 'product' ici
 $routeProvider
 	.when('/product/createProduct', {   //quand tu vois la route /product/createProduct utilise le template createProduct
-	    templateUrl:'/product/template/createProduct.tpl.html',
+	    templateUrl:'product/template/createProduct.tpl.html',
 	    controller : "createProductCtrl",
 	    controllerAs:"createProductCtrl",
 	})
 	.when('/product/listproduct', { //
-	    templateUrl:'/product/template/listproduct.html',
+	    templateUrl:'product/template/listproduct.html',
 	    controller : "productCtrl",
 	    controllerAs : "productCtrl"
 	});
