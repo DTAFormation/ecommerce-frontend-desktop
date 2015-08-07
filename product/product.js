@@ -5,7 +5,7 @@ angular.module('ecDesktopApp.product', [
 
 
 // Configuration du module 'product'
-angular.module('ecDesktopApp.product').config(function ($routeProvider) {
+angular.module('ecDesktopApp.product').config(function($routeProvider) {
 
 // TODO Définir les routes spécifiques au module 'product' ici
 $routeProvider

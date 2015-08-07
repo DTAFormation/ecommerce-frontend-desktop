@@ -17,6 +17,7 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
     $routeProvider
+    
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
             controller : "productCtrl",

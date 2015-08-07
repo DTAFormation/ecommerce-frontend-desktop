@@ -23,21 +23,21 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
 // Contrôleur principal du module 'createCustomer'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.customer').controller('createCustomer', function(customerService) {
+angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function (customerService) {
 
+    var self = this;
+        
+    self.addCustomer = function(customer){
+       //if (customer.$invalid) {return;}
 
         
-    this.addCustomer = function(customer){
-       if (form.$invalid) {return;}
-
-        var clone = angular.copy(customer);
-       customerService.addCustomer(clone)
+       customerService.addCustomer(customer)
        .then(function(response){
-            this.err = false;
+            self.err = false;
         },function(error){
              console.log("erreur de requette"); 
-            this.err = true;
-            console.log(this.err);
+            self.err = true;
+            console.log(self.err);
             
         });
 
