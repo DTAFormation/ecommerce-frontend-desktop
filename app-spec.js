@@ -21,10 +21,10 @@ describe('DropdownCtrl', function() {
 		var controller = $controller('DropdownCtrl',{'$scope' : scope});
 
 		var testProductsFunctions = [
-		{affichage:'Afficher Produits',url:'#/aaaaa'},
-		{affichage:'Créer Produit',url:'#/bbbbb'},
-		{affichage:'Modifier Produit',url:'#/ccccc'},
-		{affichage:'Supprimer Produit',url:'#/ddddd'}
+		{affichage:'Afficher Produits',url:'#/product/listproduct'},
+		{affichage:'Créer Produit',url:'#/product/createProduct'},
+		{affichage:'Modifier Produit',url:'#/product/listproduct'},
+		{affichage:'Supprimer Produit',url:'#/product/listproduct'}
 		];
 
 		var testClientsFunctions = [
