@@ -2,7 +2,7 @@
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
    // 'ecDesktopApp.shared'
-]);
+   ]);
 
 // Configuration du module 'home'
 angular.module('ecDesktopApp.customer').config(function($routeProvider) {
@@ -18,6 +18,13 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
         templateUrl : "customer/template/listcustomer.html",
         controller : "customerCtrl",
         controllerAs : "customerCtrl"
+    })
+
+    .when("/customer/updateCustomer/:id",{
+        templateUrl : "customer/template/updateCustomer.tpl.html",
+        controller: "updateCustomereController",
+        controllerAs: "updateCustomerCtrl"
+
     });
 
 });
@@ -27,17 +34,17 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function (customerService) {
 
     var self = this;
-        
+    
     self.addCustomer = function(customer){
-       customerService.addCustomer(customer)
-       .then(function(response){
-            self.err = false;
-        },function(error){
-            console.log("erreur de requette"); 
-            self.err = true;
-            console.log(self.err); 
-        });
-    };
+     customerService.addCustomer(customer)
+     .then(function(response){
+        self.err = false;
+    },function(error){
+        console.log("erreur de requette"); 
+        self.err = true;
+        console.log(self.err); 
+    });
+ };
 });
 
 //controlleur pour formulaire liste des clients
@@ -46,13 +53,11 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
     var self = this;
     customerService.getCustomers()
-    .then(function(response) {
-        return response.data;
-    })
-    .then(function (customer) {
-        console.log(customer);
-        self.customers = customer;
-    });
+    .then(
+        function (customer) {
+                    //console.log("customer:"+JSON.stringify(customer));
+                    self.customers = customer;
+                });
 
     self.delCustomer = function(id){
         console.log("function delCustomer sur le client "+id);
@@ -69,8 +74,32 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
         });
     };
 
-// ...
-
 });
+
+/* customerService:service
+
+
+*/
+angular.module("ecDesktopApp.customer").controller("updateCustomereController",function (customerService,$routeParams,$location) {
+    var updatectrl =this;
+    
+    console.log("update update : " + $routeParams.id);
+    
+    customerService.get($routeParams.id)
+    .then(function (customer) {
+
+        updatectrl.customer = customer;
+    });
+
+    updatectrl.updateCustomer = function (form) {
+        if (form.$invalid) {return ;}
+        customerService.updateCustomer(updatectrl.customer)
+        .then(function () {
+            $location.path("/");
+        });
+    };
+});
+
+
 
 
