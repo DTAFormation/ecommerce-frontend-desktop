@@ -65,7 +65,7 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 	});
 	};
 
-// ...
+angular.module('ecDesktopApp.product').controller()
 
 });
 
