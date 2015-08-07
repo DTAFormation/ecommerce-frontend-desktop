@@ -9,7 +9,7 @@
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -17,7 +17,11 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
 
     $routeProvider
-    
+        .when('/login', {
+            controller : 'LoginController',
+            templateUrl : 'login/authentification.html',
+            controllerAs : 'vm'
+        })
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
             controller : "productCtrl",
@@ -34,7 +38,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
     }]);
 
-angular.module('ecDesktopApp').run(function($rootScope) {
+angular.module('ecDesktopApp').run(function($rootScope, $location, $cookieStore, $http) {
 
 });
 
