@@ -12,5 +12,10 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
      return $http.get(apiUrl);  
     };
 
+    //service de suppression de client
+    this.deleteCustomer = function(customer){
+		return $http.delete(apiUrl+"/customer/"+customer.id);
+    };
+
 
 });

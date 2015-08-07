@@ -15,6 +15,7 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
     })
     .when('/customer/listcustomer', { //
+        templateUrl : "customer/template/listcustomer.html",
         controller : "customerCtrl",
         controllerAs : "customerCtrl"
     });
@@ -28,24 +29,15 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
     var self = this;
         
     self.addCustomer = function(customer){
-       //if (customer.$invalid) {return;}
-
-        
        customerService.addCustomer(customer)
        .then(function(response){
             self.err = false;
         },function(error){
-             console.log("erreur de requette"); 
+            console.log("erreur de requette"); 
             self.err = true;
-            console.log(self.err);
-            
+            console.log(self.err); 
         });
-
-
     };
-
-
-
 });
 
 //controlleur pour formulaire liste des clients
@@ -53,15 +45,28 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
 
     var self = this;
-    customerService.getCustomers().then(
-                function(response) {
-                    return response.data;
-                })
-            .then(
-                function (customer) {
-                    console.log(customer);
-                    self.customers = customer;
-                });
+    customerService.getCustomers()
+    .then(function(response) {
+        return response.data;
+    })
+    .then(function (customer) {
+        console.log(customer);
+        self.customers = customer;
+    });
+
+    self.delCustomer = function(id){
+        console.log("function delCustomer sur le client "+id);
+        customerService.deleteCustomer(id)
+        .then(function(succes){
+            console.log('succes lors de la requete de suppression de client');
+            customerService.getCustomers(); //recharge la liste des clients a jour
+            self.err=false;
+            return succes.data;
+        },function(error){
+            self.err=true;
+            console.log('erreur lors de la requete de suppression de client');
+        });
+    };
 
 // ...
 
