@@ -46,6 +46,7 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
     var self = this;
     customerService.getCustomers()
+<<<<<<< HEAD
     .then(function(response) {
         return response.data;
     })
@@ -68,6 +69,13 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
             console.log('erreur lors de la requete de suppression de client');
         });
     };
+=======
+            .then(
+                function (customer) {
+                    //console.log("customer:"+JSON.stringify(customer));
+                    self.customers = customer;
+                });
+>>>>>>> locale
 
 // ...
 
