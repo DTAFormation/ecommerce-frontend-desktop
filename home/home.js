@@ -1,7 +1,8 @@
 // Déclaration du module 'home' qui constitue la page d'accueil de l'administration
 angular.module('ecDesktopApp.home', [
     'ngRoute',
-    'ecDesktopApp.shared'
+    'ecDesktopApp.shared',
+    'ui.bootstrap'
 ]);
 
 // Configuration du module 'home'
