@@ -42,9 +42,10 @@ angular.module('ecDesktopApp').run(function($rootScope, $location, $cookieStore,
     //Maintenir la connexion à chaque changement de page.
     $rootScope.globals = $cookieStore.get('globals')||{};
 
-    // if ($rootScope.globals.currentUser) {
-    //         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-    //     }});
+    if ($rootScope.globals.currentUser) {
+             $http.defaults.headers.common['Authorization'] = 'Basic ' + 
+             $rootScope.globals.currentUser.authdata; // jshint ignore:line
+         }
     $rootScope.$on('$locationChangeStart', function(event, next, current){
         //redirection vers la page de login si non logger.
         var restrictedPage = $.inArray($location.path(), '/login');
