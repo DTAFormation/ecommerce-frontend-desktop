@@ -56,14 +56,15 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
     self.delCustomer = function(id){
         console.log("function delCustomer sur le client "+id);
-        customerService.deleteCustomer(id)
+        customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             console.log('succes lors de la requete de suppression de client');
-            customerService.getCustomers(); //recharge la liste des clients a jour
+            //customerService.getCustomers(); //recharge la liste des clients a jour
             self.err=false;
-            return succes.data;
+            //return succes.data;
         },function(error){
             self.err=true;
+            setTimeout(function(){window.location.reload();},2000);
             console.log('erreur lors de la requete de suppression de client');
         });
     };
