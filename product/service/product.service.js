@@ -29,5 +29,11 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
     		
 
     };
+    this.getEmploye =  function (id){
+            return $http.get(updateUrl + "/product/" + id)
+            .then(function (result){
+                return result;
+            })
+        },
 
 });
