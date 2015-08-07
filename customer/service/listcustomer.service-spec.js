@@ -21,7 +21,7 @@ describe('listcustomerServiceTest', function() {
                             };
 
         //l'adresse sur laquelle on récupère les données
-        $httpBackend.when("GET", "http://localhost:9001/data/bouchoncustomer.json").respond(reponseSimule);
+        $httpBackend.when("GET", "data/api/customer/all.json").respond(reponseSimule);
 
         //récupération des données
         var reponsePromesse=customerService.getCustomers();
