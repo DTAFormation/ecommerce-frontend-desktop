@@ -1,5 +1,7 @@
 <a href="#/product/createProduct">Créer un produit</a>
 
+<input type="text" ng-model="searchProduct" placeholder="Chercher dans la liste" style="float:right" autofocus>
+
 <table class="table table-bordered">
   <caption>
     Liste des produits.
@@ -15,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="produit in productCtrl.products">
+    <tr ng-repeat="produit in productCtrl.products | filter:searchProduct">
       <td>{{produit.id}}</td>
       <td>{{produit.libelle}}</td>
       <td>{{produit.caracteristique}}</td>
