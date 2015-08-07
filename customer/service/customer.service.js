@@ -9,11 +9,8 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
 	// Fonction qui récupère les données dans le bouchon bouchoncustomer.js 
 	this.getCustomers = function(){
-<<<<<<< HEAD
      console.log($http.get(apiUrl + "all.json")); 
-     return $http.get(apiUrl + "all.json");  
-=======
-     return $http.get(apiUrl)
+     return $http.get(apiUrl+ "all.json")
        .then(
         function(response){
             return response.data;
@@ -33,7 +30,6 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
     //service de suppression de client
     this.deleteCustomer = function(id){
 		return $http.delete(apiUrl+"/customer/"+id);
->>>>>>> 2c3bcdd30b2938312569fa5ee8d7d8c9cccbc561
     };
 
   this.get = function(id){ 
