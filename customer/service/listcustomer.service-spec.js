@@ -28,7 +28,8 @@ describe('listcustomerServiceTest', function() {
 
         // vérification du résultat
         reponsePromesse.then(function(response){
-            var customer = response.data;
+            console.log("response:"+JSON.stringify(response));
+            var customer = response;
             expect(customer.id).toEqual(1);
             expect(customer.nom).toEqual("Dillon");
             expect(customer.prenom).toEqual("Rosalie");

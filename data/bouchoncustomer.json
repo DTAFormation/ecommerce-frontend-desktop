@@ -6,7 +6,7 @@
     "login": "Hammond",
     "email": "rosaliehammond@helixo.com",
     "password": "hogan",
-    "adress": "12 rue tomtom"
+    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "login": "Cobb",
     "email": "emiliacobb@helixo.com",
     "password": "jenny",
-    "adress": "14 rue nana"
+    "address": {"number":14, "street":"rue cette", "city":"Nana"}
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "login": "Gates",
     "email": "kirklandgates@helixo.com",
     "password": "audrey",
-    "adress": "28 rue pluton"
+    "address": {"number":28, "street":"rue planète naine", "city":"Pluton"}
   },
   {
     "id": 4,
@@ -33,6 +33,6 @@
     "login": "Parker",
     "email": "rayparker@helixo.com",
     "password": "flores",
-    "adress": "29 rue loin"
+    "address": {"number":29, "street":"rue fort fort", "city":"Lointain"}
   }
 ]

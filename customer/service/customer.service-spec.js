@@ -6,7 +6,7 @@ describe('customerServiceTest', function() {
 	it("Les données du formulaires doivent être postées", inject(function(customerService, $httpBackend){
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
-		$httpBackend.expectPOST('data/bouchoncustomer.json',customer).respond(404,'');
+		$httpBackend.expectPOST('http://localhost:9001/data/bouchoncustomer.json',customer).respond(404,'');
 
 		//$httpBackend.whenPOST('http://localhost:9001/#/customer/createCustomer',customer).respond(201,'');
 

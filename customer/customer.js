@@ -29,7 +29,6 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
         
     self.addCustomer = function(customer){
        //if (customer.$invalid) {return;}
-
         
        customerService.addCustomer(customer)
        .then(function(response){
@@ -53,13 +52,10 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
 
     var self = this;
-    customerService.getCustomers().then(
-                function(response) {
-                    return response.data;
-                })
+    customerService.getCustomers()
             .then(
                 function (customer) {
-                    console.log(customer);
+                    //console.log("customer:"+JSON.stringify(customer));
                     self.customers = customer;
                 });
 
