@@ -69,10 +69,4 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
-
-    $scope.toggleDropdown = function($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.status.isopen = !$scope.status.isopen;
-    };
 });
