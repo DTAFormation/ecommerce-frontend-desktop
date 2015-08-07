@@ -9,7 +9,7 @@
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(function($routeProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -32,7 +32,7 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
 
-    });
+    }]);
 
 angular.module('ecDesktopApp').run(function($rootScope) {
 
