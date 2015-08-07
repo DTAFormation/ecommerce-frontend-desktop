@@ -1,1 +1,3 @@
-// Tests unitaires module / contrôleurs home
+describe('customerTest', function() {
+
+});
