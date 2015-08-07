@@ -24,7 +24,7 @@
       <td>{{produit.prix}}</td>
       <td>
         <button ng-click="">Modifier Produit</button>
-        <button ng-click="self.delProduct">Supprimer Produit</button>
+        <button ng-click="productCtrl.delProduct(produit)">Supprimer Produit {{produit.id}}</button>
       </td>
     </tr>
   </tbody> 
