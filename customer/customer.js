@@ -15,6 +15,7 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
     })
     .when('/customer/listcustomer', { //
+        templateUrl : "customer/template/listcustomer.html",
         controller : "customerCtrl",
         controllerAs : "customerCtrl"
     });
@@ -31,12 +32,7 @@ angular.module('ecDesktopApp.customer').controller('createCustomer', function(cu
         if (form.$invalid) {return;}
         var clone = angular.copy(createCustomer.emp);
         customerService.addCustomer(clone);
-        
-
-
     };
-
-
 
 });
 
@@ -46,14 +42,28 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
     var self = this;
     customerService.getCustomers().then(
-                function(response) {
-                    return response.data;
-                })
-            .then(
-                function (customer) {
-                    console.log(customer);
-                    self.customers = customer;
-                });
+        function(response) {
+            return response.data;
+        })
+        .then(function (customer) {
+            console.log(customer);
+            self.customers = customer;
+        });
+
+
+    self.delCustomer = function(id){
+        console.log("function delCustomer sur le client "+id);
+        customerService.deleteCustomer(id)
+        .then(function(succes){
+            console.log('succes lors de la requete de suppression de client');
+            customerService.getCustomers(); //recharge la liste des clients a jour
+            self.err=false;
+            return succes.data;
+        },function(error){
+            self.err=true;
+            console.log('erreur lors de la requete de suppression de client');
+        });
+    };
 
 // ...
 
