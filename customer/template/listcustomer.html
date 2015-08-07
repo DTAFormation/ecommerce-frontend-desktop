@@ -12,6 +12,8 @@
       <th>Login</th>
       <th>Mot de Passe</th>
       <th>Adresse</th>
+      <th></th>
+      <th>Supprimer</th>
     </tr>
   </thead>
   <tbody>
@@ -22,9 +24,13 @@
       <td> {{c.login}}</td>
       <td> {{c.password}}</td>
       <td> {{c.adress}}</td>
-      <td>
-        <button >Modifier Client</button>
-      </td>
+      <td><button class="btn btn-default center-block">Modifier Client</button></td>
+      <td><button class="btn btn-danger center-block">
+        <span class="glyphicon glyphicon-remove" ng-click="customerCtrl.delCustomer(c.id)"></span>
+      </button></td>
     </tr>
   </tbody>
 </table>
+
+
+<p ng-show="customerCtrl.err"> La requete a échoué, la page va être rechargée</p>
