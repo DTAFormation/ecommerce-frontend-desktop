@@ -10,15 +10,22 @@ angular.module('ecDesktopApp.product').config(function($routeProvider) {
 // TODO Définir les routes spécifiques au module 'product' ici
 $routeProvider
 	.when('/product/createProduct', {   //quand tu vois la route /product/createProduct utilise le template createProduct
-	    templateUrl:'product/template/createProduct.tpl.html',
-	    controller : "createProductCtrl",
-	    controllerAs:"createProductCtrl",
+		templateUrl:'product/template/createProduct.tpl.html',
+		controller : "createProductCtrl",
+		controllerAs:"createProductCtrl",
 	})
 	.when('/product/listproduct', { //
-	    templateUrl:'product/template/listproduct.html',
-	    controller : "productCtrl",
-	    controllerAs : "productCtrl"
-	});
+		templateUrl:'product/template/listproduct.html',
+		controller : "productCtrl",
+		controllerAs : "productCtrl"
+	})
+
+	.when("/product/updateProduct/:id",{
+		templateUrl : "product/template/updateProduct.tpl.html",
+		controller: "updateProductController",
+		controllerAs: "updateProductCtrl"
+
+    });
 
 });
 
@@ -62,10 +69,21 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 		},function(error){ //en cas d'erreur
 			console.log("erreur lors de la requete de post");
 			self.err=true;
-	});
+		});
 	};
+	});
 
-angular.module('ecDesktopApp.product').controller()
+angular.module('ecDesktopApp.product').controller("updateCustomerController", function(productService, $routeParams, $location){
+	var updateCtrl = this;
+	productService.get($routeParams.id).then(function(product){
+		updateCtrl.product = product;
+	});
+
+	updateCtrl.updateProduct = function(form){
+		if(form.$invalid){return;}
+		productService.updateProduct(updateCtrl.product).then(function(){$location.path("/");
+	});
+};
 
 });
 

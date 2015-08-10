@@ -2,7 +2,7 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
 
 	var apiUrl="http://localhost:9001/data/bouchonproduct.json";
 	var delUrl="http://localhost:9001/data/";
-	var updateUrl="http://localhost:9001/data/";
+	
 
 	//recupere la liste des produits
 	this.getProducts = function(){
@@ -25,15 +25,16 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
 
     //Editer un produit en base
     this.updateProduct = function(product){
-    	return $http.put(updateUrl+product.id+"/bouchonproduct.json", product);
-    		
+        return $http.put(apiUrl,product);
+                
 
     };
-    this.getEmploye =  function (id){
-            return $http.get(updateUrl + "/product/" + id)
-            .then(function (result){
-                return result;
-            })
-        },
+    
+    //Rechercher un produit par id
+    this.get = function(id){
+        return $http.get(apiUrl+id+".json").then(function(result){
+            return result.data;
+        });
+    };
 
 });

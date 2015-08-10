@@ -1,30 +1,31 @@
 <div class="container">
   <a href="#/product/listproduct">Liste des produits</a>
-  <h2>Formulaire de création de produit</h2>
-  <form name="form" ng-submit="createProductCtrl.addProd(product)" role="form" method="post"> <!--le ng-submit fait appelle a la fonction definit dans le controleur-->
+  <h2>Formulaire de modification de produit</h2>
+  {{updateProductCtrl.product}}
+  <form name="form" ng-submit="updateCtrl.updateProduct(product)" role="form" method="post"> <!--le ng-submit fait appelle a la fonction definit dans le controleur-->
     <div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" class="form-control" id="id" placeholder="Entrer un ID" ng-model="product.id">
+      <input type="text" class="form-control" id="id" placeholder="Entrer un ID" ng-model="updateProductCtrl.id">
     </div>
     <div class="form-group">
       <label for="libelle">Libelle:</label>
-      <input type="text" class="form-control" id="libelle" placeholder="Entrer libelle" ng-model="product.libelle">
+      <input type="text" class="form-control" id="libelle" placeholder="Entrer libelle" ng-model="updateProductCtrl.libelle">
     </div>
     <div class="form-group">
       <label for="caracteristique">Caractéristique:</label>
-      <input type="text" class="form-control" id="caracteristique" placeholder="Entrer caracteristique" ng-model="product.caracteristique">
+      <input type="text" class="form-control" id="caracteristique" placeholder="Entrer caracteristique" ng-model="updateProductCtrl.caracteristique">
     </div>
     <div class="form-group">
       <label for="categorie">Catégorie :</label>
-      <input type="text" class="form-control" id="categorie" placeholder="Entrer la catégorie" ng-model="product.categorie">
+      <input type="text" class="form-control" id="categorie" placeholder="Entrer la catégorie" ng-model="updateProductCtrl.categorie">
     </div>
     <div class="form-group">
       <label for="image">Image :</label>
-      <input type="text" class="form-control" id="image" placeholder="Entrer une image" ng-model="product.image">
+      <input type="text" class="form-control" id="image" placeholder="Entrer une image" ng-model="updateProductCtrl.image">
     </div>
     <div class="form-group">
       <label for="prix">Prix :</label>
-      <input type="text" class="form-control" id="prix" placeholder="Entrer un prix" ng-model="product.prix">
+      <input type="text" class="form-control" id="prix" placeholder="Entrer un prix" ng-model="updateProductCtrl.prix">
     </div>
      <input type="submit" value="Créer" />
   </form>
