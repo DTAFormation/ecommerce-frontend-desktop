@@ -91,16 +91,26 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 
 angular.module('ecDesktopApp.product').controller("updateProductController", function(productService, $routeParams, $location){
 	var updateCtrl = this;
-	productService.get($routeParams.id)
+
+	productService.get($routeParams.id) // permet de charger le produit dans le formulaire
 	.then(function(product){
 		updateCtrl.product = product;
 	});
 
 	updateCtrl.updateProduct = function(form){
-		//if(form.$invalid){return;}
 		productService.updateProduct(updateCtrl.product)
+<<<<<<< HEAD
 		.then(function(){$location.path("/");
 	});
 };
+=======
+		.then(function(succes){
+			$location.path("/product/listproduct");
+		},function(fail){
+			console.log("FAIL!!");
+		});
+	};
+
+>>>>>>> fd825ae42deb402a4ff327d53ae56be383585765
 });
 
