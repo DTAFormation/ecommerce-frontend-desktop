@@ -5,5 +5,5 @@
     "login": "Cobb",
     "email": "emiliacobb@helixo.com",
     "password": "jenny",
-    "adress": "14 rue nana"
+    "address": {"number":14, "street":"rue cette", "city":"Nana"}
   }
