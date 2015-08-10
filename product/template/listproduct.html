@@ -24,10 +24,8 @@
       <td>{{produit.categorie}}</td>
       <td><img data-ng-src="{{produit.image}}" alt="le produit {{produit.id}}" height="200" width="200"/></td>
       <td>{{produit.prix}}</td>
-      <td>
-        <button><a href = "#/product/updateProduct/{{produit.id}}">Modifier Produit</button>
-        <button ng-click="productCtrl.delProduct(produit)">Supprimer Produit {{produit.id}}</button>
-      </td>
+      <td><button><a href = "#/product/updateProduct/{{produit.id}}">Modifier Produit</button></td>
+      <td><button ng-click="productCtrl.delProduct(produit)">Supprimer Produit {{produit.id}}</button></td>
     </tr>
   </tbody> 
 </table>
