@@ -2,14 +2,16 @@
     'ui.utils',
     'ngRoute',
     'ngAnimate',
+    'ngCookies',
     'ecDesktopApp.shared',
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
+    'ecDesktopApp.authentification',
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -18,10 +20,10 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
     $routeProvider
         .when('/login', {
-            controller : 'LoginController',
-            templateUrl : 'login/authentification.html',
-            controllerAs : 'vm'
-        })
+        templateUrl : 'authentification/template/login.html',
+        controller : 'LoginCtrl',
+        controllerAs : 'loginCtrl'
+    })
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
             controller : "productCtrl",
@@ -32,27 +34,31 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
             controller : "customerCtrl",
             controllerAs : "customerCtrl"
         })
-        .otherwise({redirectTo:'/home'});
+        .when('/home',{
+            templateUrl : "home/template/home.tpl.html",
+            controller : "homeCtrl",
+            controllerAs : "homeCtrl"
+        })
+        // .otherwise({ redirectTo: '/home' });
+        .otherwise({redirectTo:'/login'});
+    }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
+    // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
+    $rootScope.globals = $cookieStore.get('globals') || {};
+    if ($rootScope.globals.currentUser) {
+            //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant, et lui ajouter une autorisation global si connecté
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; 
+        }
+        //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // renvoie vers la page login si non logger
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
 
     }]);
 
-angular.module('ecDesktopApp').run(function($rootScope, $location, /*$cookieStore,*/ $http) {
-    //Maintenir la connexion à chaque changement de page.
-    // $rootScope.globals = $cookieStore.get('globals')||{};
 
-    // if ($rootScope.globals.currentUser) {
-    //          $http.defaults.headers.common['Authorization'] = 'Basic ' + 
-    //          $rootScope.globals.currentUser.authdata; // jshint ignore:line
-    //      }
-    // $rootScope.$on('$locationChangeStart', function(event, next, current){
-    //     //redirection vers la page de login si non logger.
-    //     var restrictedPage = $.inArray($location.path(), '/login');
-    //     var loggedIn = $rootScope.globals.currentUser;
-    //     if (restrictedPage && !loggedIn){
-    //         $location.path('/login');
-    //     }
-    // });
-});
 
 // Contrôleur qui pilote globalement l'application
 angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
@@ -87,3 +93,4 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
 });
+

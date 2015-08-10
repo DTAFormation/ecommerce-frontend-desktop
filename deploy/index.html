@@ -24,7 +24,7 @@
 	<script src="bower_components/angular-ui-utils/ui-utils.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 	<!-- Add New Bower Component JS Above -->
 
 	<!-- Main App JS -->
@@ -39,6 +39,9 @@
   <!--  Ajout des appels clients-->
   <script src="customer/customer.js"></script>
   <script src="customer/service/customer.service.js"></script>
+  <!-- Ajout des appels logins  -->
+  <script src="authentification/logincontroller.js"></script>
+  <script src="authentification/service/login.service.js"></script>
   <!-- Add New Component JS Above -->
 
 
@@ -107,7 +110,7 @@
     </li>
     <li>
       <div role="navigation">
-        <button type="button" class="btn btn-default navbar-btn logoutEcommerce">Logout</button>
+        <button type="button" class="btn btn-default navbar-btn logoutEcommerce" href="#/login"><a href="#/login">Logout</a></button>
       </div>
     </li>
   </ul>
