@@ -1,6 +1,7 @@
 // Déclaration du module 'product'
 angular.module('ecDesktopApp.product', [
     'ngRoute',
+    'ui.bootstrap'
     ]);
 
 
@@ -24,15 +25,13 @@ $routeProvider
 		templateUrl : "product/template/updateProduct.tpl.html",
 		controller: "updateProductController",
 		controllerAs: "updateProductCtrl"
-
     });
 
 });
 
 // Contrôleur principal du module 'product'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.product').controller('productCtrl', function(productService) {
-
+angular.module('ecDesktopApp.product').controller('productCtrl', function(productService, $modal, $scope) {
     var self = this;
     //afficher la liste des produit récupéré par "getProduct".
     productService.getProducts().then(
@@ -52,13 +51,30 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
         productService.deleteProduct(product);
     };
 
+    self.animationsEnabled = true;
+    self.open = function (product) {
+        self.product = product;
 
-// ...
+        var modalInstance = $modal.open({
+            templateUrl: 'modalContent.html',
+            controller: 'ModalInstanceCtrl',
+            resolve:{
+                    product: function(){
+                        return self.product;
+                    }
+                }
+            });
+    };
 
 });
+
+angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
+    function ($scope, $modalInstance, product){
+        $scope.product = product;
+    });
+
 //controlleur pour formulaire de creation des produits
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService) {
-
 
 	var self = this;
 	self.addProd = function(product){
@@ -75,17 +91,19 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 
 angular.module('ecDesktopApp.product').controller("updateProductController", function(productService, $routeParams, $location){
 	var updateCtrl = this;
-	productService.get($routeParams.id)
+
+	productService.get($routeParams.id) // permet de charger le produit dans le formulaire
 	.then(function(product){
 		updateCtrl.product = product;
 	});
 
 	updateCtrl.updateProduct = function(form){
-		//if(form.$invalid){return;}
 		productService.updateProduct(updateCtrl.product)
-		.then(function(){$location.path("/");
-	});
-};
-
+		.then(function(succes){
+			$location.path("/product/listproduct");
+		},function(fail){
+			console.log("FAIL!!");
+		});
+	};
 });
 
