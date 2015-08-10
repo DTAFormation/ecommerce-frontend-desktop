@@ -28,10 +28,10 @@ describe('DropdownCtrl', function() {
 		];
 
 		var testClientsFunctions = [
-		{affichage:'Afficher Clients',url:'#/aaaaa'},
-		{affichage:'Créer Clients',url:'#/bbbbb'},
-		{affichage:'Modifier Clients',url:'#/ccccc'},
-		{affichage:'Supprimer Clients',url:'#/ddddd'}
+		{affichage:'Afficher Clients',url:'#/customer/listcustomer'},
+		{affichage:'Créer Clients',url:'#/customer/createCustomer'},
+		{affichage:'Modifier Clients',url:'#/customer/listcustomer'},
+		{affichage:'Supprimer Clients',url:'#/customer/listcustomer'}
 		];
 
 		var testOrdersFunctions= [
