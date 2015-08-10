@@ -17,16 +17,26 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="produit in productCtrl.products | filter:searchProduct">
-      <td>{{produit.id}}</td>
-      <td>{{produit.libelle}}</td>
-      <td><a href={{produit.caracteristique}}>caractérisitique du produit {{produit.id}} </a></td>
-      <td>{{produit.categorie}}</td>
-      <td><img src="{{produit.image}}" alt="le produit {{produit.id}}" height="200" width="200"></td>
-      <td>{{produit.prix}}</td>
+    <tr ng-repeat="product in productCtrl.products | filter:searchProduct">
+      <td>{{product.id}}</td>
+      <td>{{product.libelle}}</td>
+      <td>
+          <script type="text/ng-template" id="modalContent.html">
+              <div class="modal-header">
+                  <h3 class="modal-title">Caractéristiques du produit {{product.id}}</h3>
+              </div>
+              <div class="modal-body">
+                  {{product.caracteristique}}
+              </div>
+          </script>
+          <button type="button" class="btn btn-default" ng-click="productCtrl.open(product)">Open me!</button>
+      </td>
+      <td>{{product.categorie}}</td>
+      <td><img src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"></td>
+      <td>{{product.prix}}</td>
       <td>
         <button ng-click="">Modifier Produit</button>
-        <button ng-click="productCtrl.delProduct(produit)">Supprimer Produit {{produit.id}}</button>
+        <button ng-click="productCtrl.delProduct(product)">Supprimer Produit {{product.id}}</button>
       </td>
     </tr>
   </tbody> 

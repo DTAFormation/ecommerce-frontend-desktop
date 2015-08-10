@@ -1,6 +1,7 @@
 // Déclaration du module 'product'
 angular.module('ecDesktopApp.product', [
     'ngRoute',
+    'ui.bootstrap'
     ]);
 
 
@@ -9,23 +10,22 @@ angular.module('ecDesktopApp.product').config(function($routeProvider) {
 
 // TODO Définir les routes spécifiques au module 'product' ici
 $routeProvider
-	.when('/product/createProduct', {   //quand tu vois la route /product/createProduct utilise le template createProduct
-	    templateUrl:'product/template/createProduct.tpl.html',
-	    controller : "createProductCtrl",
-	    controllerAs:"createProductCtrl",
-	})
-	.when('/product/listproduct', { //
-	    templateUrl:'product/template/listproduct.html',
-	    controller : "productCtrl",
-	    controllerAs : "productCtrl"
-	});
+    .when('/product/createProduct', {   //quand tu vois la route /product/createProduct utilise le template createProduct
+        templateUrl:'product/template/createProduct.tpl.html',
+        controller : "createProductCtrl",
+        controllerAs:"createProductCtrl",
+    })
+    .when('/product/listproduct', { //
+        templateUrl:'product/template/listproduct.html',
+        controller : "productCtrl",
+        controllerAs : "productCtrl"
+    });
 
 });
 
 // Contrôleur principal du module 'product'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.product').controller('productCtrl', function(productService) {
-
+angular.module('ecDesktopApp.product').controller('productCtrl', function(productService, $modal, $scope) {
     var self = this;
     //afficher la liste des produit récupéré par "getProduct".
     productService.getProducts().then(
@@ -45,27 +45,43 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
         productService.deleteProduct(product);
     };
 
+    self.animationsEnabled = true;
+    self.open = function (product) {
+        self.product = product;
 
-// ...
+        var modalInstance = $modal.open({
+            templateUrl: 'modalContent.html',
+            controller: 'ModalInstanceCtrl',
+            resolve:{
+                    product: function(){
+                        return self.product;
+                    }
+                }
+            });
+    };
 
 });
+
+angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
+    function ($scope, $modalInstance, product){
+        $scope.product = product;
+    });
+
 //controlleur pour formulaire de creation des produits
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService) {
 
 
-	var self = this;
-	self.addProd = function(product){
-		productService.addProduct(product)
-		.then(function(response){ //en cas de succes
-			console.log("succes lors de la requete de post");
-			self.err=false;
-		},function(error){ //en cas d'erreur
-			console.log("erreur lors de la requete de post");
-			self.err=true;
-	});
-	};
-
-// ...
+    var self = this;
+    self.addProd = function(product){
+        productService.addProduct(product)
+        .then(function(response){ //en cas de succes
+            console.log("succes lors de la requete de post");
+            self.err=false;
+        },function(error){ //en cas d'erreur
+        console.log("erreur lors de la requete de post");
+        self.err=true;
+    });
+    };
 
 });
 
