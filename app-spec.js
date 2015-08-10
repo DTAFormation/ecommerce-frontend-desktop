@@ -29,9 +29,9 @@ describe('DropdownCtrl', function() {
 
 		var testClientsFunctions = [
 		{affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-		{affichage:'Créer Clients',url:'#/customer/createCustomer'},
-		{affichage:'Modifier Clients',url:'#/customer/listcustomer'},
-		{affichage:'Supprimer Clients',url:'#/customer/listcustomer'}
+		{affichage:'Créer Client',url:'#/customer/createCustomer'},
+		{affichage:'Modifier Client',url:'#/customer/listcustomer'},
+		{affichage:'Supprimer Client',url:'#/customer/listcustomer'}
 		];
 
 		var testOrdersFunctions= [
