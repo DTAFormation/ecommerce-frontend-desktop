@@ -2,6 +2,7 @@
     'ui.utils',
     'ngRoute',
     'ngAnimate',
+    'ngCookies',
     'ecDesktopApp.shared',
     'ecDesktopApp.home',
     'ecDesktopApp.product',
@@ -9,7 +10,7 @@
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -19,7 +20,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
     $routeProvider
     .when('/login', {
         controller : 'LoginController',
-        templateUrl : 'login/authentification.html',
+        templateUrl : 'login.html',
         controllerAs : 'vm'
     })
         .when('/product/listproduct', { //
@@ -39,6 +40,20 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
         // })
         .otherwise({ redirectTo: '/home' });
         // .otherwise({redirectTo:'/login'});
+    }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
+    // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
+    $rootScope.globals = $cookieStore.get('globals') || {};
+    if ($rootScope.globals.currentUser) {
+            //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant.
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
+        //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // renvoie vers la page login si non logger
+            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+                $location.path('/login');
+            }
+        });
     }]);
 
 
@@ -76,17 +91,4 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
 });
-// .run(function($rootScope, $location, $cookieStore, $http) {
-//     // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
-//     $rootScope.globals = $cookieStore.get('globals') || {};
-//     if ($rootScope.globals.currentUser) {
-//             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-//         }
 
-//         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-//             // renvoie vers la page login si non logger
-//             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-//                 $location.path('/login');
-//             }
-//         });
-//     });
