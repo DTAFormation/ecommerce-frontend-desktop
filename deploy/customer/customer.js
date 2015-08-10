@@ -69,7 +69,7 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
             //return succes.data;
         },function(error){
             self.err=true;
-            //setTimeout(function(){window.location.reload();},2000);
+            setTimeout(function(){window.location.reload();},2000);
             console.log('erreur lors de la requete de suppression de client');
         });
     };
