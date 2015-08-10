@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="ecDesktopApp" ng-controller="ecDesktopCtrl as ecDesktopCtrl">
-<head>
+ <head>
 	<title ng-bind="ecDesktopCtrl.title"></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
@@ -10,8 +10,8 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="app.css">
-</head>
-<body>
+ </head>
+ <body>
 
 	<!-- Livereload script for development only (stripped during dist build) -->
 	<script src="http://localhost:35729/livereload.js" data-concat="false"></script>
@@ -53,75 +53,70 @@
        <div class="container-fluid">
         <div class="navbar-header">
          <a class="navbar-brand" href="#/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
-       </div>
-       <div ng-controller="DropdownCtrl">
+        </div>
+        <div ng-controller="DropdownCtrl">
          <div class="nav navbar-nav">
           <div class="btn-group" dropdown>
            <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
             <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-
+           </button>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in productsFunctions">
              <a href='{{choice.url}}'>{{choice.affichage}}</a>
-           </li>
-         </ul>
+            </li>
+           </ul>
+          </div>
+          <div class="btn-group" dropdown>
+           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
+           <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+            <li ng-repeat="choice in clientsFunctions">
+             <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            </li>
+           </ul>
+          </div>
+          <div class="btn-group" dropdown>
+           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
+           <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+            <li ng-repeat="choice in ordersFunctions">
+            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            </li>
+           </ul>
+          </div>
+          <div class="btn-group" dropdown>
+           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
+           <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+            <li ng-repeat="choice in statsFunctions">
+            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+         <li>
+          <div role="navigation">
+           <button type="button" class="btn btn-default navbar-btn loginEcommerce">Login</button>
+          </div>
+         </li>
+         <li>
+          <div role="navigation">
+           <a href="#/login"><button type="button" class="btn btn-default navbar-btn logoutEcommerce" href="#/login">Logout</button></a>
+          </div>
+          </li>
+        </ul>
        </div>
-       <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+      </nav>
 
-          <li ng-repeat="choice in clientsFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
-          </li>
-        </ul>
-      </div>
-      <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-
-          <li ng-repeat="choice in ordersFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
-          </li>
-        </ul>
-      </div>
-      <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-
-          <li ng-repeat="choice in statsFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
-          </li>
-        </ul>
-      </div>
+      <div ng-view></div>
+     </div>
     </div>
   </div>
-  <ul class="nav navbar-nav navbar-right">
-    <li>
-      <div role="navigation">
-        <button type="button" class="btn btn-default navbar-btn loginEcommerce">Login</button>
-      </div>
-    </li>
-    <li>
-      <div role="navigation">
-        <button type="button" class="btn btn-default navbar-btn logoutEcommerce" href="#/login"><a href="#/login">Logout</a></button>
-      </div>
-    </li>
-  </ul>
-</div>
-</nav>
 
-<div ng-view>
-</div>
-</div>
-</div>
-</div>
-
-</body>
+ </body>
 </html>
