@@ -36,9 +36,9 @@
       <td> {{c.login}}</td>
       <td> {{c.password}}</td>
       <td> {{c.addressString}}</td>
-     <!-- <td><button class="btn btn-default center-block">Modifier Client</button></td>-->
-      <td><button class="btn btn-default center-block">Modifier Client</button></td>
-      
+
+      <td><a href="#/customer/updateCustomer/{{c.id}}"><button class="btn btn-default center-block">Modifier Client</button></a></td>
+
       <td><button class="btn btn-danger center-block">
         <span class="glyphicon glyphicon-remove" ng-click="customerCtrl.delCustomer(c.id)"></span>
       </button></td>
