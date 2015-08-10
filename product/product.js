@@ -99,18 +99,11 @@ angular.module('ecDesktopApp.product').controller("updateProductController", fun
 
 	updateCtrl.updateProduct = function(form){
 		productService.updateProduct(updateCtrl.product)
-<<<<<<< HEAD
-		.then(function(){$location.path("/");
-	});
-};
-=======
 		.then(function(succes){
 			$location.path("/product/listproduct");
 		},function(fail){
 			console.log("FAIL!!");
 		});
 	};
-
->>>>>>> fd825ae42deb402a4ff327d53ae56be383585765
 });
 
