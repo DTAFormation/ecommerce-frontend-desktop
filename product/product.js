@@ -51,8 +51,6 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
     self.delProduct = function(product){
         productService.deleteProduct(product);
     };
-
-
 // ...
 
 });
@@ -75,17 +73,20 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 
 angular.module('ecDesktopApp.product').controller("updateProductController", function(productService, $routeParams, $location){
 	var updateCtrl = this;
-	productService.get($routeParams.id)
+
+	productService.get($routeParams.id) // permet de charger le produit dans le formulaire
 	.then(function(product){
 		updateCtrl.product = product;
 	});
 
 	updateCtrl.updateProduct = function(form){
-		//if(form.$invalid){return;}
 		productService.updateProduct(updateCtrl.product)
-		.then(function(){$location.path("/");
-	});
-};
+		.then(function(succes){
+			$location.path("/product/listproduct");
+		},function(fail){
+			console.log("FAIL!!");
+		});
+	};
 
 });
 
