@@ -35,8 +35,8 @@
       <td><img data-ng-src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"/></td>
       <td>{{product.prix}}</td>
       <td>
-        <button><a href = "#/product/updateProduct/{{product.id}}">Modifier Produit</button>
-        <button ng-click="productCtrl.delProduct(product)">Supprimer Produit {{product.id}}</button>
+        <button id="1"><a href = "#/product/updateProduct/{{product.id}}">Modifier Produit</button>
+        <button id="2" ng-click="productCtrl.delProduct(product)">Supprimer Produit {{product.id}}</button>
       </td>
     </tr>
   </tbody> 

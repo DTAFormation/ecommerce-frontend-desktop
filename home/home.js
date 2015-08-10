@@ -8,7 +8,7 @@ angular.module('ecDesktopApp.home', [
 // Configuration du module 'home'
 angular.module('ecDesktopApp.home').config(function($routeProvider) {
 
-    // TODO Définir les routes spécifiques au module 'home' ici
+    // Routes spécifiques au module 'home'
     $routeProvider
 		.when("/home",{
 			templateUrl:"home/template/home.tpl.html",
@@ -17,7 +17,6 @@ angular.module('ecDesktopApp.home').config(function($routeProvider) {
 });
 
 // Contrôleur principal du module 'home'
-// Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService) {
 
     var self = this;
