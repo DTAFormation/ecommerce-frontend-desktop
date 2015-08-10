@@ -49,6 +49,7 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
     //lancer le traitement de supprimer produit.
     self.delProduct = function(id){
         productService.deleteProduct(id);
+        setTimeout(function(){window.location.reload();},100); // recharge la page ( surement mieux a faire avec angular ??)
     };
 
     //code pour la modale
@@ -77,7 +78,7 @@ angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
     });
 
 //controlleur pour formulaire de creation des produits
-angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService) {
+angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService, $location) {
 
 	var self = this;
 	self.addProd = function(product){
@@ -85,6 +86,7 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 		.then(function(response){ //en cas de succes
 			console.log("succes lors de la requete de post");
 			self.err=false;
+			$location.path("/product/listproduct");
 		},function(error){ //en cas d'erreur
 			console.log("erreur lors de la requete de post");
 			self.err=true;
