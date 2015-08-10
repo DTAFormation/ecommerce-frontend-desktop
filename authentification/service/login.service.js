@@ -2,6 +2,7 @@ angular.module('ecDesktopApp.authentification')
 .factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
+        var apiUrl = "http://localhost:9001/data/loginbouchon.json";
 
         service.Login = function (username, password, callback) {
 
@@ -16,10 +17,14 @@ angular.module('ecDesktopApp.authentification')
             }, 1000);
 
 
-            //Authentification possible selon bdd
-            //$http.post('/api/authenticate', { username: username, password: password })
+            //Authentification possible selon bdd, il faut cibler une url existante
+            // $http.post(apiUrl, { username : username, password : password })
             //    .then(function (response) {
+            //         console.log(response.data);
+            //        sessionStorage.data=response.data;
+                   
             //        callback(response);
+
             //    });
 
         };

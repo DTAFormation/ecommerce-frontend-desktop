@@ -14,14 +14,15 @@ angular.module('ecDesktopApp.authentification').controller('LoginCtrl',
             console.log("avant recherche validité mdp");
             self.dataLoading = true;
             loginService.Login(self.username, self.password, function(response) {
+                console.log(self.username + " " + self.password);
                 if(response.success) {
                     console.log("succès");
                     loginService.SetCredentials(self.username, self.password);
                     $location.path('/home');
                 } else {
                     console.log("mdp/login refusé");
-                    $scope.error = response.message;
-                    $scope.dataLoading = false;
+                    self.error = response.message;
+                    self.dataLoading = false;
                 }
             });
         };
