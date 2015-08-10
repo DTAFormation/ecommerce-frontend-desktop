@@ -1,6 +1,8 @@
-{"id" : 3,
- "libelle" : "libelle3" ,
-  "caracteristique" : "caracteristique3", 
-  "categorie" : "categorie3", 
-  "image" : "http://lorempixel.com/200/200/food/2" ,
-   "prix" : 0.30}
+{
+	"id" : 3,
+	"libelle" : "libelle3" ,
+	"caracteristique" : "caracteristique3", 
+	"categorie" : "categorie3", 
+	"image" : "http://lorempixel.com/200/200/food/2" ,
+	"prix" : 0.30
+}
