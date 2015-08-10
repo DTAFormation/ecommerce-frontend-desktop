@@ -20,19 +20,19 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
     //supprimer un produit en base
     this.deleteProduct = function(product){
         console.log("tentative de suppression d'un produit"+product);
+        console.log(delUrl+product.id+"/bouchonproduct.json");
         return $http.delete(delUrl+product.id+"/bouchonproduct.json");
     };
 
     //Editer un produit en base
     this.updateProduct = function(product){
-        return $http.put(apiUrl+product.id,product);
-                
-
+        return $http.put(apiUrl+product.id,product);     
     };
     
     //Rechercher un produit par id
     this.get = function(id){
-        return $http.get(apiUrl+ id + ".json").then(function(result){
+        return $http.get(apiUrl+id+".json")
+        .then(function(result){
             return result.data;
         });
     };
