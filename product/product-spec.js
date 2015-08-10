@@ -1,6 +1,8 @@
 // Tests unitaires module / contrôleurs product
 describe("createProductCtrl Tests", function(){
 
+    var apiUrl="http://5.196.89.85:9080/ec-backend/api/produit/";
+
     beforeEach(function(){
         module('ecDesktopApp.product');
     });
@@ -9,7 +11,7 @@ describe("createProductCtrl Tests", function(){
         var createProductCtrl = $controller('createProductCtrl');
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-        $httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
+        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
        
         createProductCtrl.addProd(product);
 
@@ -23,7 +25,7 @@ describe("createProductCtrl Tests", function(){
         var createProductCtrl = $controller('createProductCtrl');
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-        $httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
+        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
        
         createProductCtrl.addProd(product);
 
@@ -36,7 +38,7 @@ describe("createProductCtrl Tests", function(){
     it("test unitaire updateCtrl.updateProduct",inject(function($controller, $httpBackend){
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         
-        $httpBackend.when('GET',"data/api/product/1.json").respond(200,product);
+        $httpBackend.when('GET',apiUrl+1).respond(200,product);
         var updateProductCtrl = $controller('updateProductController', {
             '$routeParams' : {
                 id: 1
@@ -44,7 +46,7 @@ describe("createProductCtrl Tests", function(){
         });
 
         $httpBackend.flush();
-        $httpBackend.expectPUT("data/api/product/"+1, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
+        $httpBackend.expectPUT(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
         updateProductCtrl.updateProduct(product); //ici bug
         $httpBackend.flush();
     }));
