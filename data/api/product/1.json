@@ -1,0 +1,9 @@
+{
+	
+	"id" : 1,
+	"libelle" : "libelle1" ,
+ 	"caracteristique" : "carac1", 
+ 	"categorie" : "categorie1", 
+ 	"image" : "http://lorempixel.com/200/200/food/" ,
+ 	"prix" : 0.10
+}

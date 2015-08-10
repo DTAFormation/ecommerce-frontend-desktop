@@ -13,15 +13,7 @@ angular.module('ecDesktopApp.home').config(function($routeProvider) {
 		.when("/home",{
 			templateUrl:"home/template/home.tpl.html",
 			controller:"homeCtrl"
-		})
-		/*
-		.when("/newGame",{
-			templateUrl:"views/newGame.html",
-			controller:"NewGameCtrl",
-			controllerAs:"newCtrl"
-		})
-		*/
-		;
+		});
 });
 
 // Contrôleur principal du module 'home'
