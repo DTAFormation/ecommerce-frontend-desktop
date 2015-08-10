@@ -9,7 +9,7 @@
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(function($routeProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -17,7 +17,11 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
     $routeProvider
-    
+        .when('/login', {
+            controller : 'LoginController',
+            templateUrl : 'login/authentification.html',
+            controllerAs : 'vm'
+        })
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
             controller : "productCtrl",
@@ -32,10 +36,24 @@ angular.module('ecDesktopApp').config(function($routeProvider) {
 
 
 
-    });
+    }]);
 
-angular.module('ecDesktopApp').run(function($rootScope) {
+angular.module('ecDesktopApp').run(function($rootScope, $location, /*$cookieStore,*/ $http) {
+    //Maintenir la connexion à chaque changement de page.
+    // $rootScope.globals = $cookieStore.get('globals')||{};
 
+    // if ($rootScope.globals.currentUser) {
+    //          $http.defaults.headers.common['Authorization'] = 'Basic ' + 
+    //          $rootScope.globals.currentUser.authdata; // jshint ignore:line
+    //      }
+    // $rootScope.$on('$locationChangeStart', function(event, next, current){
+    //     //redirection vers la page de login si non logger.
+    //     var restrictedPage = $.inArray($location.path(), '/login');
+    //     var loggedIn = $rootScope.globals.currentUser;
+    //     if (restrictedPage && !loggedIn){
+    //         $location.path('/login');
+    //     }
+    // });
 });
 
 // Contrôleur qui pilote globalement l'application
@@ -52,10 +70,10 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.clientsFunctions= [
-    {affichage:'Afficher Clients',url:'#/aaaaa'},
-    {affichage:'Créer Clients',url:'#/bbbbb'},
-    {affichage:'Modifier Clients',url:'#/ccccc'},
-    {affichage:'Supprimer Clients',url:'#/ddddd'}
+    {affichage:'Afficher Clients',url:'#/customer/listcustomer'},
+    {affichage:'Créer Clients',url:'#/customer/createCustomer'},
+    {affichage:'Modifier Clients',url:'#/customer/listcustomer'},
+    {affichage:'Supprimer Clients',url:'#/customer/listcustomer'}
     ];
 
     $scope.ordersFunctions= [

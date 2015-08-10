@@ -8,7 +8,7 @@ describe('customerTest', function() {
 		var createCustomerCtrl = $controller('CreateCustomerController');
 		var customer = {name: "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
-		$httpBackend.expectPOST("http://localhost:9001/data/bouchoncustomer.json", customer).respond(404, '');
+		$httpBackend.expectPOST("data/api/customer/", customer).respond(404, '');
        
 		createCustomerCtrl.addCustomer(customer);
 
@@ -22,7 +22,7 @@ describe('customerTest', function() {
 		var createCustomerCtrl = $controller('CreateCustomerController');
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
-		$httpBackend.expectPOST("http://localhost:9001/data/bouchoncustomer.json", customer).respond(201, '');
+		$httpBackend.expectPOST("data/api/customer/", customer).respond(201, '');
        
 		createCustomerCtrl.addCustomer(customer);
 
@@ -33,12 +33,12 @@ describe('customerTest', function() {
 
 	// TEST du del du controlleur en cas de succes
 	it("test unitaire customerCtrl.delCustomer en cas de succes:200",inject(function($controller, $httpBackend){
-		$httpBackend.when('GET',"http://localhost:9001/data/bouchoncustomer.json").respond(200,'');
+		$httpBackend.when('GET',"data/api/customer/all.json").respond(200,'');
 		
 		var customerCtrl = $controller('customerCtrl');
 		var id = 1;
 
-		$httpBackend.expectDELETE("http://localhost:9001/data/bouchoncustomer.json"+"/customer/"+ id).respond(200,'');
+		$httpBackend.expectDELETE("data/api/customer/"+ id).respond(200,'');
 		customerCtrl.delCustomer(id);
 		$httpBackend.flush();
 

@@ -5,5 +5,5 @@
     "login": "Parker",
     "email": "rayparker@helixo.com",
     "password": "flores",
-    "adress": "29 rue loin"
+    "address": {"number":29, "street":"rue fort fort", "city":"Lointain"}
   }
