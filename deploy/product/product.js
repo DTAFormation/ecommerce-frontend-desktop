@@ -47,10 +47,11 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
      });
 
     //lancer le traitement de supprimer produit.
-    self.delProduct = function(product){
-        productService.deleteProduct(product);
+    self.delProduct = function(id){
+        productService.deleteProduct(id);
     };
 
+    //code pour la modale
     self.animationsEnabled = true;
     self.open = function (product) {
         self.product = product;
@@ -65,9 +66,11 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
                 }
             });
     };
+    //fin du code pour la modale
 
 });
 
+//controlleur pour la modale
 angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
     function ($scope, $modalInstance, product){
         $scope.product = product;
