@@ -5,5 +5,5 @@
     "login": "Hammond",
     "email": "rosaliehammond@helixo.com",
     "password": "hogan",
-    "adress": "12 rue tomtom"
+    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 }

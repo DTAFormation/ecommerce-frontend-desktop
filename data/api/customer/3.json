@@ -5,5 +5,5 @@
     "login": "Gates",
     "email": "kirklandgates@helixo.com",
     "password": "audrey",
-    "adress": "28 rue pluton"
+    "address": {"number":28, "street":"rue planète naine", "city":"Pluton"}
   }
