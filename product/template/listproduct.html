@@ -29,15 +29,13 @@
                   {{product.caracteristique}}
               </div>
           </script>
-          <button type="button" class="btn btn-default" ng-click="productCtrl.open(product)">Open me!</button>
+          <button type="button" class="btn btn-default" ng-click="productCtrl.open(product)">Afficher caractéristiques</button>
       </td>
       <td>{{product.categorie}}</td>
       <td><img data-ng-src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"/></td>
       <td>{{product.prix}}</td>
-      <td>
-        <button><a href = "#/product/updateProduct/{{product.id}}">Modifier Produit</button>
-        <button ng-click="productCtrl.delProduct(product)">Supprimer Produit {{product.id}}</button>
-      </td>
+      <td><button><a href = "#/product/updateProduct/{{produit.id}}">Modifier Produit</button></td>
+      <td><button ng-click="productCtrl.delProduct(produit)">Supprimer Produit {{produit.id}}</button></td>
     </tr>
   </tbody> 
 </table>
