@@ -33,7 +33,8 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
     };
 
     this.get = function(id){
-        return $http.get(apiUrl +id + ".json").then(function (result) {
+        return $http.get(apiUrl +id + ".json")
+        .then(function (result) {
             return result.data;
         });
     };
