@@ -1,36 +1,33 @@
 <div class="container">
   <a href="#/product/listproduct">Liste des produits</a>
   <h2>Formulaire de modification de produit</h2>
-  {{updateProductCtrl.product}}
-  <form name="form" ng-submit="updateCtrl.updateProduct(product)" role="form" method="post"> <!--le ng-submit fait appelle a la fonction definit dans le controleur-->
+  <form name="form" ng-submit="updateProductCtrl.updateProduct(product)" role="form"> <!--le ng-submit fait appelle a la fonction definit dans le controleur-->
     <div class="form-group">
       <label for="id">ID:</label>
-      <input type="text" class="form-control" id="id" placeholder="Entrer un ID" ng-model="updateProductCtrl.id">
+      <input type="text" class="form-control" id="id" placeholder="Entrer un ID" ng-model="updateProductCtrl.product.id" disabled="disabled">
     </div>
     <div class="form-group">
       <label for="libelle">Libelle:</label>
-      <input type="text" class="form-control" id="libelle" placeholder="Entrer libelle" ng-model="updateProductCtrl.libelle">
+      <input type="text" class="form-control" id="libelle" placeholder="Entrer libelle" ng-model="updateProductCtrl.product.libelle">
     </div>
     <div class="form-group">
       <label for="caracteristique">Caractéristique:</label>
-      <input type="text" class="form-control" id="caracteristique" placeholder="Entrer caracteristique" ng-model="updateProductCtrl.caracteristique">
+      <input type="text" class="form-control" id="caracteristique" placeholder="Entrer caracteristique" ng-model="updateProductCtrl.product.caracteristique">
     </div>
     <div class="form-group">
       <label for="categorie">Catégorie :</label>
-      <input type="text" class="form-control" id="categorie" placeholder="Entrer la catégorie" ng-model="updateProductCtrl.categorie">
+      <input type="text" class="form-control" id="categorie" placeholder="Entrer la catégorie" ng-model="updateProductCtrl.product.categorie">
     </div>
     <div class="form-group">
       <label for="image">Image :</label>
-      <input type="text" class="form-control" id="image" placeholder="Entrer une image" ng-model="updateProductCtrl.image">
+      <input type="text" class="form-control" id="image" placeholder="Entrer une image" ng-model="updateProductCtrl.product.image">
     </div>
     <div class="form-group">
       <label for="prix">Prix :</label>
-      <input type="text" class="form-control" id="prix" placeholder="Entrer un prix" ng-model="updateProductCtrl.prix">
+      <input type="text" class="form-control" id="prix" placeholder="Entrer un prix" ng-model="updateProductCtrl.product.prix">
     </div>
-     <input type="submit" value="Créer" />
+     <input type="submit" class="btn btn-default" value="Modifier" />
   </form>
-
-  <pre>form = {{ product | json }}</pre>
 </div>
 
 <p ng-show="createProductCtrl.err"> La requete a échoué</p>

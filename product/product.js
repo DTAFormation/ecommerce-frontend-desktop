@@ -73,15 +73,17 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 	};
 	});
 
-angular.module('ecDesktopApp.product').controller("updateCustomerController", function(productService, $routeParams, $location){
+angular.module('ecDesktopApp.product').controller("updateProductController", function(productService, $routeParams, $location){
 	var updateCtrl = this;
-	productService.get($routeParams.id).then(function(product){
+	productService.get($routeParams.id)
+	.then(function(product){
 		updateCtrl.product = product;
 	});
 
 	updateCtrl.updateProduct = function(form){
-		if(form.$invalid){return;}
-		productService.updateProduct(updateCtrl.product).then(function(){$location.path("/");
+		//if(form.$invalid){return;}
+		productService.updateProduct(updateCtrl.product)
+		.then(function(){$location.path("/");
 	});
 };
 
