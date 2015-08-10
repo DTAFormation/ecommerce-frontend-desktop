@@ -9,7 +9,7 @@ describe("createProductCtrl Tests", function(){
 		var createProductCtrl = $controller('createProductCtrl');
 		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-		$httpBackend.expectPOST('http://localhost:9001/data/bouchonproduct.json', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
+		$httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
        
 		createProductCtrl.addProd(product);
 
@@ -23,7 +23,7 @@ describe("createProductCtrl Tests", function(){
 		var createProductCtrl = $controller('createProductCtrl');
 		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-		$httpBackend.expectPOST('http://localhost:9001/data/bouchonproduct.json', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
+		$httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
        
 		createProductCtrl.addProd(product);
 
