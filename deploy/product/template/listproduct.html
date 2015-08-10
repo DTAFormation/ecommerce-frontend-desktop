@@ -22,7 +22,7 @@
       <td>{{produit.libelle}}</td>
       <td><a href={{produit.caracteristique}}>caractérisitique du produit {{produit.id}} </a></td>
       <td>{{produit.categorie}}</td>
-      <td><img src="{{produit.image}}" alt="le produit {{produit.id}}" height="200" width="200"></td>
+      <td><img data-ng-src="{{produit.image}}" alt="le produit {{produit.id}}" height="200" width="200"/></td>
       <td>{{produit.prix}}</td>
       <td>
         <button><a href = "#/product/updateProduct/{{produit.id}}">Modifier Produit</button>
