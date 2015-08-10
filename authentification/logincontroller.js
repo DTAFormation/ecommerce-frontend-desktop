@@ -1,6 +1,6 @@
-angular.module('login')
+angular.module('LoginController')
  
-.controller('LoginController',
+.controller('LoginCtrl',
     ['$scope', '$rootScope', '$location', 'loginService',
     function ($scope, $rootScope, $location, loginService) {
         // R.A.Z. du statut de connexion

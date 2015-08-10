@@ -1,7 +1,7 @@
-angular.module('login')
+angular.module('loginService')
  
-.factory('loginService', ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
-    function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+.factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
+    function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
 
         service.Login = function (username, password, callback) {

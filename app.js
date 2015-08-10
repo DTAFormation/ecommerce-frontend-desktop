@@ -19,9 +19,9 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
     $routeProvider
     .when('/login', {
-        controller : 'LoginController',
         templateUrl : 'login.html',
-        controllerAs : 'vm'
+        controller : 'LoginController',
+        controllerAs : 'loginCtrl'
     })
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
@@ -33,19 +33,19 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
             controller : "customerCtrl",
             controllerAs : "customerCtrl"
         })
-        // .when('/home',{
-        //     templateUrl : "/home",
-        //     controller : "",
-        //     controllerAs : ""
-        // })
-        .otherwise({ redirectTo: '/home' });
-        // .otherwise({redirectTo:'/login'});
+        .when('/home',{
+            templateUrl : "/home",
+            controller : "home",
+            controllerAs : "home"
+        })
+        // .otherwise({ redirectTo: '/home' });
+        .otherwise({redirectTo:'/login'});
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
-            //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant.
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+            //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant, et lui ajouter une autorisation global si connecté
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; 
         }
         //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
