@@ -1,5 +1,4 @@
-angular.module('loginService')
- 
+angular.module('ecDesktopApp.authentification')
 .factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
@@ -8,6 +7,7 @@ angular.module('loginService')
 
             // fonction de test pour vérifier le fonctionnement de l'authentification avec username et login valant test
             $timeout(function(){
+            console.log(username + " " + password);
                 var response = { success: username === 'test' && password === 'test' };
                 if(!response.success) {
                     response.message = 'Username or password is incorrect';

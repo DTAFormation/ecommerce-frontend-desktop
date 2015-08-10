@@ -7,10 +7,11 @@
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
+    'ecDesktopApp.authentification',
     'ui.bootstrap'
     ]);
 
-angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
+angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
@@ -18,9 +19,9 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
 
     $routeProvider
-    .when('/login', {
-        templateUrl : 'login.html',
-        controller : 'LoginController',
+        .when('/login', {
+        templateUrl : 'authentification/template/login.html',
+        controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
     })
         .when('/product/listproduct', { //
@@ -34,9 +35,9 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
             controllerAs : "customerCtrl"
         })
         .when('/home',{
-            templateUrl : "/home",
-            controller : "home",
-            controllerAs : "home"
+            templateUrl : "home/template/home.tpl.html",
+            controller : "homeCtrl",
+            controllerAs : "homeCtrl"
         })
         // .otherwise({ redirectTo: '/home' });
         .otherwise({redirectTo:'/login'});
