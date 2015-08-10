@@ -17,11 +17,11 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 
 
     $routeProvider
-        .when('/login', {
-            controller : 'LoginController',
-            templateUrl : 'login/authentification.html',
-            controllerAs : 'vm'
-        })
+    .when('/login', {
+        controller : 'LoginController',
+        templateUrl : 'login/authentification.html',
+        controllerAs : 'vm'
+    })
         .when('/product/listproduct', { //
             templateUrl : "product/template/listproduct.html",
             controller : "productCtrl",
@@ -32,29 +32,16 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
             controller : "customerCtrl",
             controllerAs : "customerCtrl"
         })
-        .otherwise({redirectTo:'/home'});
-
-
-
+        // .when('/home',{
+        //     templateUrl : "/home",
+        //     controller : "",
+        //     controllerAs : ""
+        // })
+        .otherwise({ redirectTo: '/home' });
+        // .otherwise({redirectTo:'/login'});
     }]);
 
-angular.module('ecDesktopApp').run(function($rootScope, $location, /*$cookieStore,*/ $http) {
-    //Maintenir la connexion à chaque changement de page.
-    // $rootScope.globals = $cookieStore.get('globals')||{};
 
-    // if ($rootScope.globals.currentUser) {
-    //          $http.defaults.headers.common['Authorization'] = 'Basic ' + 
-    //          $rootScope.globals.currentUser.authdata; // jshint ignore:line
-    //      }
-    // $rootScope.$on('$locationChangeStart', function(event, next, current){
-    //     //redirection vers la page de login si non logger.
-    //     var restrictedPage = $.inArray($location.path(), '/login');
-    //     var loggedIn = $rootScope.globals.currentUser;
-    //     if (restrictedPage && !loggedIn){
-    //         $location.path('/login');
-    //     }
-    // });
-});
 
 // Contrôleur qui pilote globalement l'application
 angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
@@ -89,3 +76,17 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
 });
+// .run(function($rootScope, $location, $cookieStore, $http) {
+//     // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
+//     $rootScope.globals = $cookieStore.get('globals') || {};
+//     if ($rootScope.globals.currentUser) {
+//             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+//         }
+
+//         $rootScope.$on('$locationChangeStart', function (event, next, current) {
+//             // renvoie vers la page login si non logger
+//             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+//                 $location.path('/login');
+//             }
+//         });
+//     });
