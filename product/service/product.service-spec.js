@@ -5,7 +5,7 @@ describe('productServiceTest', function() {
 
  });
 
-    // Tests
+    //test sur le service d'ajout' de produit
 	it("Le service productService.addProduct()"+
 		"ajoute le produit a la base avec un POST", inject(function(productService, $httpBackend) {
         //expect(7).toEqual(7);
@@ -24,7 +24,7 @@ describe('productServiceTest', function() {
         $httpBackend.flush();
     }));
 
-    //test sur le service GET de produit
+    //test sur le service de récupération de produit par id
     it("Le service productService.get(id)"+
         " doit envoyer une requete GET avec les infos", inject(function(productService, $httpBackend){
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
@@ -33,5 +33,22 @@ describe('productServiceTest', function() {
         $httpBackend.flush();
     }));
 
+    //test sur le service de suppression de produit par id
+    it("Le service productService.deleteProduct(id)"+
+        " doit envoyer une requete DELETE avec l'id du produit'", inject(function(productService, $httpBackend){
+        //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        $httpBackend.expectDELETE('data/api/product/'+1+".json").respond(200, '');
+        productService.deleteProduct(1);
+        $httpBackend.flush();
+    }));
+
+    //test sur le service de récupération des produits
+    it("Le service productService.getProducts()"+
+        " doit envoyer une requete GET'", inject(function(productService, $httpBackend){
+        //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        $httpBackend.expectGET('data/bouchonproduct.json').respond(200, '');
+        productService.getProducts();
+        $httpBackend.flush();
+    }));
 
 });
