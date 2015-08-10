@@ -3,7 +3,6 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
 	var apiUrl="data/api/product/";
 	var delUrl="http://localhost:9001/data/";
 	
-
 	//recupere la liste des produits
 	this.getProducts = function(){
 		var bouchonproduct="data/bouchonproduct.json";
