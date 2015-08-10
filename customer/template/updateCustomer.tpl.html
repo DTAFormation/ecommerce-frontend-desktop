@@ -1,9 +1,9 @@
 
 <div class="container">
-   <a href="#/customer/listcustomer">Liste des clients</a>
-  <h2>Modification des clients</h2>
-{{updateCustomerCtrl.customer}}
-  <form role="form" ng-submit="updatectrl.updateCustomer(BankonetForm)" name="BankonetForm" novalidate >
+   <a href="#/customer/listcustomer">Retour à la liste des clients</a>
+  <h2>Modification du client N°{{updateCustomerCtrl.customer.id}} </h2><br>
+
+  <form role="form" ng-submit="updateCustomerCtrl.updateCustomer(BankonetForm)" name="BankonetForm" novalidate >
 
     <div class="form-group">
       <label for="nom">Nom:</label>
@@ -13,9 +13,19 @@
       <label for="Prénom">Prénom :</label>
       <input type="text" class="form-control" id="categorie" placeholder="Entrer un Prénom" ng-model="updateCustomerCtrl.customer.prenom">
     </div>
+
     <div class="form-group">
-      <label for="Adresse">Adresse :</label>
-      <input type="text" class="form-control" id="adresse" placeholder="Entrer une adresse" ng-model="updateCustomerCtrl.customer.address.number">
+      <label for="Adresse">Adresse du  client</label><br>
+      <label for="Adresse">Numéro :</label>
+      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="updateCustomerCtrl.customer.address.number">
+    </div>
+    <div class="form-group">
+      <label for="Adresse">Rue  :</label>
+      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="updateCustomerCtrl.customer.address.street">
+      </div>
+    <div class="form-group">
+      <label for="Adresse">Ville  :</label>
+      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="updateCustomerCtrl.customer.address.city">
     </div>
     <div class="form-group">
       <label for="login">Login :</label>
@@ -24,8 +34,8 @@
         <div class="form-group">
       <label for="motDePasse">Mot de Passe :</label>
       <input type="text" class="form-control" id="motDePasse" placeholder="Entrer un mot de passe" ng-model="updateCustomerCtrl.customer.password">
-    </div>
-    <input type="submit" class="btn btn-default" value="Enregistrer" ></input>
+    </div><br>
+    <input type="submit" class="btn btn-default" value="Enregistrer les modifications" ></input>
   </form>
    
 </div>

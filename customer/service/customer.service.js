@@ -42,7 +42,7 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
    //fonction pour modifier un client
    this.updateCustomer = function(customer){
        console.log(customer); 
-       return $http.put(apiUrl, customer);
+       return $http.put(apiUrl+customer.id, customer);
    };
 
 
