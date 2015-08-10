@@ -54,6 +54,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
                 $location.path('/login');
             }
         });
+
     }]);
 
 
@@ -62,7 +63,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', function($routeProvider
 angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
     this.title = "ECommerce Desktop";
 });
-
+// Contrôleur de la navbar
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     $scope.productsFunctions= [
     {affichage:'Afficher Produits',url:'#/product/listproduct'},
@@ -73,9 +74,9 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
 
     $scope.clientsFunctions= [
     {affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-    {affichage:'Créer Clients',url:'#/customer/createCustomer'},
-    {affichage:'Modifier Clients',url:'#/customer/listcustomer'},
-    {affichage:'Supprimer Clients',url:'#/customer/listcustomer'}
+    {affichage:'Créer Client',url:'#/customer/createCustomer'},
+    {affichage:'Modifier Client',url:'#/customer/listcustomer'},
+    {affichage:'Supprimer Client',url:'#/customer/listcustomer'}
     ];
 
     $scope.ordersFunctions= [
