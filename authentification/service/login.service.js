@@ -2,8 +2,10 @@ angular.module('ecDesktopApp.authentification')
 .factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
-        var apiUrl = "http://localhost:8085/ecommerce-backend/api/user/connect";
+        //var apiUrl = "http://localhost:8085/ecommerce-backend/api/user/connect";
         //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/user/connect";
+        var apiUrl = "http://localhost:8085/ecommerce-backend/api/admin/connect/";
+        //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/admin/connect/";
 
         service.Login = function (username, password, callback) {
             var userData = { "login" : username, "password" : password };
@@ -23,7 +25,7 @@ angular.module('ecDesktopApp.authentification')
             $http.post(apiUrl, userData)
                .then(function (response) {
 
-                response.success = response.status == 200;
+                response.success = response.status === 200;
                //  var response = { success: username === 'test' && password === 'test' };
                 if(!response.success) {
                     response.message = 'Username or password is incorrect';
