@@ -2,30 +2,37 @@ angular.module('ecDesktopApp.authentification')
 .factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
-        var apiUrl = "http://localhost:9001/data/loginbouchon.json";
+        //var apiUrl = "http://localhost:8085/ecommerce-backend/api/user/connect";
+        //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/user/connect";
+        var apiUrl = "http://localhost:8085/ecommerce-backend/api/admin/connect/";
+        //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/admin/connect";
 
         service.Login = function (username, password, callback) {
-
+            var userData = { "login" : username, "password" : password };
             // fonction de test pour vérifier le fonctionnement de l'authentification avec username et login valant test
-            $timeout(function(){
+            // $timeout(function(){
+            // console.log(username + " " + password);
+            //     var response = { success: username === 'test' && password === 'test' };
+            //     if(!response.success) {
+            //         response.message = 'Username or password is incorrect';
+            //     }
+            //     callback(response);
+            // }, 1000);
+
             console.log(username + " " + password);
-                var response = { success: username === 'test' && password === 'test' };
+
+            //Authentification possible selon bdd, il faut cibler une url existante
+            $http.post(apiUrl, userData)
+               .then(function (response) {
+
+                response.success = response.status === 200;
+               //  var response = { success: username === 'test' && password === 'test' };
                 if(!response.success) {
                     response.message = 'Username or password is incorrect';
                 }
                 callback(response);
-            }, 1000);
 
-
-            //Authentification possible selon bdd, il faut cibler une url existante
-            // $http.post(apiUrl, { username : username, password : password })
-            //    .then(function (response) {
-            //         console.log(response.data);
-            //        sessionStorage.data=response.data;
-                   
-            //        callback(response);
-
-            //    });
+               });
 
         };
  
