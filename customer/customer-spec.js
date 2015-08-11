@@ -65,7 +65,7 @@ describe('customerTest', function() {
 			}
 		};
 
-		spyOn(customerService, "get").and.returnValue(mockPromise); // simule que le service est ok, "force le resultat"
+		spyOn(customerService, "getById").and.returnValue(mockPromise); // simule que le service est ok, "force le resultat"
 
 		var updateCustomerCtrl = $controller('updateCustomereController', {
 			'$routeParams' : {
@@ -73,7 +73,7 @@ describe('customerTest', function() {
 			}
 		});
 
-		spyOn(customerService,"updateCustomer").and.returnValue(mockPromise); //simule la fonction updateProduct
+		spyOn(customerService,"updateCustomer").and.returnValue(mockPromise); //simule la fonction updateCustomer
 		console.log(updateCustomerCtrl.customer);
 
 		spyOn($location, 'path'); // doit etre placé avant l'appel a la fonction
@@ -81,7 +81,7 @@ describe('customerTest', function() {
 		updateCustomerCtrl.updateCustomer(customer);
 
 		//on s'attend à ce que le location.path soit appelé avec le chemin defini dans la promesse du controlleur
-       expect($location.path).toHaveBeenCalledWith('/');//correspond au $location.path de la fonction updateCustomer du controlleur updateCustomereController
+       expect($location.path).toHaveBeenCalledWith('/customer/listcustomer');//correspond au $location.path de la fonction updateCustomer du controlleur updateCustomereController
 	
 	}));
 
