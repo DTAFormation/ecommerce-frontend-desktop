@@ -2,6 +2,10 @@ span.glyphicon-home {
     font-size: 1.2em;
 }
 
-.loginEcommerce,.logoutEcommerce {
+.logoutEcommerce {
   margin-right: 1em;
+}
+
+.symbolEuro {
+	font-size: 0.8em;
 }
