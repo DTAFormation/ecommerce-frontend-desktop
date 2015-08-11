@@ -3,7 +3,7 @@ angular.module('ecDesktopApp.authentification')
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
         var apiUrl = "http://localhost:8085/ecommerce-backend/api/user/connect";
-        //var apiUrl = "http://5.196.89.85:9080/ec-backend/api/user/connect";
+        //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/user/connect";
 
         service.Login = function (username, password, callback) {
 
