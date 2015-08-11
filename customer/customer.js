@@ -81,21 +81,20 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
 */
 angular.module("ecDesktopApp.customer").controller("updateCustomereController",function (customerService,$routeParams,$location) {
-    var updatectrl =this;
+    var updatectrl = this;
     
     console.log("update update : " + $routeParams.id);
     
-    customerService.get($routeParams.id)
+    customerService.getById($routeParams.id) // recupere les donnees du client
     .then(function (customer) {
-
-        updatectrl.customer = customer;
+        updatectrl.customer = customer;      // que l'on stocke dans updatectrl.customer
     });
 
-    updatectrl.updateCustomer = function (form) {
+    updatectrl.updateCustomer = function (form) { //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
         if (form.$invalid) {return ;}
-        customerService.updateCustomer(updatectrl.customer)
-        .then(function () {
-            $location.path("/");
+        customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
+        .then(function () { //en cas de succes
+            $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
         });
     };
 });
