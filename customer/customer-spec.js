@@ -45,4 +45,48 @@ describe('customerTest', function() {
 		expect(customerCtrl.err).toEqual(false);
 	}));//fin du 3ieme it
 
+
+//test du controleur de l'updateCustomer
+	//on mock les services = on fait croire que le service marche sans vraiment le lancer
+	it("test unitaire du controlleur modification client ",inject(function($controller, customerService, $location){
+		var customer= {
+		    id: 1,
+		    nom: "Dillon",
+		    prenom: "Rosalie",
+		    login: "Hammond",
+		    email: "rosaliehammond@helixo.com",
+		    password: "hogan",
+		    address: {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
+	};
+		
+		var mockPromise =  {
+			then : function(fn) {
+				fn(customer);
+			}
+		};
+
+		spyOn(customerService, "get").and.returnValue(mockPromise); // simule que le service est ok, "force le resultat"
+
+		var updateCustomerCtrl = $controller('updateCustomereController', {
+			'$routeParams' : {
+				id: 1
+			}
+		});
+
+		spyOn(customerService,"updateCustomer").and.returnValue(mockPromise); //simule la fonction updateProduct
+		console.log(updateCustomerCtrl.customer);
+
+		spyOn($location, 'path'); // doit etre placé avant l'appel a la fonction
+
+		updateCustomerCtrl.updateCustomer(customer);
+
+		//on s'attend à ce que le location.path soit appelé avec le chemin defini dans la promesse du controlleur
+       expect($location.path).toHaveBeenCalledWith('/');//correspond au $location.path de la fonction updateCustomer du controlleur updateCustomereController
+	
+	}));
+
+
+
+
+
 });
