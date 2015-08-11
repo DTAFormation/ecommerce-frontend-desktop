@@ -33,9 +33,10 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
         return $http.delete(apiUrl+id);
     };
 
-    this.get = function(id){
-        return $http.get(apiUrl +id + ".json")
-        .then(function (result) {
+    //recupere un client par Id
+    this.getById = function(id){
+        return $http.get(apiUrl+id+".json")
+        .then(function (result) { //en cas de succes on retourne les data du client id
             return result.data;
         });
     };
