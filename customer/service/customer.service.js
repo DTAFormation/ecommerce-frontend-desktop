@@ -1,5 +1,6 @@
 angular.module('ecDesktopApp.customer').service('customerService', function($http) {
     var apiUrl = "data/api/customer/" ;
+    //var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/get/";
 
     //fonction d'ajout d'un client
     this.addCustomer = function(customer){

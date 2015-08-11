@@ -1,86 +1,85 @@
 // Tests unitaires module / contrôleurs product
 describe("createProductCtrl Tests", function(){
 
-	beforeEach(function(){
-		module('ecDesktopApp.product');
-	});
+    var apiUrl="http://5.196.89.85:9080/ec-backend/api/produit/";
 
-	it("test unitaire createProductCtrl.addProduct en cas de error:404",inject(function($controller, $httpBackend){
-		var createProductCtrl = $controller('createProductCtrl');
-		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+    beforeEach(function(){
+        module('ecDesktopApp.product');
+    });
 
-		$httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
+    it("test unitaire createProductCtrl.addProduct en cas de error:404",inject(function($controller, $httpBackend){
+        var createProductCtrl = $controller('createProductCtrl');
+        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+
+        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
        
-		createProductCtrl.addProd(product);
+        createProductCtrl.addProd(product);
 
-		$httpBackend.flush();
-		//console.log(createProductCtrl.err);
-		expect(createProductCtrl.err).toEqual(true);
+        $httpBackend.flush();
+        //console.log(createProductCtrl.err);
+        expect(createProductCtrl.err).toEqual(true);
 
-	}));
+    }));
 
-	it("test unitaire createProductCtrl.addProduct en cas de succes:201",inject(function($controller, $httpBackend){
-		var createProductCtrl = $controller('createProductCtrl');
-		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+    it("test unitaire createProductCtrl.addProduct en cas de succes:201",inject(function($controller, $httpBackend){
+        var createProductCtrl = $controller('createProductCtrl');
+        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-		$httpBackend.expectPOST('data/api/product/', {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
+        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
        
-		createProductCtrl.addProd(product);
+        createProductCtrl.addProd(product);
 
-		$httpBackend.flush();
+        $httpBackend.flush();
 
-		expect(createProductCtrl.err).toEqual(false);
-	}));
+        expect(createProductCtrl.err).toEqual(false);
+    }));
 
-	//test du controller d'update
-	it("test unitaire updateCtrl.updateProduct",inject(function($controller, $httpBackend){
-		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-		
-		$httpBackend.when('GET',"data/api/product/1.json").respond(200,product);
-		var updateProductCtrl = $controller('updateProductController', {
-			'$routeParams' : {
-				id: 1
-			}
-		});
+    //test du controller d'update
+    it("test unitaire updateCtrl.updateProduct",inject(function($controller, $httpBackend){
+        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        
+        $httpBackend.when('GET',apiUrl+1).respond(200,product);
+        var updateProductCtrl = $controller('updateProductController', {
+            '$routeParams' : {
+                id: 1
+            }
+        });
 
-		$httpBackend.flush();
-		$httpBackend.expectPUT("data/api/product/"+1, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
-		updateProductCtrl.updateProduct(product); //ici bug
-		$httpBackend.flush();
-	}));
+        $httpBackend.flush();
+        $httpBackend.expectPUT(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
+        updateProductCtrl.updateProduct(product); //ici bug
+        $httpBackend.flush();
+    }));
 
-	//test du controleur => meilleure manière (cf Rémi)
-	//on mock les services = on fait croire que le service marche sans vraiment le lancer
-	it("test unitaire updateCtrl.updateProduct 2 better way",inject(function($controller, productService, $location){
-		var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-		
-		var mockPromise =  {
-			then : function(fn) {
-				fn(product);
-			}
-		};
+    //test du controleur => meilleure manière (cf Rémi)
+    //on mock les services = on fait croire que le service marche sans vraiment le lancer
+    it("test unitaire updateCtrl.updateProduct 2 better way",inject(function($controller, productService, $location){
+        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        
+        var mockPromise =  {
+            then : function(fn) {
+                fn(product);
+            }
+        };
 
-		spyOn(productService, "get").and.returnValue(mockPromise); // simule que le service est ok, "force le resultat"
+        spyOn(productService, "get").and.returnValue(mockPromise); // simule que le service est ok, "force le resultat"
 
-		var updateProductCtrl = $controller('updateProductController', {
-			'$routeParams' : {
-				id: 1
-			}
-		});
+        var updateProductCtrl = $controller('updateProductController', {
+            '$routeParams' : {
+                id: 1
+            }
+        });
 
-		spyOn(productService,"updateProduct").and.returnValue(mockPromise); //simule la fonction updateProduct
-		console.log(updateProductCtrl.product);
+        spyOn(productService,"updateProduct").and.returnValue(mockPromise); //simule la fonction updateProduct
+        console.log(updateProductCtrl.product);
 
-		spyOn($location, 'path'); // doit etre placé avant l'appel a la fonction
+        spyOn($location, 'path'); // doit etre placé avant l'appel a la fonction
 
-		updateProductCtrl.updateProduct(product);
+        updateProductCtrl.updateProduct(product);
 
-		//on s'attend à ce que le location.path soit appelé avec le chemin defini dans la promesse du controlleur
+        //on s'attend à ce que le location.path soit appelé avec le chemin defini dans la promesse du controlleur
         expect($location.path).toHaveBeenCalledWith('/product/listproduct');
-
-
-		
-	}));
+    }));
 
 
 });
