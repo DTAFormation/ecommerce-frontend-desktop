@@ -1,6 +1,6 @@
 angular.module('ecDesktopApp.customer').service('customerService', function($http) {
     var apiUrl = "data/api/customer/" ;
-    //var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/get/";
+    //var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
 
     //fonction d'ajout d'un client
     this.addCustomer = function(customer){
@@ -33,9 +33,10 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
         return $http.delete(apiUrl+id);
     };
 
-    this.get = function(id){
-        return $http.get(apiUrl +id + ".json")
-        .then(function (result) {
+    //recupere un client par Id
+    this.getById = function(id){
+        return $http.get(apiUrl+id+".json")
+        .then(function (result) { //en cas de succes on retourne les data du client id
             return result.data;
         });
     };
