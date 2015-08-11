@@ -32,7 +32,6 @@ describe('customerServiceTest', function() {
 
 
     //test modification des clients
-    
 	it('test modification client', inject(function(_$httpBackend_, customerService) {
 	    var mockBackend = _$httpBackend_;
 
