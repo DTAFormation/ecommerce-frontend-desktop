@@ -6,7 +6,7 @@ angular.module('ecDesktopApp.authentification')
         //var apiUrl = "http://5.196.89.85:9000/ec-backend/api/user/connect";
 
         service.Login = function (username, password, callback) {
-
+            var userData = { "login" : username, "password" : password };
             // fonction de test pour vérifier le fonctionnement de l'authentification avec username et login valant test
             // $timeout(function(){
             // console.log(username + " " + password);
@@ -20,12 +20,15 @@ angular.module('ecDesktopApp.authentification')
             console.log(username + " " + password);
 
             //Authentification possible selon bdd, il faut cibler une url existante
-            $http.post(apiUrl, { login : username, password : password })
+            $http.post(apiUrl, userData)
                .then(function (response) {
-                    console.log(response.data);
-                   sessionStorage.data=response.data;
-                   
-                   callback(response);
+
+                response.success = response.status == 200;
+               //  var response = { success: username === 'test' && password === 'test' };
+                if(!response.success) {
+                    response.message = 'Username or password is incorrect';
+                }
+                callback(response);
 
                });
 
