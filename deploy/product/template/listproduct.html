@@ -21,6 +21,7 @@
       <td>{{product.id}}</td>
       <td>{{product.libelle}}</td>
       <td>
+
           <script type="text/ng-template" id="modalContent.html">
               <div class="modal-header">
                   <h3 class="modal-title">Caractéristiques du produit {{product.id}}</h3>
@@ -34,12 +35,10 @@
       <td>{{product.categorie}}</td>
       <td><img data-ng-src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"/></td>
       <td>{{product.prix}}</td>
-      <td>
-        <a href = "#/product/updateProduct/{{product.id}}"><button>Modifier Produit</button></a>
-      </td>
-      <td>
-        <button ng-click="productCtrl.delProduct(product.id)">Supprimer Produit {{produit.id}}</button>
-      </td>
+
+      <td><a href = "#/product/updateProduct/{{product.id}}"><button class="btn btn-default center-block">Modifier Produit</button></td>
+      <td><button class="btn btn-danger center-block">
+        <span class="glyphicon glyphicon-remove" ng-click="productCtrl.delProduct(product.id)"></span>
     </tr>
   </tbody> 
 </table>
