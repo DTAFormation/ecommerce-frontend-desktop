@@ -1,5 +1,5 @@
 describe('customerServiceTest', function() {
-	//var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/get/";
+	//var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
