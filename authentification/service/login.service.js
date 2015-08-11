@@ -2,7 +2,7 @@ angular.module('ecDesktopApp.authentification')
 .factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
     function ($http, $cookieStore, $rootScope, $timeout) {
         var service = {};
-        var apiUrl = "http://localhost:8085/ecommerce-backend/api/personne/connect";
+        var apiUrl = "http://localhost:8085/ecommerce-backend/api/user/connect";
 
         service.Login = function (username, password, callback) {
 
@@ -18,7 +18,7 @@ angular.module('ecDesktopApp.authentification')
 
 
             //Authentification possible selon bdd, il faut cibler une url existante
-            $http.post(apiUrl, { username : username, password : password })
+            $http.post(apiUrl, { login : username, password : password })
                .then(function (response) {
                     console.log(response.data);
                    sessionStorage.data=response.data;
