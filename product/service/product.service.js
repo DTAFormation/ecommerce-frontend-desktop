@@ -1,14 +1,12 @@
 angular.module('ecDesktopApp.product').service('productService', function($http) {
 
-	var apiUrl="data/api/product/";
-	var delUrl="http://localhost:9001/data/";
+	var apiUrl="http://5.196.89.85:9080/ec-backend/api/produit/";
 	
-
 	//recupere la liste des produits
 	this.getProducts = function(){
-		var bouchonproduct="data/bouchonproduct.json";
+		//var bouchonproduct="data/bouchonproduct.json";
 		//console.log($http.get(bouchonproduct)); 
-		return $http.get(bouchonproduct);
+		return $http.get(apiUrl);
     };
 
     //créé un produit en base
@@ -18,19 +16,19 @@ angular.module('ecDesktopApp.product').service('productService', function($http)
     };
 
     //supprimer un produit en base
-    this.deleteProduct = function(product){
-        console.log("tentative de suppression d'un produit"+product);
-        return $http.delete(delUrl+product.id+"/bouchonproduct.json");
+    this.deleteProduct = function(id){
+        console.log("tentative de suppression du produit"+id);
+        return $http.delete(apiUrl+id);
     };
 
     //Editer un produit en base
     this.updateProduct = function(product){
-        return $http.put(apiUrl+product.id,product);     
+        return $http.put(apiUrl,product);     
     };
     
     //Rechercher un produit par id
     this.get = function(id){
-        return $http.get(apiUrl+id+".json")
+        return $http.get(apiUrl+id)
         .then(function(result){
             return result.data;
         });

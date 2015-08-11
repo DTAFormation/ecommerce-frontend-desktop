@@ -1,4 +1,5 @@
 describe('customerServiceTest', function() {
+	//var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/get/";
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
@@ -20,34 +21,34 @@ describe('customerServiceTest', function() {
 
 	}));//fin du 1er it
 
-		it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend){
-			var id = 1;
+	it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend){
+		var id = 1;
 
-			$httpBackend.expectDELETE("data/api/customer/"+id).respond(200,'');
-			customerService.deleteCustomer(id);
-			$httpBackend.flush();
+		$httpBackend.expectDELETE("data/api/customer/"+id).respond(200,'');
+		customerService.deleteCustomer(id);
+		$httpBackend.flush();
 
-		}));//fin du 2eme it
+	}));//fin du 2eme it
 
 
     //test modification des clients
     
 	it('test modification client', inject(function(_$httpBackend_, customerService) {
-	        var mockBackend = _$httpBackend_;
+	    var mockBackend = _$httpBackend_;
 
-	        mockBackend.expectPUT('data/api/customer/1', 
-	            {
-	    "id": 1,
-	    "nom": "Dillon",
-	    "prenom": "Gladice",
-	    "login": "Hammond",
-	    "email": "rosaliehammond@helixo.com",
-	    "password": "hogan",
-	    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
-	}).respond({});
+	    mockBackend.expectPUT('data/api/customer/1', 
+	    {
+		    "id": 1,
+		    "nom": "Dillon",
+		    "prenom": "Gladice",
+		    "login": "Hammond",
+		    "email": "rosaliehammond@helixo.com",
+		    "password": "hogan",
+		    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
+		}).respond({});
 
 	        // modified device name test
-	        var item = {
+	    var item = {
 		    id: 1,
 		    nom: "Dillon",
 		    prenom: "Gladice",
@@ -56,11 +57,11 @@ describe('customerServiceTest', function() {
 		    password: "hogan",
 		    address: {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 		};
-	        customerService.updateCustomer(item);
+	    customerService.updateCustomer(item);
 
-	        mockBackend.flush();
+	    mockBackend.flush();
 	        
-	    }));
+	}));
 
 
 	it("est ce que la fonction cherche la liste des clients? ", inject(function(customerService,$httpBackend){
@@ -95,10 +96,8 @@ describe('customerServiceTest', function() {
             expect(customer.password).toEqual("hogan");
             expect(customer.adress).toEqual("12 rue tomtom");
         });
-        
         //pour déclencher les réponses des requêtes faites avec $http.
         $httpBackend.flush();
-
-    }));
+    })); // fin du test
 
 });
