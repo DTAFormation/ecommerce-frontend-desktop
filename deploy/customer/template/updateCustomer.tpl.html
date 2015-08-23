@@ -13,19 +13,11 @@
       <label for="Prénom">Prénom :</label>
       <input type="text" class="form-control" id="categorie" placeholder="Entrer un Prénom" ng-model="updateCustomerCtrl.customer.prenom">
     </div>
-
-    <div class="form-group">
-      <label for="Adresse">Adresse du  client</label><br>
-      <label for="Adresse">Numéro :</label>
-      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="updateCustomerCtrl.customer.address.number">
-    </div>
-    <div class="form-group">
-      <label for="Adresse">Rue  :</label>
-      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="updateCustomerCtrl.customer.address.street">
-      </div>
-    <div class="form-group">
-      <label for="Adresse">Ville  :</label>
-      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="updateCustomerCtrl.customer.address.city">
+    <div class="form-group" ng-repeat="adresse in updateCustomerCtrl.customer.adresses">
+      <label for="Adresse">Adresse n°{{adresse.id}}</label><br>
+      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="adresse.numero">
+      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="adresse.rue">
+      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville">
     </div>
     <div class="form-group">
       <label for="login">Login :</label>
@@ -39,4 +31,3 @@
   </form>
    
 </div>
-

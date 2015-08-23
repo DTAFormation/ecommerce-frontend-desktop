@@ -92,7 +92,7 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 			self.err=true;
 		});
 	};
-	});
+});
 
 angular.module('ecDesktopApp.product').controller("updateProductController", function(productService, $routeParams, $location){
 	var updateCtrl = this;
