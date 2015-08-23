@@ -1,5 +1,5 @@
 describe('customerServiceTest', function() {
-	//var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
+	var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
@@ -7,7 +7,7 @@ describe('customerServiceTest', function() {
 	it("Les données du formulaire de creation de client doivent être postées", inject(function(customerService, $httpBackend){
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
-		$httpBackend.expectPOST("data/api/customer/",customer).respond(404,'');
+		$httpBackend.expectPOST(apiUrl,customer).respond(404,'');
 
 		//$httpBackend.whenPOST('http://localhost:9001/#/customer/createCustomer',customer).respond(201,'');
 
@@ -24,7 +24,7 @@ describe('customerServiceTest', function() {
 	it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend){
 		var id = 1;
 
-		$httpBackend.expectDELETE("data/api/customer/"+id).respond(200,'');
+		$httpBackend.expectDELETE(apiUrl+id).respond(200,'');
 		customerService.deleteCustomer(id);
 		$httpBackend.flush();
 
@@ -35,7 +35,7 @@ describe('customerServiceTest', function() {
 	it('test modification client', inject(function(_$httpBackend_, customerService) {
 	    var mockBackend = _$httpBackend_;
 
-	    mockBackend.expectPUT('data/api/customer/1', 
+	    mockBackend.expectPUT(apiUrl, 
 	    {
 		    "id": 1,
 		    "nom": "Dillon",
@@ -46,7 +46,7 @@ describe('customerServiceTest', function() {
 		    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 		}).respond({});
 
-	        // modified device name test
+	    // modified device name test
 	    var item = {
 		    id: 1,
 		    nom: "Dillon",
@@ -78,7 +78,7 @@ describe('customerServiceTest', function() {
                             };
 
         //l'adresse sur laquelle on récupère les données
-        $httpBackend.when("GET", "data/api/customer/all.json").respond(reponseSimule);
+        $httpBackend.when("GET", apiUrl).respond(reponseSimule);
 
         //récupération des données
         var reponsePromesse=customerService.getCustomers();

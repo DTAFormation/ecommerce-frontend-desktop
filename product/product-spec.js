@@ -16,7 +16,6 @@ describe("createProductCtrl Tests", function(){
         createProductCtrl.addProd(product);
 
         $httpBackend.flush();
-        //console.log(createProductCtrl.err);
         expect(createProductCtrl.err).toEqual(true);
 
     }));

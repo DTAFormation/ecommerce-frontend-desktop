@@ -31,20 +31,20 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
 // Contrôleur principal du module 'createCustomer'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function (customerService) {
+angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function(customerService, $location) {
 
-    var self = this;
-    
-    self.addCustomer = function(customer){
-     customerService.addCustomer(customer)
-     .then(function(response){
-        self.err = false;
-    },function(error){
-        console.log("erreur de requette"); 
-        self.err = true;
-        console.log(self.err); 
-    });
- };
+    var self = this; 
+    self.ajoutClient = function(customer){
+        customerService.addCustomer(customer)
+        .then(function(response){ //en cas de succes
+            self.err = false;
+            console.log("client créé");
+            $location.path("/customer/listcustomer");
+        },function(error){
+            console.log("erreur de requete"); 
+            self.err = true;
+        });
+    };
 });
 
 //controlleur pour formulaire liste des clients
@@ -64,7 +64,7 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             console.log('succes lors de la requete de suppression de client');
-            //customerService.getCustomers(); //recharge la liste des clients a jour
+            customerService.getCustomers(); //sencer mettre a jour la liste des clients a jour
             self.err=false;
             //return succes.data;
         },function(error){
@@ -80,21 +80,23 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
 
 */
-angular.module("ecDesktopApp.customer").controller("updateCustomereController",function (customerService,$routeParams,$location) {
+angular.module('ecDesktopApp.customer').controller("updateCustomereController", function(customerService,$routeParams,$location) {
     var updatectrl = this;
     
-    console.log("update update : " + $routeParams.id);
+    console.log("update client : " + $routeParams.id);
     
     customerService.getById($routeParams.id) // recupere les donnees du client
-    .then(function (customer) {
+    .then(function(customer){
         updatectrl.customer = customer;      // que l'on stocke dans updatectrl.customer
     });
 
-    updatectrl.updateCustomer = function (form) { //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
-        if (form.$invalid) {return ;}
+    updatectrl.updateCustomer = function(form){ //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
+        //if (form.$invalid) {return ;}
         customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
-        .then(function () { //en cas de succes
+        .then(function(succes) { //en cas de succes
             $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
+        },function(fail){
+            console.log("Echec de la mise à jour du client");
         });
     };
 });
