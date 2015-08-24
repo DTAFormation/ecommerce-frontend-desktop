@@ -42,11 +42,11 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         // .otherwise({ redirectTo: '/home' });
         .otherwise({redirectTo:'/login'});
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
-    // maintenir l'utilisateur logger malgrés les F5 et les changements de pages
+    // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
             //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant, et lui ajouter une autorisation global si connecté
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; 
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
         //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -61,8 +61,13 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
 
 
 // Contrôleur qui pilote globalement l'application
-angular.module('ecDesktopApp').controller("ecDesktopCtrl", function() {
-    this.title = "ECommerce Desktop";
+angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService,$location) {
+    var ecDCtrl = this;
+    ecDCtrl.title = "ECommerce Desktop";
+    ecDCtrl.logout=function(){
+      loginService.ClearCredentials();
+      $location.path('/login');
+    };
 });
 // Contrôleur de la navbar
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
@@ -93,4 +98,3 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
 });
-
