@@ -5,7 +5,7 @@ describe('customerServiceTest', function() {
 	});
 
 	it("Les données du formulaire de creation de client doivent être postées", inject(function(customerService, $httpBackend){
-		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
+		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login"};
 
 		$httpBackend.expectPOST(apiUrl,customer).respond(404,'');
 
@@ -35,14 +35,13 @@ describe('customerServiceTest', function() {
 	it('test modification client', inject(function(_$httpBackend_, customerService) {
 	    var mockBackend = _$httpBackend_;
 
-	    mockBackend.expectPUT(apiUrl, 
+	    mockBackend.expectPUT(apiUrl,
 	    {
 		    "id": 1,
 		    "nom": "Dillon",
 		    "prenom": "Gladice",
 		    "login": "Hammond",
 		    "email": "rosaliehammond@helixo.com",
-		    "password": "hogan",
 		    "address": {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 		}).respond({});
 
@@ -53,13 +52,12 @@ describe('customerServiceTest', function() {
 		    prenom: "Gladice",
 		    login: "Hammond",
 		    email: "rosaliehammond@helixo.com",
-		    password: "hogan",
 		    address: {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 		};
 	    customerService.updateCustomer(item);
 
 	    mockBackend.flush();
-	        
+
 	}));
 
 
@@ -73,7 +71,6 @@ describe('customerServiceTest', function() {
 							    prenom: "Rosalie",
 							    login: "Hammond",
 							    email: "rosaliehammond@helixo.com",
-							    password: "hogan",
 							    adress: "12 rue tomtom"
                             };
 
@@ -92,7 +89,6 @@ describe('customerServiceTest', function() {
             expect(customer.prenom).toEqual("Rosalie");
             expect(customer.login).toEqual("Hammond");
             expect(customer.email).toEqual("rosaliehammond@helixo.com");
-            expect(customer.password).toEqual("hogan");
             expect(customer.adress).toEqual("12 rue tomtom");
         });
         //pour déclencher les réponses des requêtes faites avec $http.
