@@ -26,11 +26,17 @@ npm install -g bower
 ```
 npm install
 bower install
+./node_modules/grunt-protractor-runner/node_modules/.bin/webdriver-manager update
 ```
 * Lancer l'application
 ```
 grunt serve
 ```
+* Lancer les tests d'IHM (Chrome uniquement)
+```
+grunt test-e2e
+```
+
 ## Utilisation de l'application
 * Aller sur l'adresse
 [http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/](http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/)
