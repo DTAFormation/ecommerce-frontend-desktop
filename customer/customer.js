@@ -56,28 +56,31 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
 angular.module('ecDesktopApp.customer').controller('customerCtrl', function (customerService) {
 
 
-    var self = this;
-    customerService.getCustomers()
-    .then(
-        function (customer) {
-                    //console.log("customer:"+JSON.stringify(customer));
-                    self.customers = customer;
-                });
+    var customerCtrl = this;
+    customerCtrl.customers = null;
 
-    self.delCustomer = function(id){
+    customerCtrl.getCustomers = function() {
+        customerService.getCustomers()
+        .then(function(customer) {
+            customerCtrl.customers = customer;
+        });
+    };
+
+    customerCtrl.delCustomer = function(id){
         console.log("function delCustomer sur le client "+id);
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             console.log('succes lors de la requete de suppression de client');
-            customerService.getCustomers(); //sencer mettre a jour la liste des clients a jour
-            self.err=false;
-            //return succes.data;
-        },function(error){
-            self.err=true;
+            customerCtrl.getCustomers();
+            customerCtrl.err=false;
+        }, function(error){
+            customerCtrl.err=true;
             setTimeout(function(){window.location.reload();},2000);
             console.log('erreur lors de la requete de suppression de client');
         });
     };
+
+    customerCtrl.getCustomers();
 
 });
 
