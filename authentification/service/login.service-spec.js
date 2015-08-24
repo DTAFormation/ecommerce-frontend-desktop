@@ -1,4 +1,4 @@
-describe('loginServiceTest', function() {
+describe('loginTest', function() {
 
 var apiUrl="http://5.196.89.85:9080/ec-backend/api/personne/";
 
@@ -6,12 +6,38 @@ var apiUrl="http://5.196.89.85:9080/ec-backend/api/personne/";
         module('ecDesktopApp.authentification');
     });
 
-	// it("Le service loginService.login(username, password, callback) "+
-	// 	"envoie à la base avec un POST le couple login/mot de passe.", inject(function(loginService, $httpBackend) {
- //        var log={username : "username", password : "password"};
- //        $httpBackend.expectPOST(apiUrl, {username : "username", password : "password"}).respond(200, '');
- //        loginService.login(username, password);
- //        $httpBackend.flush();
-	// }));
+	it("test de la fonction de login succès", inject(function($controller,$httpBackend, loginService) {
+		 $httpBackend.expect("POST",'http://5.196.89.85:9080/ec-backend/api/admin/connect').respond(200);
+
+		 var loginCtrl = $controller("LoginCtrl");
+
+		 loginCtrl.username = "loginTest";
+		 loginCtrl.password = "testPassword";
+
+		 spyOn(loginService, "SetCredentials");
+
+		 loginCtrl.login();
+
+		 $httpBackend.flush();
+
+		 expect(loginService.SetCredentials).toHaveBeenCalledWith(loginCtrl.username ,loginCtrl.password);
+	 }));
+
+	 it("test de la fonction de login échec", inject(function($controller,$httpBackend,loginService) {
+		 $httpBackend.expect("POST",'http://5.196.89.85:9080/ec-backend/api/admin/connect').respond(400);
+
+		 var loginCtrl = $controller("LoginCtrl");
+
+		 loginCtrl.username = "loginTest";
+		 loginCtrl.password = "testPassword";
+
+		 spyOn(loginService, "SetCredentials");
+
+		 loginCtrl.login();
+
+		 $httpBackend.flush();
+
+		 expect(loginCtrl.dataLoading).toEqual(true);
+	 }));
 
 });
