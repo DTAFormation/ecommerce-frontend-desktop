@@ -46,7 +46,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
             //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant, et lui ajouter une autorisation global si connecté
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; 
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
         //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -75,9 +75,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
 
     $scope.clientsFunctions= [
     {affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-    {affichage:'Créer Client',url:'#/customer/createCustomer'},
-    {affichage:'Modifier Client',url:'#/customer/listcustomer'},
-    {affichage:'Supprimer Client',url:'#/customer/listcustomer'}
+    {affichage:'Créer Client',url:'#/customer/createCustomer'}
     ];
 
     $scope.ordersFunctions= [
@@ -93,4 +91,3 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
     ];
 });
-
