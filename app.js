@@ -8,7 +8,8 @@
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
     'ecDesktopApp.authentification',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'chart.js'
     ]);
 
 angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
