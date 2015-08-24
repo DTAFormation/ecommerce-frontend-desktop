@@ -52,5 +52,9 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
        //return $http.put(apiUrl+customer.id, customer); // pas besoin de l'id
    };
 
+    this.getlogin = function(login){
+      return $http.get(apiUrl+"chercher/"+login);
+    };
+
 
 });

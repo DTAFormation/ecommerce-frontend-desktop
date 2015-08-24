@@ -38,13 +38,24 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
         customerService.addCustomer(customer)
         .then(function(response){ //en cas de succes
             self.err = false;
-            console.log("client créé");
+            //console.log("client créé");
             $location.path("/customer/listcustomer");
         },function(error){
-            console.log("erreur de requete"); 
+            //console.log("erreur de requete"); 
             self.err = true;
         });
     };
+
+    self.doesNotExist = function(value){
+        return $q(function(resolve, reject) {
+          customerService.getlogin(value)
+            .then(function(response){
+                reject(false);
+            },function(response){
+                resolve(true);
+            });
+        });
+    }
 });
 
 //controlleur pour formulaire liste des clients
