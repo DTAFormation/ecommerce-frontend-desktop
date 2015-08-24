@@ -17,17 +17,12 @@
     </div>
 
     <div class="form-group">
-      <label for="Adresse">Adresse :</label>
-      <input type="number" class="form-control" id="number" placeholder="Entrer le numéro" ng-model="customer.adresses.numero">
-      <input type="text" class="form-control" id="rue" placeholder="Entrer le nom de la rue" ng-model="customer.adresses.rue">
-      <input type="text" class="form-control" id="city" placeholder="Entrer le nom de la ville" ng-model="customer.adresses.ville">
-    </div>
-
-    <div class="form-group">
       <label for="login" class="control-label" >Login :</label>
       <input type="email" class="form-control" name="login" id="login" placeholder="Entrer un email" ng-model="customer.login" required ui-validate-async="{alreadyExists: 'createCustomer.doesNotExist($modelValue)' }" ng-model-options="{ debounce : { 'default' : 3000 } }">
-      <span ng-show="newCompteForm.password.$error.minlength" ng.hide="newCompteForm.password.$valid || newCompteForm.$pristine">Le mot de passe doit faire plus de 6 caractères</span>
-      <span ng-show="newCompteForm.password.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.password.$valid || newCompteForm.$pristine">Champ obligatoire</span>
+      <span ng-show="newCompteForm.login.$error.alreadyExists">cet email est déjà utilisé</span>
+      <span ng-show="newCompteForm.login.$error.email && newCompteForm.$dirty" ng.hide="newCompteForm.login.$valid || newCompteForm.$pristine">email invalide</span>
+      <span ng-show="newCompteForm.login.$error.required && newCompteForm.$dirty" ng.hide="newCompteForm.login.$valid || newCompteForm.$pristine">Champ obligatoire</span>
+      <span ng-show="newCompteForm.login.$pending">Verifying email on server...</span>
     </div>
 
     <div class="form-group">
@@ -39,7 +34,7 @@
 
     <div class="form-group">
       <label class="control-label">Confirmer mot de Passe:</label>
-      <input class="form-control" name="confirmPassword" type="password" ng-model="newcpteCliCtrl.cpteCli.confirmPassword" ui-validate="{same : '$value==newcpteCliCtrl.cpteCli.password' }" ui-validate-watch=" 'password' ">
+      <input class="form-control" name="confirmPassword" type="password" ng-model="newcpteCliCtrl.cpteCli.confirmPassword" ui-validate="{same : '$value==customer.password' }" ui-validate-watch=" 'password' ">
       <span ng-show='newCompteForm.confirmPassword.$error.same'> Les mots de passe ne sont pas identiques </span>
     </div>
 

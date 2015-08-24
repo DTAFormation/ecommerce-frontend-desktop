@@ -53,7 +53,8 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // renvoie vers la page login si non logger
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                $location.path('/login');
+                //$location.path('/login');
+                $location.path('/');
             }
         });
 

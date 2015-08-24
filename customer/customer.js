@@ -36,7 +36,7 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 
 // Contrôleur principal du module 'createCustomer'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function(customerService, $location) {
+angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function(customerService, $location, $q) {
 
     var self = this;
     self.ajoutClient = function(customer){
@@ -59,7 +59,7 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
                 resolve(true);
             });
         });
-    }
+    };
 });
 
 //controlleur pour formulaire liste des clients
