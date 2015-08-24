@@ -33,7 +33,7 @@ angular.module('ecDesktopApp.customer').config(function($routeProvider) {
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecDesktopApp.customer').controller('CreateCustomerController', function(customerService, $location) {
 
-    var self = this; 
+    var self = this;
     self.ajoutClient = function(customer){
         customerService.addCustomer(customer)
         .then(function(response){ //en cas de succes
@@ -41,7 +41,7 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
             console.log("client créé");
             $location.path("/customer/listcustomer");
         },function(error){
-            console.log("erreur de requete"); 
+            console.log("erreur de requete");
             self.err = true;
         });
     };
@@ -51,28 +51,31 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
 angular.module('ecDesktopApp.customer').controller('customerCtrl', function (customerService) {
 
 
-    var self = this;
-    customerService.getCustomers()
-    .then(
-        function (customer) {
-                    //console.log("customer:"+JSON.stringify(customer));
-                    self.customers = customer;
-                });
+    var customerCtrl = this;
+    customerCtrl.customers = null;
 
-    self.delCustomer = function(id){
+    customerCtrl.getCustomers = function() {
+        customerService.getCustomers()
+        .then(function(customer) {
+            customerCtrl.customers = customer;
+        });
+    };
+
+    customerCtrl.delCustomer = function(id){
         console.log("function delCustomer sur le client "+id);
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             console.log('succes lors de la requete de suppression de client');
-            customerService.getCustomers(); //sencer mettre a jour la liste des clients a jour
-            self.err=false;
-            //return succes.data;
-        },function(error){
-            self.err=true;
+            customerCtrl.getCustomers();
+            customerCtrl.err=false;
+        }, function(error){
+            customerCtrl.err=true;
             setTimeout(function(){window.location.reload();},2000);
             console.log('erreur lors de la requete de suppression de client');
         });
     };
+
+    customerCtrl.getCustomers();
 
 });
 
@@ -82,9 +85,9 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 */
 angular.module('ecDesktopApp.customer').controller("updateCustomereController", function(customerService,$routeParams,$location) {
     var updatectrl = this;
-    
+
     console.log("update client : " + $routeParams.id);
-    
+
     customerService.getById($routeParams.id) // recupere les donnees du client
     .then(function(customer){
         updatectrl.customer = customer;      // que l'on stocke dans updatectrl.customer
@@ -100,7 +103,3 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         });
     };
 });
-
-
-
-
