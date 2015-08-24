@@ -19,8 +19,6 @@ angular.module('ecDesktopApp.authentification')
             //     callback(response);
             // }, 1000);
 
-            console.log(username + " " + password);
-
             //Authentification possible selon bdd, il faut cibler une url existante
             $http.post(apiUrl, userData)
                .then(function (response) {

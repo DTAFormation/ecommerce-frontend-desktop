@@ -7,5 +7,4 @@ describe('E2E: ecDesktopCtrl', function () {
 
     expect(appName.isPresent()).toBeTruthy();
   });
-
 });
