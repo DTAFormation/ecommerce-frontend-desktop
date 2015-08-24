@@ -1,0 +1,24 @@
+
+<div class="container">
+   <a href="#/customer/listcustomer">Retour à la liste des clients</a>
+  <h2>Détails du client N°{{detailsCustomerCtrl.customer.id}} </h2><br>
+
+  <div class="panel panel-info">
+    <div class="panel-heading">Client {{detailsCustomerCtrl.customer.id}}</div>
+    <div class="panel-body">
+      <table class="table">
+      <tbody>
+        <tr><td>Nom</td><td>{{detailsCustomerCtrl.customer.nom}}</td></tr>
+        <tr><td>Prénom</td><td>{{detailsCustomerCtrl.customer.prenom}}</td></tr>
+        <tr><td>Login</td><td>{{detailsCustomerCtrl.customer.login}}</td></tr>
+        <tr ng-repeat="adresse in detailsCustomerCtrl.customer.adresses">
+          <td>Adresse n°{{adresse.id}}</td><td> {{adresse.numero}} {{adresse.rue}} {{adresse.ville}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+  </div>
+
+</div>
