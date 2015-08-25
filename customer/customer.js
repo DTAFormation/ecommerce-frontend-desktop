@@ -1,6 +1,9 @@
 // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
+    'ui.bootstrap',
+    'ecDesktopApp.shared',
+    'chart.js'
    // 'ecDesktopApp.shared'
    ]);
 
