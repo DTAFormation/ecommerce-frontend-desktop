@@ -1,6 +1,6 @@
 // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.commandes', [
-    'ngRoute',
+    'ngRoute'
    ]);
 
 // Configuration du module 'home'
@@ -11,6 +11,15 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
         templateUrl : "commandes/template/listCommandes.html",
         controller : "commandeCtrl",
         controllerAs : "commandeCtrl"
+    })
+    .when('/commandes/rechercheCommande', {
+        templateUrl : "commandes/template/rechercheCommande.html",
+        controller : "rechercheCmdCtrl",
+        controllerAs : "rechercheCmdCtrl"
+    })
+    .when("/commandes/:id",{
+        templateUrl : "commandes/template/rechercheCommande.html",
+
     });
 
 });
@@ -30,5 +39,16 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
     };
 
     commandeCtrl.getCommandes();
+
+});
+
+angular.module('ecDesktopApp.commandes').controller('rechercheCmdCtrl', function(commandeService, $location) {
+
+    var rechercheCmdCtrl = this;
+    rechercheCmdCtrl.idCmd = null;
+
+    rechercheCmdCtrl.goToCommande = function() {
+        $location.path("/commandes/" + rechercheCmdCtrl.idCmd);
+    };
 
 });

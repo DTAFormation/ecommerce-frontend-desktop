@@ -1,9 +1,10 @@
-﻿angular.module('ecDesktopApp', [
+angular.module('ecDesktopApp', [
     'ui.utils',
     'ngRoute',
     'ngAnimate',
     'ngCookies',
     'ecDesktopApp.shared',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
@@ -82,7 +83,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
 
     $scope.ordersFunctions= [
     {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
-    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
+    {affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande'}
     ];
 
     $scope.statsFunctions= [
