@@ -51,7 +51,7 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
    //adresses must have empty id
    this.addAdressesCustomer = function(id,adresses){
         return $http.post(url+id+"/adresses/", adresses);
-   }
+   };
 
     this.getlogin = function(login){
       return $http.get(url+"chercher/"+login);
