@@ -80,7 +80,6 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
-            customerCtrl.getCustomers();
             customerCtrl.err=false;
             return customerCtrl.displayCustomers();
         }, function(error){
