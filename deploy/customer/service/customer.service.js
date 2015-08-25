@@ -1,5 +1,5 @@
 angular.module('ecDesktopApp.customer').service('customerService', function($http, API_URL) {
-    var url=API_URL + "/user";
+    var url=API_URL + "/user/";
 
     //fonction d'ajout d'un client
     this.addCustomer = function(customer){
