@@ -15,9 +15,9 @@
     </div>
     <div class="form-group" ng-repeat="adresse in updateCustomerCtrl.customer.adresses">
       <label for="Adresse">Adresse n°{{adresse.id}}</label><br>
-      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="adresse.numero">
-      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="adresse.rue">
-      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville">
+      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="adresse.numero" required>
+      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="adresse.rue" required>
+      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville" required>
     </div>
     <div class="form-group">
       <button type="button" class="btn btn-default" ng-click="updateCustomerCtrl.addAdresse()">Nouvelle adresse</button>
