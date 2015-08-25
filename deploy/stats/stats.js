@@ -15,7 +15,7 @@ $routeProvider
 	})
 	.when('/stats/bestCustomers', {
 		templateUrl : 'stats/template/bestCustomers.tpl.html',
-		controller : 'BestCustomerController',
+		controller : 'BestCustomersController',
 		controllerAs : 'bestCtrl'
 	});
 });
@@ -67,14 +67,14 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
 
 // controller pour l'écran des meilleurs clients
-angular.module('ecDesktopApp.stats').controller('BestCustomerController', function(commandeService){
+angular.module('ecDesktopApp.stats').controller('BestCustomersController', function(commandeService){
 
 	var bestCtrl = this;
 
 	bestCtrl.tri = "depenses";
 	bestCtrl.customers = [];
 
-	function fetchCustomers (){
+	bestCtrl.fetchCustomers = function (){
 		bestCtrl.customers = [];
 		commandeService.getCommandes().then(function (result){
 			result.forEach(function (commande){
@@ -107,9 +107,9 @@ angular.module('ecDesktopApp.stats').controller('BestCustomerController', functi
 				}
 			});
 		});
-	}
+	};
 
-	fetchCustomers();
+	bestCtrl.fetchCustomers();
 
 	bestCtrl.changeTri = function (){
 		if(bestCtrl.tri === "depenses"){
@@ -117,6 +117,6 @@ angular.module('ecDesktopApp.stats').controller('BestCustomerController', functi
 		} else {
 			bestCtrl.tri = "depenses";
 		}
-		fetchCustomers();
+		bestCtrl.fetchCustomers();
 	};
 });
