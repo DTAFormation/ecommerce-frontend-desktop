@@ -47,9 +47,9 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
             controllerAs : "commandeCtrl"
         })
 
-
         // .otherwise({ redirectTo: '/home' });
         .otherwise({redirectTo:'/login'});
+
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
@@ -99,7 +99,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.statsFunctions= [
-    {affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
     {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}

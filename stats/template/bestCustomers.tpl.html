@@ -1,0 +1,23 @@
+<h2>Liste des 10 meilleurs clients</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th ng-show="bestCtrl.tri === 'depenses'">Total des dépenses sur le site</th>
+      <th ng-show="bestCtrl.tri === 'nbCommandes'">Nombre total de commandes effectués</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="c in bestCtrl.customers | orderBy: 'total' : true">
+      <td>{{c.id}}</td>
+      <td>{{c.nom}}</td>
+      <td>{{c.prenom}}</td>
+      <td ng-show="bestCtrl.tri === 'depenses'">{{c.total}} €</td>
+      <td ng-show="bestCtrl.tri === 'nbCommandes'">{{c.total}}</td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" ng-click="bestCtrl.changeTri()" ng-show="bestCtrl.tri === 'depenses'">Tri par nombre de commande</button>
+<button class="btn btn-primary" ng-click="bestCtrl.changeTri()" ng-show="bestCtrl.tri === 'nbCommandes'">Tri par dépenses</button>
