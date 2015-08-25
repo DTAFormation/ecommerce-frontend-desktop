@@ -108,7 +108,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         //if (form.$invalid) {return ;}
         //Delete adresses with wrong format
         var neuAdresses;
-        for(int i=0;i<updatectrl.customer.adresses.length;i++){
+        for(var i=0;i<updatectrl.customer.adresses.length;i++){
             
             if(updatectrl.customer.adresses[i].rue.length===0 || !updatectrl.customer.adresses[i].rue.trim()
                 || updatectrl.customer.adresses[i].ville.length===0 || !updatectrl.customer.adresses[i].ville.trim()){
@@ -123,7 +123,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         customerService.addAdressesCustomer()
         .then(function(succes){
             
-        }),function(fail){
+        },function(fail){
 
         });
 
