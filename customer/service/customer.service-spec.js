@@ -1,5 +1,5 @@
 describe('customerServiceTest', function(API_URL) {
-	var url=API_URL + "/user";
+	var url=API_URL + "/user/";
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
