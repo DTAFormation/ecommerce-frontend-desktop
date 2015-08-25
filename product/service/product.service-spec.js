@@ -1,5 +1,5 @@
-describe('productServiceTest', function() {
-    var apiUrl="http://5.196.89.85:9080/ec-backend/api/produit/";
+describe('productServiceTest', function(API_URL) {
+    var url = API_URL + "/produit";
 
     beforeEach(function() {
         module('ecDesktopApp.product');
@@ -9,7 +9,7 @@ describe('productServiceTest', function() {
 	it("Le service productService.addProduct()"+
 		"ajoute le produit a la base avec un POST", inject(function(productService, $httpBackend) {
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
+        $httpBackend.expectPOST(url, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
         productService.addProduct(product);
         $httpBackend.flush();
 	}));
@@ -18,7 +18,7 @@ describe('productServiceTest', function() {
     it("Le service productService.updtadeProduct(product)"+
         " doit envoyer une requete PUT avec les infos", inject(function(productService, $httpBackend){
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        $httpBackend.expectPUT(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
+        $httpBackend.expectPUT(url, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
         productService.updateProduct(product);
         $httpBackend.flush();
     }));
@@ -27,7 +27,7 @@ describe('productServiceTest', function() {
     it("Le service productService.get(id)"+
         " doit envoyer une requete GET avec les infos", inject(function(productService, $httpBackend){
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        $httpBackend.expectGET(apiUrl+1).respond(200, '');
+        $httpBackend.expectGET(url+1).respond(200, '');
         productService.get(1);
         $httpBackend.flush();
     }));
@@ -36,7 +36,7 @@ describe('productServiceTest', function() {
     it("Le service productService.deleteProduct(id)"+
         " doit envoyer une requete DELETE avec l'id du produit'", inject(function(productService, $httpBackend){
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        $httpBackend.expectDELETE(apiUrl+1).respond(200, '');
+        $httpBackend.expectDELETE(url+1).respond(200, '');
         productService.deleteProduct(1);
         $httpBackend.flush();
     }));
@@ -45,7 +45,7 @@ describe('productServiceTest', function() {
     it("Le service productService.getProducts()"+
         " doit envoyer une requete GET'", inject(function(productService, $httpBackend){
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        $httpBackend.expectGET(apiUrl).respond(200, '');
+        $httpBackend.expectGET(url).respond(200, '');
         productService.getProducts();
         $httpBackend.flush();
     }));
@@ -57,7 +57,7 @@ describe('productServiceTest', function() {
         var reponseSimule={id : 1, libelle : "libelle" , caracteristique : "carac", categorie : "categorie", image : "image" , prix : 0.10};
 
         //l'adresse sur laquelle on récupère les données
-        $httpBackend.when("GET", apiUrl).respond(reponseSimule);
+        $httpBackend.when("GET", url).respond(reponseSimule);
 
         //récupération des données
         var reponsePromesse=productService.getProducts();
@@ -78,7 +78,7 @@ describe('productServiceTest', function() {
 
     it("est ce que la fonction delete essaye de supprimer quelque chose? ", inject(function(productService,$httpBackend){
         var reponseSimule={id : 1, libelle : "libelle" , caracteristique : "carac", categorie : "categorie", image : "image" , prix : 0.10};
-        $httpBackend.expectDELETE(apiUrl+1).respond(200, '');
+        $httpBackend.expectDELETE(url+1).respond(200, '');
         var reponsePromesse=productService.deleteProduct(reponseSimule.id);
         $httpBackend.flush();
     }));

@@ -1,6 +1,6 @@
-describe('loginTest', function() {
+describe('loginTest', function(API_URL) {
 
-var apiUrl="http://5.196.89.85:9080/ec-backend/api/personne/";
+	var url = API_URL + "/personne";
 
 	beforeEach(function() {
         module('ecDesktopApp.authentification');

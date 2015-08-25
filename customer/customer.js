@@ -69,9 +69,10 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
     var customerCtrl = this;
     customerCtrl.customers = null;
 
-    customerCtrl.getCustomers = function() {
-        customerService.getCustomers()
+    customerCtrl.displayCustomers = function() {
+        return customerService.getCustomers()
         .then(function(customer) {
+            console.log("Display");
             customerCtrl.customers = customer;
         });
     };
@@ -81,8 +82,9 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             console.log('succes lors de la requete de suppression de client');
-            customerCtrl.getCustomers();
             customerCtrl.err=false;
+            console.log("Send display event");
+            return customerCtrl.displayCustomers();
         }, function(error){
             customerCtrl.err=true;
             setTimeout(function(){window.location.reload();},2000);
@@ -90,7 +92,7 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
         });
     };
 
-    customerCtrl.getCustomers();
+    customerCtrl.displayCustomers();
 
 });
 
