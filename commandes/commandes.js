@@ -2,6 +2,7 @@
 angular.module('ecDesktopApp.commandes', [
     'ngRoute',
     'ui.bootstrap',
+    'ecDesktopApp.shared'
     ]);
 
 
@@ -24,14 +25,18 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
   		controller : "detailsCommandeCtrl",
   		controllerAs:"dtlCmdCtrl"
     })
-    .when("/commandes/:id",{
-        templateUrl : "commandes/template/rechercheCommande.html",
+    .when('/commandes/detailsCommande/:id', {
+      templateUrl:'commandes/template/detailsCommande.html',
+      controller : "detailCommandeCtrl",
+      controllerAs : "dtlCmdCtrl"
     });
 });
 
 
 //controlleur pour formulaire liste des commandes
-angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService) {
+angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService,$routeParams,$location) {
+
+  console.log("cmdctrl");
 
     var commandeCtrl = this;
     commandeCtrl.commandes = null;
@@ -44,12 +49,30 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
     };
 
     commandeCtrl.getCommandes();
+
+    commandeCtrl.goDetailsProduit = function (idClient, idCommande) {
+        $location.path('/commandes/detailsCommande/'+idCommande);
+    };
 });
 
-// controlleur pour l'affichage des détails d'une commande
-angular.module('ecDesktopApp.commandes').controller('commandes', function(ventesService){
-    var dtlCmdCtrl = this;
-    dtlCmdCtrl.commande = null;
+// controlleur de la vue dedétail d'une commande.
+angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', function (commandeService,$routeParams,$location) {
+
+  var dtlCmdCtrl = this;
+  dtlCmdCtrl.selectedCommande = null ;
+
+  dtlCmdCtrl.getDetailCommande = function (){
+    commandeService.getDetailCommande($routeParams.id)
+      .then(function (result){
+        console.log("dans la promesse");
+        dtlCmdCtrl.selectedCommande = result;
+      })
+      .then(function(){
+        console.log(dtlCmdCtrl.selectedCommande);
+      });
+  };
+
+    dtlCmdCtrl.getDetailCommande();
 });
 
 angular.module('ecDesktopApp.commandes').controller('rechercheCmdCtrl', function(commandeService, $location) {
