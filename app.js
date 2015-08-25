@@ -95,7 +95,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
 
     $scope.statsFunctions= [
     {affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
-    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
+    {affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits'},
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
     ];

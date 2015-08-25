@@ -11,7 +11,12 @@ $routeProvider
 		templateUrl:'stats/template/ventes.tpl.html',
 		controller : "ventesCtrl",
 		controllerAs:"ventesCtrl",
-	});
+	})
+    .when('/stats/topProduits', { 
+        templateUrl:'stats/template/topProduits.tpl.html',
+        controller : "ventesCtrl",
+        controllerAs:"ventesCtrl",
+    });
 
 });
 
