@@ -1,1 +1,1 @@
-angular.module('ecDesktopApp.shared').constant("API_URL","http://localhost:6070/ecommerce-backend/api");
+angular.module('ecDesktopApp.shared').constant("API_URL","http://5.196.89.85:9080/ec-backend/api");
