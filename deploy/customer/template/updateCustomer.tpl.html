@@ -15,18 +15,18 @@
     </div>
     <div class="form-group" ng-repeat="adresse in updateCustomerCtrl.customer.adresses">
       <label for="Adresse">Adresse n°{{adresse.id}}</label><br>
-      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="adresse.numero">
-      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="adresse.rue">
-      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville">
+      <input type="number" class="form-control" id="numRue" placeholder="Entrer le numéro de rue" ng-model="adresse.numero" required>
+      <input type="text" class="form-control" id="nomRue" placeholder="Entrer le nom de la rue" ng-model="adresse.rue" required>
+      <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville" required>
     </div>
     <div class="form-group">
-      <label for="login">Login :</label>
-      <input type="text" class="form-control" id="login" placeholder="Entrer un login" ng-model="updateCustomerCtrl.customer.login">
+      <button type="button" class="btn btn-default" ng-click="updateCustomerCtrl.addAdresse()">Nouvelle adresse</button>
     </div>
-        <div class="form-group">
-      <label for="motDePasse">Mot de Passe :</label>
-      <input type="text" class="form-control" id="motDePasse" placeholder="Entrer un mot de passe" ng-model="updateCustomerCtrl.customer.password">
-    </div><br>
+    <div class="form-group">
+      <label for="login">Login(email) :</label>
+      <input type="email" class="form-control" id="login" placeholder="Entrer votre email" ng-model="updateCustomerCtrl.customer.login">
+    </div>
+      
     <input type="submit" class="btn btn-default" value="Enregistrer les modifications" ></input>
   </form>
    
