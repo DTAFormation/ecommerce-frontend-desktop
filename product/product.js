@@ -1,7 +1,8 @@
 // Déclaration du module 'product'
 angular.module('ecDesktopApp.product', [
     'ngRoute',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ecDesktopApp.shared'
     ]);
 
 
