@@ -20,13 +20,13 @@
       <input type="text" class="form-control" id="nomVille" placeholder="Entrer le nom de la ville" ng-model="adresse.ville">
     </div>
     <div class="form-group">
-      <label for="login">Login :</label>
-      <input type="text" class="form-control" id="login" placeholder="Entrer un login" ng-model="updateCustomerCtrl.customer.login">
+      <button type="button" class="btn btn-default" ng-click="updateCustomerCtrl.addAdresse()">Nouvelle adresse</button>
     </div>
-        <div class="form-group">
-      <label for="motDePasse">Mot de Passe :</label>
-      <input type="text" class="form-control" id="motDePasse" placeholder="Entrer un mot de passe" ng-model="updateCustomerCtrl.customer.password">
-    </div><br>
+    <div class="form-group">
+      <label for="login">Login(email) :</label>
+      <input type="email" class="form-control" id="login" placeholder="Entrer votre email" ng-model="updateCustomerCtrl.customer.login">
+    </div>
+      
     <input type="submit" class="btn btn-default" value="Enregistrer les modifications" ></input>
   </form>
    

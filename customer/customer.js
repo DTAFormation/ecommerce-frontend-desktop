@@ -1,4 +1,4 @@
-// Déclaration du module 'Customer'
+    // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
    // 'ecDesktopApp.shared'
@@ -101,8 +101,6 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 angular.module('ecDesktopApp.customer').controller("updateCustomereController", function(customerService,$routeParams,$location) {
     var updatectrl = this;
 
-    console.log("update client : " + $routeParams.id);
-
     customerService.getById($routeParams.id) // recupere les donnees du client
     .then(function(customer){
         updatectrl.customer = customer;      // que l'on stocke dans updatectrl.customer
@@ -116,6 +114,17 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         },function(fail){
             console.log("Echec de la mise à jour du client");
         });
+    };
+
+    updatectrl.addAdresse = function(){
+        
+        var adresse={
+            'numero':'',
+            'rue':'',
+            'ville':''
+        };
+        updatectrl.customer.adresses.push(adresse);
+        
     };
 });
 

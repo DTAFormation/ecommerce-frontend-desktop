@@ -11,7 +11,7 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
     this.getCustomers = function(){
         //console.log($http.get(apiUrl + "all.json"));
         //return $http.get(apiUrl+ "all.json")
-        console.log($http.get(apiUrl)); 
+
         return $http.get(apiUrl)
         .then(
             function(response){
@@ -47,7 +47,6 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
    //fonction pour modifier un client
    this.updateCustomer = function(customer){
-       console.log(customer); 
        return $http.put(apiUrl, customer);
        //return $http.put(apiUrl+customer.id, customer); // pas besoin de l'id
    };
