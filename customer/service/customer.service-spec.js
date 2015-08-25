@@ -33,6 +33,7 @@ describe('customerServiceTest', function() {
 
 
     //test modification des clients
+	//TODO : Ajouter une adresse à un client existant
 	it('test modification client', inject(function(_$httpBackend_, customerService, API_URL) {
 		var url=API_URL + "/user/";
 	    var mockBackend = _$httpBackend_;
