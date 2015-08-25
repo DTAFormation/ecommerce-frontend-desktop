@@ -1,12 +1,14 @@
-﻿angular.module('ecDesktopApp', [
+angular.module('ecDesktopApp', [
     'ui.utils',
     'ngRoute',
     'ngAnimate',
     'ngCookies',
     'ecDesktopApp.shared',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.authentification',
     'ecDesktopApp.stats',
     'ui.bootstrap',
@@ -26,29 +28,15 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
     })
-        .when('/product/listproduct', { //
-            templateUrl : "product/template/listproduct.html",
-            controller : "productCtrl",
-            controllerAs : "productCtrl"
-        })
-        .when('/customer/listcustomer', { //
-            templateUrl : "customer/template/listcustomer.html",
-            controller : "customerCtrl",
-            controllerAs : "customerCtrl"
-        })
         .when('/home',{
             templateUrl : "home/template/home.tpl.html",
             controller : "homeCtrl",
             controllerAs : "homeCtrl"
         })
-        .when('/commandes/listCommandes', {
-            templateUrl : "commandes/template/listCommandes.html",
-            controller : "commandeCtrl",
-            controllerAs : "commandeCtrl"
-        })
+
 
         // .otherwise({ redirectTo: '/home' });
-        .otherwise({redirectTo:'/login'});
+        .otherwise({redirectTo:'/home'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
@@ -95,7 +83,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
 
     $scope.ordersFunctions= [
     {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
-    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
+    {affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande'}
     ];
 
     $scope.statsFunctions= [

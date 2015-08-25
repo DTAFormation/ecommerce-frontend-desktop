@@ -8,18 +8,25 @@ angular.module('ecDesktopApp.commandes', [
 // routage
 angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 
-$routeProvider
-  .when('/commandes/listCommandes', {
-      templateUrl : "commandes/template/listCommandes.html",
-      controller : "commandeCtrl",
-      controllerAs : "commandeCtrl"
-  })
-  .when('/commandes/detailsCommande', {
-		templateUrl:'commandes/template/detailsCommande.html',
-		controller : "detailsCommandeCtrl",
-		controllerAs:"dtlCmdCtrl",
-	});
-
+    $routeProvider
+    .when('/commandes/listCommandes', {
+        templateUrl : "commandes/template/listCommandes.html",
+        controller : "commandeCtrl",
+        controllerAs : "commandeCtrl"
+    })
+    .when('/commandes/rechercheCommande', {
+        templateUrl : "commandes/template/rechercheCommande.html",
+        controller : "rechercheCmdCtrl",
+        controllerAs : "rechercheCmdCtrl"
+    })
+    .when('/commandes/detailsCommande', {
+  		templateUrl:'commandes/template/detailsCommande.html',
+  		controller : "detailsCommandeCtrl",
+  		controllerAs:"dtlCmdCtrl"
+    })
+    .when("/commandes/:id",{
+        templateUrl : "commandes/template/rechercheCommande.html",
+    });
 });
 
 
@@ -43,4 +50,15 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
 angular.module('ecDesktopApp.commandes').controller('commandes', function(ventesService){
     var dtlCmdCtrl = this;
     dtlCmdCtrl.commande = null;
+});
+
+angular.module('ecDesktopApp.commandes').controller('rechercheCmdCtrl', function(commandeService, $location) {
+
+    var rechercheCmdCtrl = this;
+    rechercheCmdCtrl.idCmd = null;
+
+    rechercheCmdCtrl.goToCommande = function() {
+        $location.path("/commandes/" + rechercheCmdCtrl.idCmd);
+    };
+
 });
