@@ -42,7 +42,7 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
     })
     .then(
         function(product) {
-         console.log(product);
+
          self.products = product;
      });
 
@@ -84,11 +84,11 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 	self.addProd = function(product){
 		productService.addProduct(product)
 		.then(function(response){ //en cas de succes
-			console.log("succes lors de la requete de post");
+
 			self.err=false;
 			$location.path("/product/listproduct");
 		},function(error){ //en cas d'erreur
-			console.log("erreur lors de la requete de post");
+
 			self.err=true;
 		});
 	};
@@ -107,8 +107,7 @@ angular.module('ecDesktopApp.product').controller("updateProductController", fun
 		.then(function(succes){
 			$location.path("/product/listproduct");
 		},function(fail){
-			console.log("FAIL!!");
+
 		});
 	};
 });
-
