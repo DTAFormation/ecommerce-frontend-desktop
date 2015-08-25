@@ -2,7 +2,7 @@ describe('E2E: Details customerCtrl', function () {
 
   it ('Find details', function(){
           browser.get(browser.baseUrl);
-          expect(browser.getLocationAbsUrl()).toEqual('/customer/listcustomer');
+          expect(browser.getLocationAbsUrl()).toEqual('/login');
 
           /* Chemin poru se conencter et arriver sur home*/
           var login=element(by.model('loginCtrl.username'));
@@ -22,7 +22,7 @@ describe('E2E: Details customerCtrl', function () {
           expect(tableClient.isPresent()).toBeTruthy();
           var allClient = tableClient.all(by.css("tr"));
           expect(allClient.count()).toBeGreaterThan(1);
-          var details=element(by.css('glyphicon glyphicon-eye-open'));
+          var details=element(by.id('afficherLesDetails'));
           details.click();
 
 
