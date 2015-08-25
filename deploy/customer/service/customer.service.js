@@ -1,15 +1,14 @@
-angular.module('ecDesktopApp.customer').service('customerService', function($http) {
-    var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
+angular.module('ecDesktopApp.customer').service('customerService', function($http, API_URL) {
+    var url=API_URL + "/user";
 
     //fonction d'ajout d'un client
     this.addCustomer = function(customer){
-        return $http.post(apiUrl, customer);
+        return $http.post(url, customer);
     };
 
     // Fonction qui récupère les données dans le bouchon bouchoncustomer.js
     this.getCustomers = function(){
-
-        return $http.get(apiUrl)
+        return $http.get(url)
         .then(
             function(response){
                 return response.data;
@@ -19,7 +18,6 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
                 var customersModifie = angular.copy(customers);
                 for (var i = 0; i<customersModifie.length;i++)
                 {
-                    //customersModifie[i]["addressString"] = customersModifie[i].address.number+" "+customersModifie[i].address.street+" "+customersModifie[i].address.city;
                     customersModifie[i]["addressString"] = customersModifie[i].adresses.numero+" "+customersModifie[i].adresses.rue+" "+customersModifie[i].adresses.ville;
                 }
 
@@ -29,13 +27,12 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
     //service de suppression de client
     this.deleteCustomer = function(id){
-        return $http.delete(apiUrl+id);
+        return $http.delete(url+id);
     };
 
     //recupere un client par Id
     this.getById = function(id){
-        //return $http.get(apiUrl+id+".json")
-        return $http.get(apiUrl+id)
+        return $http.get(url+id)
         .then(function (result) { //en cas de succes on retourne les data du client id
             return result.data;
         });
@@ -44,13 +41,11 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
    //fonction pour modifier un client
    this.updateCustomer = function(customer){
-    
-       return $http.put(apiUrl, customer);
-       //return $http.put(apiUrl+customer.id, customer); // pas besoin de l'id
+       return $http.put(url, customer);
    };
 
     this.getlogin = function(login){
-      return $http.get(apiUrl+"chercher/"+login);
+      return $http.get(url+"chercher/"+login);
     };
 
 

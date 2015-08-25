@@ -1,13 +1,13 @@
 angular.module('ecDesktopApp.authentification')
-.factory('loginService', ['$http', '$cookieStore', '$rootScope', '$timeout',
-    function ($http, $cookieStore, $rootScope, $timeout) {
+.factory('loginService', ['API_URL','$http', '$cookieStore', '$rootScope', '$timeout',
+    function (API_URL, $http, $cookieStore, $rootScope, $timeout) {
 
         var service = this;
-        var apiUrl = "http://5.196.89.85:9080/ec-backend/api/admin/connect";
+        var url = API_URL + "/admin/connect";
 
         service.Login = function (username, password) {
           var userData = { "login" : username, "password" : password };
-          return $http.post(apiUrl, userData);
+          return $http.post(url, userData);
         };
 
 		//setCredential permet d'initialiser les valeurs username et mdp pour la fonction test,
