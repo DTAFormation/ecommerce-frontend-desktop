@@ -15,17 +15,19 @@ $routeProvider
       controller : "commandeCtrl",
       controllerAs : "commandeCtrl"
   })
-  .when('/commandes/detailsCommande', {
+  .when('/commandes/detailsCommande/:id', {
 		templateUrl:'commandes/template/detailsCommande.html',
-		controller : "detailsCommandeCtrl",
-		controllerAs:"dtlCmdCtrl",
+    controller : "detailCommandeCtrl",
+    controllerAs : "dtlCmdCtrl"
 	});
 
 });
 
 
 //controlleur pour formulaire liste des commandes
-angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService) {
+angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService,$routeParams,$location) {
+
+  console.log("cmdctrl");
 
     var commandeCtrl = this;
     commandeCtrl.commandes = null;
@@ -38,19 +40,28 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
     };
 
     commandeCtrl.getCommandes();
+
+    commandeCtrl.goDetailsProduit = function (idClient, idCommande) {
+        $location.path('/commandes/detailsCommande/'+idCommande);
+    };
 });
 
-// controlleur pour l'affichage des détails d'une commande
-angular.module('ecDesktopApp.commandes').controller('commandes', function($location,$routeParams,commandeService){
-    var dtlCmdCtrl = this;
+// controlleur de la vue dedétail d'une commande.
+angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', function (commandeService,$routeParams,$location) {
 
-    dtlCmdCtrl.getDetailsProduit();
+  var dtlCmdCtrl = this;
+  dtlCmdCtrl.selectedCommande = null ;
 
-    dtlCmdCtrl.getDetailsProduit = function () {
-      commandeService.getDetailsProduit($routeParams.id).then(function (result){
-        dtlCmdCtrl.commande = result;
+  dtlCmdCtrl.getDetailCommande = function (){
+    commandeService.getDetailCommande($routeParams.id)
+      .then(function (result){
+        console.log("dans la promesse");
+        dtlCmdCtrl.selectedCommande = result;
+      })
+      .then(function(){
+        console.log(dtlCmdCtrl.selectedCommande);
       });
-    };
+  };
 
-    dtlCmdCtrl.commande = null;
+    dtlCmdCtrl.getDetailCommande();
 });
