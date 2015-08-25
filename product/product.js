@@ -32,7 +32,7 @@ $routeProvider
 
 // Contrôleur principal du module 'product'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('ecDesktopApp.product').controller('productCtrl', function(productService, $modal, $scope) {
+angular.module('ecDesktopApp.product').controller('productCtrl', function(productService, $modal, $scope, $location) {
     var self = this;
     //afficher la liste des produit récupéré par "getProduct".
     productService.getProducts().then(
@@ -69,6 +69,10 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
             });
     };
     //fin du code pour la modale
+
+    self.showBestCustomers = function (idProduct){
+        $location.path('/stats/bestCustomersByProduct/' + idProduct);
+    };
 
 });
 

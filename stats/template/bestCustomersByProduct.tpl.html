@@ -1,0 +1,21 @@
+<h2>Liste des 10 meilleurs clients pour ce produit</h2>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Index</th>
+			<th>ID</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Nombre total de produits achetés</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="customer in bestByProductCtrl.customers | orderBy: 'total' : true | limitTo : 10">
+			<td>{{$index + 1}}</td>
+			<td>{{customer.id}}</td>
+			<td>{{customer.nom}}</td>
+			<td>{{customer.prenom}}</td>
+			<td>{{customer.total}}</td>
+		</tr>
+	</tbody>
+</table>
