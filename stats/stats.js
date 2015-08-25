@@ -65,6 +65,7 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
 });
 
+
 // controller pour l'écran des meilleurs clients
 angular.module('ecDesktopApp.stats').controller('BestCustomerController', function(commandeService){
 

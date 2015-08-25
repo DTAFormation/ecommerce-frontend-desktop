@@ -7,6 +7,7 @@
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.authentification',
     'ecDesktopApp.stats',
     'ui.bootstrap',
@@ -26,23 +27,16 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
     })
-    .when('/product/listproduct', { //
-        templateUrl : "product/template/listproduct.html",
-        controller : "productCtrl",
-        controllerAs : "productCtrl"
-    })
-    .when('/customer/listcustomer', { //
-        templateUrl : "customer/template/listcustomer.html",
-        controller : "customerCtrl",
-        controllerAs : "customerCtrl"
-    })
-    .when('/home',{
-        templateUrl : "home/template/home.tpl.html",
-        controller : "homeCtrl",
-        controllerAs : "homeCtrl"
-    })
-    // .otherwise({ redirectTo: '/home' });
-    .otherwise({redirectTo:'/login'});
+        .when('/home',{
+            templateUrl : "home/template/home.tpl.html",
+            controller : "homeCtrl",
+            controllerAs : "homeCtrl"
+        })
+
+
+        // .otherwise({ redirectTo: '/home' });
+        .otherwise({redirectTo:'/login'});
+
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
@@ -87,8 +81,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.ordersFunctions= [
-    {affichage:'Afficher Commandes',url:'#/aaaaa'},
-    {affichage:'Annuler Commande',url:'#/bbbbb'},
+    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
     ];
 
