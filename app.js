@@ -88,8 +88,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.ordersFunctions= [
-    {affichage:'Afficher Commandes',url:'#/aaaaa'},
-    {affichage:'Annuler Commande',url:'#/bbbbb'},
+    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
     ];
 
