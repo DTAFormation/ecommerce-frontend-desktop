@@ -8,7 +8,9 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
     // Fonction qui récupère les données dans le bouchon bouchoncustomer.js
     this.getCustomers = function(){
+
         return $http.get(url)
+
         .then(
             function(response){
                 return response.data;
@@ -41,7 +43,9 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
 
    //fonction pour modifier un client
    this.updateCustomer = function(customer){
+
        return $http.put(url, customer);
+
    };
 
     this.getlogin = function(login){

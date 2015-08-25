@@ -1,4 +1,4 @@
-// Déclaration du module 'Customer'
+    // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
    // 'ecDesktopApp.shared'
@@ -112,6 +112,17 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         },function(fail){
 
         });
+    };
+
+    updatectrl.addAdresse = function(){
+        
+        var adresse={
+            'numero':'',
+            'rue':'',
+            'ville':''
+        };
+        updatectrl.customer.adresses.push(adresse);
+        
     };
 });
 
