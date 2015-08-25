@@ -5,6 +5,7 @@ angular.module('ecDesktopApp.customer', [
     'ecDesktopApp.shared',
     'chart.js'
    // 'ecDesktopApp.shared'
+
    ]);
 
 // Configuration du module 'home'

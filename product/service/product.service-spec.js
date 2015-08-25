@@ -1,5 +1,4 @@
-describe('productServiceTest', function(API_URL) {
-    var url = API_URL + "/produit/";
+describe('productServiceTest', function() {
 
     beforeEach(function() {
         module('ecDesktopApp.product');
@@ -7,7 +6,8 @@ describe('productServiceTest', function(API_URL) {
 
     //test sur le service d'ajout' de produit
 	it("Le service productService.addProduct()"+
-		"ajoute le produit a la base avec un POST", inject(function(productService, $httpBackend) {
+		"ajoute le produit a la base avec un POST", inject(function(productService, $httpBackend, API_URL) {
+        var url = API_URL + "/produit/";
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         $httpBackend.expectPOST(url, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
         productService.addProduct(product);
@@ -16,7 +16,8 @@ describe('productServiceTest', function(API_URL) {
 
     //test sur le service de maj de produit
     it("Le service productService.updtadeProduct(product)"+
-        " doit envoyer une requete PUT avec les infos", inject(function(productService, $httpBackend){
+        " doit envoyer une requete PUT avec les infos", inject(function(productService, $httpBackend, API_URL){
+            var url = API_URL + "/produit/";
         var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         $httpBackend.expectPUT(url, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
         productService.updateProduct(product);
@@ -25,7 +26,8 @@ describe('productServiceTest', function(API_URL) {
 
     //test sur le service de récupération de produit par id
     it("Le service productService.get(id)"+
-        " doit envoyer une requete GET avec les infos", inject(function(productService, $httpBackend){
+        " doit envoyer une requete GET avec les infos", inject(function(productService, $httpBackend, API_URL){
+            var url = API_URL + "/produit/";
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         $httpBackend.expectGET(url+1).respond(200, '');
         productService.get(1);
@@ -34,7 +36,8 @@ describe('productServiceTest', function(API_URL) {
 
     //test sur le service de suppression de produit par id
     it("Le service productService.deleteProduct(id)"+
-        " doit envoyer une requete DELETE avec l'id du produit'", inject(function(productService, $httpBackend){
+        " doit envoyer une requete DELETE avec l'id du produit'", inject(function(productService, $httpBackend, API_URL){
+            var url = API_URL + "/produit/";
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         $httpBackend.expectDELETE(url+1).respond(200, '');
         productService.deleteProduct(1);
@@ -43,16 +46,17 @@ describe('productServiceTest', function(API_URL) {
 
     //test sur le service de récupération des produits
     it("Le service productService.getProducts()"+
-        " doit envoyer une requete GET'", inject(function(productService, $httpBackend){
+        " doit envoyer une requete GET'", inject(function(productService, $httpBackend, API_URL){
+            var url = API_URL + "/produit/";
         //var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
         $httpBackend.expectGET(url).respond(200, '');
         productService.getProducts();
         $httpBackend.flush();
     }));
 
-    it("est ce que la fonction cherche la liste du produit? ", inject(function(productService,$httpBackend){
+    it("est ce que la fonction cherche la liste du produit? ", inject(function(productService,$httpBackend, API_URL){
         //code du test de vérification
-
+        var url = API_URL + "/produit/";
         //simulation de la réponse que l'on recevra
         var reponseSimule={id : 1, libelle : "libelle" , caracteristique : "carac", categorie : "categorie", image : "image" , prix : 0.10};
 
@@ -76,7 +80,8 @@ describe('productServiceTest', function(API_URL) {
         $httpBackend.flush();
     }));
 
-    it("est ce que la fonction delete essaye de supprimer quelque chose? ", inject(function(productService,$httpBackend){
+    it("est ce que la fonction delete essaye de supprimer quelque chose? ", inject(function(productService,$httpBackend, API_URL){
+        var url = API_URL + "/produit/";
         var reponseSimule={id : 1, libelle : "libelle" , caracteristique : "carac", categorie : "categorie", image : "image" , prix : 0.10};
         $httpBackend.expectDELETE(url+1).respond(200, '');
         var reponsePromesse=productService.deleteProduct(reponseSimule.id);

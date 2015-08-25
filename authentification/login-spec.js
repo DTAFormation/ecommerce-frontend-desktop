@@ -1,13 +1,12 @@
-describe('loginTest', function() {
-
-var apiUrl="http://5.196.89.85:9080/ec-backend/api/personne/";
+describe('loginTest', function(API_URL) {
 
 	beforeEach(function() {
         module('ecDesktopApp.authentification');
     });
 
-	it("test de la fonction de login succès", inject(function($controller,$httpBackend, loginService) {
-		 $httpBackend.expect("POST",'http://5.196.89.85:9080/ec-backend/api/admin/connect').respond(200);
+	it("test de la fonction de login succès", inject(function($controller,$httpBackend, loginService, API_URL) {
+		var apiUrl = API_URL + "/admin/connect";
+		 $httpBackend.expect("POST",apiUrl).respond(200);
 
 		 var loginCtrl = $controller("LoginCtrl");
 
@@ -23,8 +22,9 @@ var apiUrl="http://5.196.89.85:9080/ec-backend/api/personne/";
 		 expect(loginService.SetCredentials).toHaveBeenCalledWith(loginCtrl.username ,loginCtrl.password);
 	 }));
 
-	 it("test de la fonction de login échec", inject(function($controller,$httpBackend,loginService) {
-		 var respond = $httpBackend.expect("POST",'http://5.196.89.85:9080/ec-backend/api/admin/connect').respond(400);
+	 it("test de la fonction de login échec", inject(function($controller,$httpBackend,loginService,API_URL) {
+		 var apiUrl = API_URL + "/admin/connect";
+		 var respond = $httpBackend.expect("POST",apiUrl).respond(400);
 
 		 var loginCtrl = $controller("LoginCtrl");
 
