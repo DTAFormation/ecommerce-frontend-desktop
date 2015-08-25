@@ -21,9 +21,9 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
         controllerAs : "rechercheCmdCtrl"
     })
     .when('/commandes/detailsCommande', {
-  		templateUrl:'commandes/template/detailsCommande.html',
-  		controller : "detailsCommandeCtrl",
-  		controllerAs:"dtlCmdCtrl"
+      templateUrl:'commandes/template/detailsCommande.html',
+      controller : "detailsCommandeCtrl",
+      controllerAs:"dtlCmdCtrl"
     })
     .when('/commandes/detailsCommande/:id', {
       templateUrl:'commandes/template/detailsCommande.html',
