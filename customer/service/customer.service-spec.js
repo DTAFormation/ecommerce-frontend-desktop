@@ -1,10 +1,10 @@
-describe('customerServiceTest', function(API_URL) {
-	var url=API_URL + "/user/";
+describe('customerServiceTest', function() {
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
 
-	it("Les données du formulaire de creation de client doivent être postées", inject(function(customerService, $httpBackend){
+	it("Les données du formulaire de creation de client doivent être postées", inject(function(customerService, $httpBackend, API_URL){
+		var url=API_URL + "/user/";
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login"};
 
 		$httpBackend.expectPOST(url,customer).respond(404,'');
@@ -21,7 +21,8 @@ describe('customerServiceTest', function(API_URL) {
 
 	}));//fin du 1er it
 
-	it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend){
+	it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend, API_URL){
+		var url=API_URL + "/user/";
 		var id = 1;
 
 		$httpBackend.expectDELETE(url+id).respond(200,'');
@@ -32,7 +33,8 @@ describe('customerServiceTest', function(API_URL) {
 
 
     //test modification des clients
-	it('test modification client', inject(function(_$httpBackend_, customerService) {
+	it('test modification client', inject(function(_$httpBackend_, customerService, API_URL) {
+		var url=API_URL + "/user/";
 	    var mockBackend = _$httpBackend_;
 
 	    mockBackend.expectPUT(url,
@@ -61,8 +63,9 @@ describe('customerServiceTest', function(API_URL) {
 	}));
 
 
-	it("est ce que la fonction cherche la liste des clients? ", inject(function(customerService,$httpBackend){
+	it("est ce que la fonction cherche la liste des clients? ", inject(function(customerService,$httpBackend, API_URL){
         //code du test de vérification
+		var url=API_URL + "/user/";
 
         //simulation de la réponse que l'on recevra
         var reponseSimule= {

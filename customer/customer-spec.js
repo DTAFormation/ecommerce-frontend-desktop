@@ -1,11 +1,12 @@
 describe('customerTest', function() { //test du customer.js
-	var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
+
 	var mockcompteClient = [{nom : "aze", prenom : "aze", login : "aze@aze", password : "azeaze"}];
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
 
-	it("test de la fonction doesNotExist doit renvoyer true si le login n'existe pas", inject(function($controller, $httpBackend) {
+	it("test de la fonction doesNotExist doit renvoyer true si le login n'existe pas", inject(function($controller, $httpBackend, API_URL) {
+		var apiUrl=API_URL + "/user/";
 	    var value = "aze@aze";
 		$httpBackend.expectGET(apiUrl+"chercher/"+value).respond(200, mockcompteClient);
 	    var createCustomerCtrl = $controller("CreateCustomerController");
@@ -16,7 +17,8 @@ describe('customerTest', function() { //test du customer.js
 	}));
 
 
-	it("test unitaire createCustomerController.ajoutClient en cas de error:404",inject(function($controller, $httpBackend){
+	it("test unitaire createCustomerController.ajoutClient en cas de error:404",inject(function($controller, $httpBackend, API_URL){
+		var apiUrl=API_URL + "/user/";
 		var createCustomerCtrl = $controller('CreateCustomerController');
 		var customer = {name: "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
@@ -30,7 +32,8 @@ describe('customerTest', function() { //test du customer.js
 	}));
 
 
-	it("test unitaire createCustomerCtrl.ajoutClient en cas de succes:201",inject(function($controller, $httpBackend){
+	it("test unitaire createCustomerCtrl.ajoutClient en cas de succes:201",inject(function($controller, $httpBackend, API_URL){
+		var apiUrl=API_URL + "/user/";
 		var createCustomerCtrl = $controller('CreateCustomerController');
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
@@ -44,7 +47,8 @@ describe('customerTest', function() { //test du customer.js
 	}));
 
 	// TEST du del du controlleur en cas de succes
-	it("test unitaire customerCtrl.delCustomer en cas de succes:200",inject(function($controller, $httpBackend){
+	it("test unitaire customerCtrl.delCustomer en cas de succes:200",inject(function($controller, $httpBackend, API_URL){
+		var apiUrl=API_URL + "/user/";
 		$httpBackend.when('GET',apiUrl).respond(200,'');
 
 		var customerCtrl = $controller('customerCtrl');

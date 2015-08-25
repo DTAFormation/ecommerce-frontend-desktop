@@ -1,7 +1,7 @@
 // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
-   // 'ecDesktopApp.shared'
+    'ecDesktopApp.shared'
    ]);
 
 // Configuration du module 'home'
