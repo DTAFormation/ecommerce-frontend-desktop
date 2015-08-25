@@ -1,0 +1,21 @@
+<div class="container-fluid">
+	<h1>Statistiques Ventes</h1>
+
+<button class="btn btn-primary" ng-click="isBar_CAOpen = !isBar_CAOpen">Statistiques mensuelles Chiffre d'affaires</button>
+<button class="btn btn-primary" ng-click="isBar_VentesOpen = !isBar_VentesOpen">Statistiques mensuelles Volume Ventes</button>
+
+<div class="row histogramme">
+	<div  ng-show="isBar_CAOpen" class="col-md-6">
+	<canvas  id="bar_CA" class="chart chart-bar" data="ventesCtrl.CA_data"
+  labels="ventesCtrl.labels" legend="true" series="ventesCtrl.CA_series" colours="ventesCtrl.CA_colors"></canvas>
+</div>
+	
+<div ng-show="isBar_VentesOpen" class="col-md-6">
+	 <canvas id="bar_Ventes" class="chart chart-bar" data="ventesCtrl.Ventes_data"
+  labels="ventesCtrl.labels" legend="true" series="ventesCtrl.Ventes_series" colours="ventesCtrl.Ventes_colors"></canvas>
+</div>
+ 
+</div>
+
+
+</div>
