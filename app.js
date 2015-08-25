@@ -8,6 +8,7 @@
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
     'ecDesktopApp.authentification',
+    'ecDesktopApp.stats',
     'ui.bootstrap',
     'chart.js'
     ]);
@@ -40,6 +41,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
             controller : "homeCtrl",
             controllerAs : "homeCtrl"
         })
+
         // .otherwise({ redirectTo: '/home' });
         .otherwise({redirectTo:'/login'});
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
@@ -91,7 +93,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     {affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
     {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
     ];
 });
 
