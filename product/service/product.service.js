@@ -1,6 +1,6 @@
 angular.module('ecDesktopApp.product').service('productService', function($http, API_URL) {
 
-	var url=API_URL + "/produit";
+	var url=API_URL + "/produit/";
 
 	//recupere la liste des produits
 	this.getProducts = function(){

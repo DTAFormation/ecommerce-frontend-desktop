@@ -1,6 +1,6 @@
 describe('loginTest', function(API_URL) {
 
-	var url = API_URL + "/personne";
+	var url = API_URL + "/personne/";
 
 	beforeEach(function() {
         module('ecDesktopApp.authentification');

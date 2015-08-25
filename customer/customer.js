@@ -77,13 +77,14 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
     };
 
     customerCtrl.delCustomer = function(id){
-
+        console.log("debut del");
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
-            customerCtrl.getCustomers();
+            console.log("succes del");
             customerCtrl.err=false;
             return customerCtrl.displayCustomers();
         }, function(error){
+            console.log("echec del");
             customerCtrl.err=true;
             setTimeout(function(){window.location.reload();},2000);
 
