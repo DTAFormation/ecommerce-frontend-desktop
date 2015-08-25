@@ -36,7 +36,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
 
 
         // .otherwise({ redirectTo: '/home' });
-        .otherwise({redirectTo:'/login'});
+        .otherwise({redirectTo:'/home'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
