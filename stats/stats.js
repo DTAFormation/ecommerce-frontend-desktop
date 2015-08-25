@@ -14,7 +14,7 @@ $routeProvider
 		templateUrl:'stats/template/ventes.tpl.html',
 		controller : "ventesCtrl",
 		controllerAs:"ventesCtrl",
-	})
+	});
 
 });
 
