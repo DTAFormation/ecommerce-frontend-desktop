@@ -8,6 +8,7 @@
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
     'ecDesktopApp.authentification',
+    'ecDesktopApp.stats',
     'ui.bootstrap',
     'chart.js'
     ]);
@@ -25,23 +26,23 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
     })
-        .when('/product/listproduct', { //
-            templateUrl : "product/template/listproduct.html",
-            controller : "productCtrl",
-            controllerAs : "productCtrl"
-        })
-        .when('/customer/listcustomer', { //
-            templateUrl : "customer/template/listcustomer.html",
-            controller : "customerCtrl",
-            controllerAs : "customerCtrl"
-        })
-        .when('/home',{
-            templateUrl : "home/template/home.tpl.html",
-            controller : "homeCtrl",
-            controllerAs : "homeCtrl"
-        })
-        // .otherwise({ redirectTo: '/home' });
-        .otherwise({redirectTo:'/login'});
+    .when('/product/listproduct', { //
+        templateUrl : "product/template/listproduct.html",
+        controller : "productCtrl",
+        controllerAs : "productCtrl"
+    })
+    .when('/customer/listcustomer', { //
+        templateUrl : "customer/template/listcustomer.html",
+        controller : "customerCtrl",
+        controllerAs : "customerCtrl"
+    })
+    .when('/home',{
+        templateUrl : "home/template/home.tpl.html",
+        controller : "homeCtrl",
+        controllerAs : "homeCtrl"
+    })
+    // .otherwise({ redirectTo: '/home' });
+    .otherwise({redirectTo:'/login'});
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
@@ -92,9 +93,9 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.statsFunctions= [
-    {affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
     {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
     ];
 });
