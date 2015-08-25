@@ -107,7 +107,7 @@ angular.module('ecDesktopApp.stats').controller('BestCustomersController', funct
 				}
 			});
 		});
-	}
+	};
 
 	bestCtrl.fetchCustomers();
 
