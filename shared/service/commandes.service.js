@@ -13,7 +13,7 @@ angular.module('ecDesktopApp.shared')
             .then(function (result){
                 return result.data;
             });
-        }
+        },
 
         getDetailsProduit : function(idCommande){
             return $http.get(apiRestUrl + "/user/commande")

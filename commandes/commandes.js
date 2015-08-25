@@ -24,11 +24,11 @@ angular.module('ecDesktopApp.commandes').controller('commandes', function($locat
 
     dtlCmdCtrl.getDetailsProduit();
 
-    var dtlCmdCtrl.getDetailsProduit = function () {
+    dtlCmdCtrl.getDetailsProduit = function () {
       commandeService.getDetailsProduit($routeParams.id).then(function (result){
         dtlCmdCtrl.commande = result;
       });
-    }
+    };
 
-    var dtlCmdCtrl.commande = null;
+    dtlCmdCtrl.commande = null;
 });

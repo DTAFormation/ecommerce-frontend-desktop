@@ -101,7 +101,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('serve', ['dom_munger:read','jshint','connect', 'watch']);
+  grunt.registerTask('serve', ['dom_munger:read','karma:all_tests','jshint','connect', 'watch']);
   grunt.registerTask('test',['dom_munger:read','karma:all_tests']);
   grunt.registerTask('test-e2e',['dom_munger:read','connect', 'protractor:local']);
   grunt.registerTask('cp',['clean','copy']);
