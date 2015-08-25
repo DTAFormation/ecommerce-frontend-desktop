@@ -77,7 +77,6 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
     };
 
     customerCtrl.delCustomer = function(id){
-
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
             customerCtrl.err=false;
