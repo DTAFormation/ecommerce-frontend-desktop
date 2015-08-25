@@ -127,13 +127,4 @@ angular.module('ecDesktopApp.customer').controller("detailsCustomereController",
         detailsctrl.customer = customer;      // que l'on stocke dans detailsctrl.customer
     });
 
-  /*  detailsctrl.detailsCustomer = function(form){ //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
-        //if (form.$invalid) {return ;}
-        customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
-        .then(function(succes) { //en cas de succes
-            $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
-        },function(fail){
-            console.log("Echec de la mise à jour du client");
-        });
-    };*/
 });
