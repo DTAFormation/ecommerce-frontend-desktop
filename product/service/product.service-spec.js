@@ -1,5 +1,5 @@
 describe('productServiceTest', function(API_URL) {
-    var url = API_URL + "/produit";
+    var url = API_URL + "/produit/";
 
     beforeEach(function() {
         module('ecDesktopApp.product');
