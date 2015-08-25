@@ -40,6 +40,11 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
             controller : "homeCtrl",
             controllerAs : "homeCtrl"
         })
+        .when('/commandes/listCommandes', {
+            templateUrl : "commandes/template/listCommandes.html",
+            controller : "commandeCtrl",
+            controllerAs : "commandeCtrl"
+        })
         // .otherwise({ redirectTo: '/home' });
         .otherwise({redirectTo:'/login'});
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
@@ -86,8 +91,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     ];
 
     $scope.ordersFunctions= [
-    {affichage:'Afficher Commandes',url:'#/aaaaa'},
-    {affichage:'Annuler Commande',url:'#/bbbbb'},
+    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
     ];
 

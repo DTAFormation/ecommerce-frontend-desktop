@@ -1,0 +1,18 @@
+
+<table class="table table-bordered">
+  <caption>Liste des commandes</caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Client</th>
+      <th>Etat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="c in commandeCtrl.commandes ">
+      <td> {{c.id}}</td>
+      <td> {{c.client.id}} {{c.client.nom}} {{c.client.prenom}} </td>
+      <td> {{c.etat}}</td>
+    </tr>
+  </tbody>
+</table>
