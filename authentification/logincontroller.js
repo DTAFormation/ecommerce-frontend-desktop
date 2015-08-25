@@ -7,7 +7,7 @@ angular.module('ecDesktopApp.authentification').controller('LoginCtrl',
     ['$location', 'loginService',
     function ($location, loginService) {
         var loginCtrl = this;
-
+        console.log("je test grunt");
         //masque le message d'erreur sur la page du login
         loginCtrl.dataLoading = false;
 
