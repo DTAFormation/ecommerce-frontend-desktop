@@ -12,6 +12,13 @@ angular.module('ecDesktopApp.shared')
             .then(function (result){
                 return result.data;
             });
+        },
+
+        getDetailCommande : function(idCommande){
+            return $http.get(apiRestUrl + "/user/commande/"+idCommande)
+              .then(function(result){
+                return result.data;
+              });
         }
 
     };

@@ -12,7 +12,8 @@ angular.module('ecDesktopApp', [
     'ecDesktopApp.authentification',
     'ecDesktopApp.stats',
     'ui.bootstrap',
-    'chart.js'
+    'chart.js',
+    'ecDesktopApp.commandes'
     ]);
 
 angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
@@ -39,6 +40,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         .otherwise({redirectTo:'/home'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
+
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
