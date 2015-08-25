@@ -19,5 +19,6 @@ angular.module('ecDesktopApp.authentification').controller('LoginCtrl',
             },function (response){
                 loginCtrl.dataLoading = true;
               });
+
         };
     }]);
