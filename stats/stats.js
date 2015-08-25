@@ -8,7 +8,7 @@ angular.module('ecDesktopApp.stats', [
 angular.module('ecDesktopApp.stats').config(function($routeProvider) {
 
 $routeProvider
-	.when('/stats/Ventes', { 
+	.when('/stats/Ventes', {
 		templateUrl:'stats/template/ventes.tpl.html',
 		controller : "ventesCtrl",
 		controllerAs:"ventesCtrl",
@@ -25,7 +25,7 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
     var ventesCtrl = this;
 
     ventesCtrl.labels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-    
+
     ventesCtrl.CA_series = ['Chiffre dAffaire (€)'];
     ventesCtrl.CA_colors = ['#1EF9A1'];
 
@@ -45,18 +45,20 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
         result.forEach(function(commande){
 
             if(parseInt(commande.date.split('/')[2]) === year){
-                for(var i=0; i<mois.length;i++){
-                    if(commande.date.split('/')[1] === mois[i]){
-                        prixTotal[i] += commande.prix_total;
+                //for(var i=0; i<mois.length;i++){
+                mois.forEach(function(mois){
+                    if(commande.date.split('/')[1] === mois){
+                        prixTotal[parseInt(mois)-1] += commande.prix_total;
 
                         commande.panier.forEach(function(produit){
-                            quantites[i] += produit.quantite;
+                            quantites[parseInt(mois)-1] += produit.quantite;
                         });
                     }
-                }
+                });
+                //}
             }
         });
-       
+
     ventesCtrl.Ventes_data = [quantites];
     ventesCtrl.CA_data = [prixTotal];
     });
@@ -101,7 +103,7 @@ angular.module('ecDesktopApp.stats').controller('BestCustomerController', functi
 					} else {
 						bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:1});
 					}
-				}			
+				}
 			});
 		});
 	}
@@ -110,7 +112,7 @@ angular.module('ecDesktopApp.stats').controller('BestCustomerController', functi
 
 	bestCtrl.changeTri = function (){
 		if(bestCtrl.tri === "depenses"){
-			bestCtrl.tri = "nbCommandes";	
+			bestCtrl.tri = "nbCommandes";
 		} else {
 			bestCtrl.tri = "depenses";
 		}
