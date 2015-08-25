@@ -15,6 +15,13 @@ angular.module('ecDesktopApp.shared')
             });
         }
 
+        getDetailsProduit : function(idCommande){
+            return $http.get(apiRestUrl + "/user/commande")
+            .then(function (result){
+                return result.data;
+            });
+        }
+
     };
 
 });
