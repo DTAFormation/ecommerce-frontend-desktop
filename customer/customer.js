@@ -107,26 +107,34 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
     updatectrl.updateCustomer = function(form){ //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
         //if (form.$invalid) {return ;}
         //Delete adresses with wrong format
-        var neuAdresses;
-        for(var i=0;i<updatectrl.customer.adresses.length;i++){
+        var neuAdresses=null;
+        console.log(updatectrl.customer);
+        var nbAdresses=updatectrl.customer.adresses.length;
+
+        for(var i=0;i<nbAdresses;i++){
             
-            if(updatectrl.customer.adresses[i].rue.length===0 || !updatectrl.customer.adresses[i].rue.trim()
-                || updatectrl.customer.adresses[i].ville.length===0 || !updatectrl.customer.adresses[i].ville.trim()){
+            if( updatectrl.customer.adresses[i].numero===null ||
+                updatectrl.customer.adresses[i].rue==="" ||
+                updatectrl.customer.adresses[i].ville===""){
                 updatectrl.customer.adresses.splice(i--, 1);
                 continue;
-            }
+            }/*else if($.trim(updatectrl.customer.adresses[i].rue)==="" ||
+                updatectrl.customer.adresses[i].ville.trim()===""){
+                updatectrl.customer.adresses.splice(i--, 1);
+                continue;
+            }*/
             if(updatectrl.customer.adresses[i].id===null){
                 neuAdresses.push(updatectrl.customer.adresses[i]);
             }
         }
+        if(neuAdresses!==null){
+            customerService.addAdressesCustomer(updatectrl.customer.id,neuAdresses)
+            .then(function(succes){
+                
+            },function(fail){
 
-        customerService.addAdressesCustomer()
-        .then(function(succes){
-            
-        },function(fail){
-
-        });
-
+           });
+        }
         customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
         .then(function(succes) { //en cas de succes
             $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
