@@ -21,7 +21,7 @@ describe('customerTest', function() { //test du customer.js
 		var customer = {name: "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
 		$httpBackend.expectPOST(apiUrl, customer).respond(404, '');
-       
+
 		createCustomerCtrl.ajoutClient(customer);
 
 		$httpBackend.flush();
@@ -35,7 +35,7 @@ describe('customerTest', function() { //test du customer.js
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login", password :"password"};
 
 		$httpBackend.expectPOST(apiUrl, customer).respond(201, '');
-       
+
 		createCustomerCtrl.ajoutClient(customer);
 
 		$httpBackend.flush();
@@ -46,7 +46,7 @@ describe('customerTest', function() { //test du customer.js
 	// TEST du del du controlleur en cas de succes
 	it("test unitaire customerCtrl.delCustomer en cas de succes:200",inject(function($controller, $httpBackend){
 		$httpBackend.when('GET',apiUrl).respond(200,'');
-		
+
 		var customerCtrl = $controller('customerCtrl');
 		var id = 1;
 
@@ -70,7 +70,7 @@ describe('customerTest', function() { //test du customer.js
 		    password: "hogan",
 		    address: {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
 	};
-		
+
 		var mockPromise =  {
 			then : function(fn) {
 				fn(customer);
@@ -86,7 +86,6 @@ describe('customerTest', function() { //test du customer.js
 		});
 
 		spyOn(customerService,"updateCustomer").and.returnValue(mockPromise); //simule la fonction updateCustomer
-		console.log(updateCustomerCtrl.customer);
 
 		spyOn($location, 'path'); // doit etre placé avant l'appel a la fonction
 
@@ -94,7 +93,7 @@ describe('customerTest', function() { //test du customer.js
 
 		//on s'attend à ce que le location.path soit appelé avec le chemin defini dans la promesse du controlleur
        expect($location.path).toHaveBeenCalledWith('/customer/listcustomer');//correspond au $location.path de la fonction updateCustomer du controlleur updateCustomereController
-	
+
 	}));
 
 });

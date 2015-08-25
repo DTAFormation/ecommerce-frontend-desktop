@@ -43,7 +43,7 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
         customerService.addCustomer(customer)
         .then(function(response){ //en cas de succes
             self.err = false;
-            //console.log("client créé");
+
             $location.path("/customer/listcustomer");
         },function(error){
             self.err = true;
@@ -72,23 +72,21 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
     customerCtrl.displayCustomers = function() {
         return customerService.getCustomers()
         .then(function(customer) {
-            console.log("Display");
             customerCtrl.customers = customer;
         });
     };
 
     customerCtrl.delCustomer = function(id){
-        console.log("function delCustomer sur le client "+id);
+
         customerService.deleteCustomer(id) // appel du service de suppresion d'un client
         .then(function(succes){
-            console.log('succes lors de la requete de suppression de client');
+            customerCtrl.getCustomers();
             customerCtrl.err=false;
-            console.log("Send display event");
             return customerCtrl.displayCustomers();
         }, function(error){
             customerCtrl.err=true;
             setTimeout(function(){window.location.reload();},2000);
-            console.log('erreur lors de la requete de suppression de client');
+
         });
     };
 
@@ -103,8 +101,6 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
 angular.module('ecDesktopApp.customer').controller("updateCustomereController", function(customerService,$routeParams,$location) {
     var updatectrl = this;
 
-    console.log("update client : " + $routeParams.id);
-
     customerService.getById($routeParams.id) // recupere les donnees du client
     .then(function(customer){
         updatectrl.customer = customer;      // que l'on stocke dans updatectrl.customer
@@ -116,7 +112,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         .then(function(succes) { //en cas de succes
             $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
         },function(fail){
-            console.log("Echec de la mise à jour du client");
+
         });
     };
 });
@@ -128,9 +124,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
 angular.module('ecDesktopApp.customer').controller("detailsCustomereController", function(customerService,$routeParams,$location) {
     var detailsctrl = this;
 
-    console.log("détails client : " + $routeParams.id);
-
-    customerService.getById($routeParams.id) // recupere les donnees du client
+      customerService.getById($routeParams.id) // recupere les donnees du client
     .then(function(customer){
         detailsctrl.customer = customer;      // que l'on stocke dans detailsctrl.customer
     });

@@ -12,9 +12,9 @@ describe('customerServiceTest', function(API_URL) {
 		//$httpBackend.whenPOST('http://localhost:9001/#/customer/createCustomer',customer).respond(201,'');
 
 		customerService.addCustomer(customer).then(function(response){
-			console.log("Ok" + response);
+
 		}, function(error){
-			console.log("ko" + error);
+
 		});
 
 		$httpBackend.flush();
@@ -82,7 +82,7 @@ describe('customerServiceTest', function(API_URL) {
 
         // vérification du résultat
         reponsePromesse.then(function(response){
-            console.log("response:"+JSON.stringify(response));
+
             var customer = response;
             expect(customer.id).toEqual(1);
             expect(customer.nom).toEqual("Dillon");

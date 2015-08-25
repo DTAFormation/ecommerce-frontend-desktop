@@ -20,6 +20,7 @@ angular.module('ecDesktopApp.customer').service('customerService', function($htt
                 {
                     customersModifie[i]["addressString"] = customersModifie[i].adresses.numero+" "+customersModifie[i].adresses.rue+" "+customersModifie[i].adresses.ville;
                 }
+
             return customersModifie;
         });
     };
