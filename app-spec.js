@@ -50,7 +50,7 @@ describe('DropdownCtrl', function() {
 		expect(angular.equals(scope.productsFunctions,testProductsFunctions)).toBe(true);
 		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(false);
 		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(false);
-		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(true);
+		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(false);
 
 	}));
 });
