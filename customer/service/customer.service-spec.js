@@ -1,5 +1,5 @@
-describe('customerServiceTest', function() {
-	var apiUrl="http://5.196.89.85:9080/ec-backend/api/user/";
+describe('customerServiceTest', function(API_URL) {
+	var url=API_URL + "/user";
 	beforeEach(function(){
 		module('ecDesktopApp.customer');
 	});
@@ -7,7 +7,7 @@ describe('customerServiceTest', function() {
 	it("Les données du formulaire de creation de client doivent être postées", inject(function(customerService, $httpBackend){
 		var customer = {name : "Dendooven", firstname :"Remi", address : "rue de la paix", login :"login"};
 
-		$httpBackend.expectPOST(apiUrl,customer).respond(404,'');
+		$httpBackend.expectPOST(url,customer).respond(404,'');
 
 		//$httpBackend.whenPOST('http://localhost:9001/#/customer/createCustomer',customer).respond(201,'');
 
@@ -24,7 +24,7 @@ describe('customerServiceTest', function() {
 	it("Test sur la suppression d'un client", inject(function(customerService, $httpBackend){
 		var id = 1;
 
-		$httpBackend.expectDELETE(apiUrl+id).respond(200,'');
+		$httpBackend.expectDELETE(url+id).respond(200,'');
 		customerService.deleteCustomer(id);
 		$httpBackend.flush();
 
@@ -35,7 +35,7 @@ describe('customerServiceTest', function() {
 	it('test modification client', inject(function(_$httpBackend_, customerService) {
 	    var mockBackend = _$httpBackend_;
 
-	    mockBackend.expectPUT(apiUrl,
+	    mockBackend.expectPUT(url,
 	    {
 		    "id": 1,
 		    "nom": "Dillon",
@@ -75,7 +75,7 @@ describe('customerServiceTest', function() {
                             };
 
         //l'adresse sur laquelle on récupère les données
-        $httpBackend.when("GET", apiUrl).respond(reponseSimule);
+        $httpBackend.when("GET", url).respond(reponseSimule);
 
         //récupération des données
         var reponsePromesse=customerService.getCustomers();
