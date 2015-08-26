@@ -4,7 +4,7 @@ describe("Test du commandeService", function() {
         module("ecDesktopApp.shared");
     });
 
-    it("Récupère tous les produits du panier", inject(function(commandeService, $httpBackend){
+    it("Récupère tous les produits du panier", inject(function(commandeService, $httpBackend, API_URL){
         var mockCommandes = [
             {
               "id":2,
@@ -73,7 +73,7 @@ describe("Test du commandeService", function() {
             }
           ];
 
-        $httpBackend.expectGET('http://5.196.89.85:9080/ec-backend/api/user/commande').respond(200, mockCommandes);
+        $httpBackend.expectGET(API_URL + '/user/commande').respond(200, mockCommandes);
 
         commandeService.getCommandes().then(function (result){
             expect(result.length).toEqual(mockCommandes.length);
