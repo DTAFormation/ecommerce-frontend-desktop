@@ -21,23 +21,19 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
-
-
     $routeProvider
-        .when('/login', {
+    .when('/login', {
         templateUrl : 'authentification/template/login.html',
         controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
     })
-        .when('/home',{
-            templateUrl : "home/template/home.tpl.html",
-            controller : "homeCtrl",
-            controllerAs : "homeCtrl"
-        })
-
-
-        // .otherwise({ redirectTo: '/home' });
-        .otherwise({redirectTo:'/login'});
+    .when('/home',{
+        templateUrl : "home/template/home.tpl.html",
+        controller : "homeCtrl",
+        controllerAs : "homeCtrl"
+    })
+    // .otherwise({ redirectTo: '/home' });
+    .otherwise({redirectTo:'/login'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
 
@@ -51,8 +47,8 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // renvoie vers la page login si non logger
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                //$location.path('/login');
-                $location.path('/');
+                $location.path('/login');
+                //$location.path('/');
             }
         });
 
@@ -69,8 +65,8 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService
       $location.path('/login');
     };
 });
-// Contrôleur de la navbar
 
+// Contrôleur de la navbar
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_MENU) {
     $scope.productsFunctions= DATA_MENU[0];/*[
     {affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
