@@ -28,15 +28,15 @@
       "prix_total": 450,
       "panier": [
         {
-          "id": 1,
-          "libelle": "Produit 1",
+          "id": 3,
+          "libelle": "Produit 3",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 2
         },
         {
-          "id": 2,
-          "libelle": "Produit 2",
+          "id": 6,
+          "libelle": "Produit 6",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 1
@@ -51,15 +51,15 @@
       "prix_total": 450,
       "panier": [
         {
-          "id": 1,
-          "libelle": "Produit 1",
+          "id": 10,
+          "libelle": "Produit 10",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 2
         },
         {
-          "id": 2,
-          "libelle": "Produit 2",
+          "id": 5,
+          "libelle": "Produit 5",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 1
@@ -81,8 +81,8 @@
           "quantite": 2
         },
         {
-          "id": 2,
-          "libelle": "Produit 2",
+          "id": 8,
+          "libelle": "Produit 8",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 1
@@ -97,15 +97,15 @@
       "prix_total": 450,
       "panier": [
         {
-          "id": 1,
-          "libelle": "Produit 1",
+          "id": 6,
+          "libelle": "Produit 6",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 2
         },
         {
-          "id": 2,
-          "libelle": "Produit 2",
+          "id": 3,
+          "libelle": "Produit 3",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 1
@@ -120,8 +120,8 @@
       "prix_total": 450,
       "panier": [
         {
-          "id": 1,
-          "libelle": "Produit 1",
+          "id": 5,
+          "libelle": "Produit 5",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 2
@@ -159,22 +159,22 @@
       ],
       "type_paiement": "Chèque",
       "id": 10,
-      "date": "24/16/2015"
+      "date": "24/06/2015"
     },
     {
       "user_id": "6",
       "prix_total": 450,
       "panier": [
         {
-          "id": 1,
-          "libelle": "Produit 1",
+          "id": 7,
+          "libelle": "Produit 7",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 2
         },
         {
-          "id": 2,
-          "libelle": "Produit 2",
+          "id": 6,
+          "libelle": "Produit 6",
           "prix": 150,
           "image": "http://lorempixel.com/120/120",
           "quantite": 1
