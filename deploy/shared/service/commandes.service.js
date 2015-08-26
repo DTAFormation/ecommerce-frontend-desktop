@@ -8,19 +8,19 @@ angular.module('ecDesktopApp.shared')
     return {
 
         getCommandes : function(){
-            return $http.get(apiRestUrl + "/user/commande")
+            return $http.get(apiRestUrl + "/commande")
             .then(function (result){
                 return result.data;
             });
         },
 
         getDetailCommande : function(idCommande){
-            return $http.get(apiRestUrl + "/user/commande/"+idCommande)
-            .then(function(result){
-                return result.data;
-            }, function(result){
-                return null;
-            });
+            return $http.get(apiRestUrl + "/commande/"+idCommande)
+                .then(function(result){
+                    return result.data;
+                }, function(result){
+                    return null;
+                });
         }
 
     };
