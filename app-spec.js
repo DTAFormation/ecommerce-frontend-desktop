@@ -32,7 +32,7 @@ describe('DropdownCtrl', function() {
 
 		var testOrdersFunctions= [
     {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
-    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
+    {affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande'}
     ];
 
 		var testStatsFunctions= [
