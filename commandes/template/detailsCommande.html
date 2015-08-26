@@ -52,11 +52,11 @@
             </div>
             <div class="row">
               <label class="col-md-6">Mode de paiement</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.modepaiement}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.modePaiement}}</span>
             </div>
             <div class="row">
               <label class="col-md-6">Date de facturation</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.date}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.date|date:'dd/MM/yyyy'}}</span>
             </div>
           </div>
         </div>
@@ -71,15 +71,15 @@
           <div class="panel-body">
             <div class="row">
               <label class="col-md-6">N°</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.numero}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseLivraison.numero}}</span>
             </div>
             <div class="row">
               <label class="col-md-6">rue</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.rue}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseLivraison.rue}}</span>
             </div>
             <div class="row">
               <label class="col-md-6">Ville</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.ville}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseLivraison.ville}}</span>
             </div>
           </div>
         </div>
@@ -92,15 +92,15 @@
           <div class="panel-body">
             <div class="row">
               <label class="col-md-6">N°</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.numero}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseFacturation.numero}}</span>
             </div>
             <div class="row">
               <label class="col-md-6">rue</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.rue}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseFacturation.rue}}</span>
             </div>
             <div class="row">
               <label class="col-md-6">Ville</label>
-              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.ville}}</span>
+              <span class="col-md-6" style="text-align:center">{{dtlCmdCtrl.selectedCommande.facture.adresseFacturation.ville}}</span>
             </div>
           </div>
         </div>
@@ -119,9 +119,6 @@
             <span class="col-md-2">{{dtlCmdCtrl.montant}}</span>
 
             <table class="table table-bordered">
-              <div class="row col-md-12">
-                <caption style="text-align:center">Liste des produits</caption>
-              </div>
               <thead>
                 <tr>
                   <th style="text-align:center">ID</th>
@@ -145,6 +142,7 @@
           </div>
         </div>
       </div>
+            <a href="#/commandes/listCommandes"><button id="retour" class="btn btn-default pull-left" ><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></button></a>
     </div>
 
 </div>
