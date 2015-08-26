@@ -10,7 +10,7 @@ angular.module('ecDesktopApp.commandes', [
 angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 
     $routeProvider
-    .when('/commandes/listCommandes/', {
+    .when('/commandes/listCommandes', {
         templateUrl : "commandes/template/listCommandes.html",
         controller : "commandeCtrl",
         controllerAs : "commandeCtrl"
