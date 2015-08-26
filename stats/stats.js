@@ -2,6 +2,7 @@ angular.module('ecDesktopApp.stats', [
     'ngRoute',
     'ecDesktopApp.shared',
     'ui.bootstrap',
+    'ecDesktopApp',
     'chart.js'
     ]);
 
