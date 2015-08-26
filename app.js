@@ -85,12 +85,8 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
     ];*/
 
-<<<<<<< HEAD
-    $scope.statsFunctions= DATA_MENU[3];/*[
-=======
     $scope.statsFunctions= DATA_MENU[3];
     /*[
->>>>>>> dev
 
     {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
     {affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits'},
