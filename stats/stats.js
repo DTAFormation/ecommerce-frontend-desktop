@@ -106,9 +106,6 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
     fetchProducts();
 
-  ventesCtrl.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
-  ventesCtrl.data = [300, 500, 100, 40, 120];
-
 });
 
 
