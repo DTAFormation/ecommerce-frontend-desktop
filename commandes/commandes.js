@@ -10,7 +10,7 @@ angular.module('ecDesktopApp.commandes', [
 angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 
     $routeProvider
-    .when('/commandes/listCommandes/', {
+    .when('/commandes/listCommandes', {
         templateUrl : "commandes/template/listCommandes.html",
         controller : "commandeCtrl",
         controllerAs : "commandeCtrl"
@@ -19,11 +19,6 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
         templateUrl : "commandes/template/rechercheCommande.html",
         controller : "rechercheCmdCtrl",
         controllerAs : "rechercheCmdCtrl"
-    })
-    .when('/commandes/detailsCommande', {
-      templateUrl:'commandes/template/detailsCommande.html',
-      controller : "detailsCommandeCtrl",
-      controllerAs:"dtlCmdCtrl"
     })
     .when('/commandes/detailsCommande/:id', {
       templateUrl:'commandes/template/detailsCommande.html',
@@ -91,10 +86,7 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
     commandeService.getDetailCommande($routeParams.id)
       .then(function (result){
         dtlCmdCtrl.selectedCommande = result;
-      })
-      .then(function(){
-        console.log(dtlCmdCtrl.selectedCommande);
-      });
+    });
   };
 
     dtlCmdCtrl.getDetailCommande();
@@ -116,9 +108,22 @@ angular.module('ecDesktopApp.commandes').controller('rechercheCmdCtrl', function
 
     var rechercheCmdCtrl = this;
     rechercheCmdCtrl.idCmd = null;
+    rechercheCmdCtrl.err = false;
 
     rechercheCmdCtrl.goToCommande = function() {
-        $location.path("/commandes/" + rechercheCmdCtrl.idCmd);
+        var cmd = null;
+        commandeService.getDetailCommande(rechercheCmdCtrl.idCmd)
+        .then(function(result) {
+            cmd = result;
+        })
+        .then(function() {
+            console.log(cmd);
+            if (cmd == null) {
+                rechercheCmdCtrl.err = true;
+            } else {
+                $location.path("/commandes/detailsCommande/" + rechercheCmdCtrl.idCmd);
+            }
+        });
     };
 
 });

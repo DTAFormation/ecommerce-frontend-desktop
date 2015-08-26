@@ -67,42 +67,42 @@
         <div ng-controller="DropdownCtrl">
          <div class="nav navbar-nav">
           <div class="btn-group" dropdown>
-           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
+           <button id="adminProduitsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
             <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in productsFunctions">
-             <a href='{{choice.url}}'>{{choice.affichage}}</a>
+             <a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
           </div>
           <div class="btn-group" dropdown>
-           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
+           <button id="adminClientsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
            <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in clientsFunctions">
-             <a href='{{choice.url}}'>{{choice.affichage}}</a>
+             <a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
           </div>
           <div class="btn-group" dropdown>
-           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
+           <button id="adminCommandesButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Commandes
            <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in ordersFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            <a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
           </div>
           <div class="btn-group" dropdown>
-           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
+           <button id="statButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
            <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in statsFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            <a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
           </div>
