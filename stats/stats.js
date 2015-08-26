@@ -1,7 +1,6 @@
 angular.module('ecDesktopApp.stats', [
     'ngRoute',
     'ui.bootstrap',
-	'ecDesktopApp.shared',
     'chart.js'
     ]);
 
@@ -13,16 +12,21 @@ $routeProvider
 		controller : "ventesCtrl",
 		controllerAs:"ventesCtrl",
 	})
-	.when('/stats/bestCustomers', {
-		templateUrl : 'stats/template/bestCustomers.tpl.html',
-		controller : 'BestCustomersController',
-		controllerAs : 'bestCtrl'
-	})
-	.when('/stats/bestCustomersByProduct/:idProduct', {
-		templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
-		controller : 'BestCustomersByProductController',
-		controllerAs : 'bestByProductCtrl'
-	});
+    .when('/stats/bestCustomers', {
+        templateUrl : 'stats/template/bestCustomers.tpl.html',
+        controller : 'BestCustomerController',
+        controllerAs : 'bestCtrl'
+    })
+    .when('/stats/topProduits', { 
+        templateUrl:'stats/template/topProduits.tpl.html',
+        controller : "ventesCtrl",
+        controllerAs:"ventesCtrl",
+    })  
+    .when('/stats/bestCustomersByProduct/:idProduct', {
+        templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
+        controller : 'BestCustomersByProductController',
+        controllerAs : 'bestByProductCtrl'
+    });
 });
 
 
@@ -50,7 +54,7 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
         result.forEach(function(commande){
 
             if(parseInt(commande.date.split('/')[2]) === year){
-                //for(var i=0; i<mois.length;i++){
+                //for(var i=0; i<mois.length;i++){}
                 mois.forEach(function(mois){
                     if(commande.date.split('/')[1] === mois){
                         prixTotal[parseInt(mois)-1] += commande.prix_total;
@@ -59,8 +63,8 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
                             quantites[parseInt(mois)-1] += produit.quantite;
                         });
                     }
+
                 });
-                //}
             }
         });
 
@@ -68,62 +72,96 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
     ventesCtrl.CA_data = [prixTotal];
     });
 
+    ventesCtrl.products = [];
+
+    function fetchProducts (){
+        ventesCtrl.products = [];
+        ventesService.getCommandes().then(function (result){
+            result.forEach(function (commande){
+                commande.panier.forEach(function(panierProduct){
+                    var self = this;
+                    self.newProduct = true;
+                    ventesCtrl.products.forEach(function(product){
+                        if(panierProduct.id === product.id){
+                            self.newProduct = false;
+                            product.total += panierProduct.quantite;
+                        }
+                    });
+                    if(self.newProduct){
+                        ventesCtrl.products.push({id:panierProduct.id, libelle:panierProduct.libelle, prix:panierProduct.prix, total:panierProduct.quantite});
+                    }
+                }); 
+                          
+            });
+
+            ventesCtrl.products_total = ventesCtrl.products.map(function(produit) {
+                return produit.total;
+            });
+
+            ventesCtrl.products_libelle = ventesCtrl.products.map(function(produit) {
+                return produit.libelle;
+            });
+        });
+    }
+
+    fetchProducts();
+
 });
 
 
 // controller pour l'écran des meilleurs clients
 angular.module('ecDesktopApp.stats').controller('BestCustomersController', function(commandeService){
 
-	var bestCtrl = this;
+    var bestCtrl = this;
 
-	bestCtrl.tri = "depenses";
-	bestCtrl.customers = [];
+    bestCtrl.tri = "depenses";
+    bestCtrl.customers = [];
 
-	bestCtrl.fetchCustomers = function (){
-		bestCtrl.customers = [];
-		commandeService.getCommandes().then(function (result){
-			result.forEach(function (commande){
-				var self = this;
-				self.newClient = true;
-				bestCtrl.customers.forEach(function(customer){
-					if(commande.client.id === customer.id){
-						self.newClient = false;
-						if(bestCtrl.tri === "depenses"){
-							var totalCommande = 0;
-							commande.commandeProduits.forEach(function(commandeProduit){
-								totalCommande += commandeProduit.produit.prix * commandeProduit.quantite;
-							});
-							customer.total = Math.floor(100 * (customer.total + totalCommande))/100;
-						} else {
-							customer.total += 1;
-						}
-					}
-				});
-				if(self.newClient){
-					if(bestCtrl.tri === "depenses"){
-						var totalCommande = 0;
-						commande.commandeProduits.forEach(function(commandeProduit){
-							totalCommande += commandeProduit.produit.prix * commandeProduit.quantite;
-						});
-						bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:Math.floor(100 * totalCommande)/100});
-					} else {
-						bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:1});
-					}
-				}
-			});
-		});
-	};
+    bestCtrl.fetchCustomers = function (){
+        bestCtrl.customers = [];
+        commandeService.getCommandes().then(function (result){
+            result.forEach(function (commande){
+                var self = this;
+                self.newClient = true;
+                bestCtrl.customers.forEach(function(customer){
+                    if(commande.client.id === customer.id){
+                        self.newClient = false;
+                        if(bestCtrl.tri === "depenses"){
+                            var totalCommande = 0;
+                            commande.commandeProduits.forEach(function(commandeProduit){
+                                totalCommande += commandeProduit.produit.prix * commandeProduit.quantite;
+                            });
+                            customer.total = Math.floor(100 * (customer.total + totalCommande))/100;
+                        } else {
+                            customer.total += 1;
+                        }
+                    }
+                });
+                if(self.newClient){
+                    if(bestCtrl.tri === "depenses"){
+                        var totalCommande = 0;
+                        commande.commandeProduits.forEach(function(commandeProduit){
+                            totalCommande += commandeProduit.produit.prix * commandeProduit.quantite;
+                        });
+                        bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:Math.floor(100 * totalCommande)/100});
+                    } else {
+                        bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:1});
+                    }
+                }
+            });
+        });
+    };
 
-	bestCtrl.fetchCustomers();
+    bestCtrl.fetchCustomers();
 
-	bestCtrl.changeTri = function (){
-		if(bestCtrl.tri === "depenses"){
-			bestCtrl.tri = "nbCommandes";
-		} else {
-			bestCtrl.tri = "depenses";
-		}
-		bestCtrl.fetchCustomers();
-	};
+    bestCtrl.changeTri = function (){
+        if(bestCtrl.tri === "depenses"){
+            bestCtrl.tri = "nbCommandes";
+        } else {
+            bestCtrl.tri = "depenses";
+        }
+        bestCtrl.fetchCustomers();
+    };
 });
 
 angular.module('ecDesktopApp.stats').controller('BestCustomersByProductController', function(commandeService, $routeParams){

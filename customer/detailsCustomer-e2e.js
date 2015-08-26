@@ -4,7 +4,7 @@ describe('E2E: Details customerCtrl', function () {
           browser.get(browser.baseUrl);
           expect(browser.getLocationAbsUrl()).toEqual('/login');
 
-          /* Chemin poru se conencter et arriver sur home*/
+          /* Chemin pour se conencter et arriver sur home*/
           var login=element(by.model('loginCtrl.username'));
           var password=element(by.model('loginCtrl.password'));
           var connectButton=element(by.id('loginButton'));
