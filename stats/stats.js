@@ -21,8 +21,12 @@ $routeProvider
         templateUrl:'stats/template/topProduits.tpl.html',
         controller : "ventesCtrl",
         controllerAs:"ventesCtrl",
+    })  
+    .when('/stats/bestCustomersByProduct/:idProduct', {
+        templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
+        controller : 'BestCustomersByProductController',
+        controllerAs : 'bestByProductCtrl'
     });
-
 });
 
 
@@ -70,15 +74,16 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
 });
 
+
 // controller pour l'écran des meilleurs clients
-angular.module('ecDesktopApp.stats').controller('BestCustomerController', function(commandeService){
+angular.module('ecDesktopApp.stats').controller('BestCustomersController', function(commandeService){
 
     var bestCtrl = this;
 
     bestCtrl.tri = "depenses";
     bestCtrl.customers = [];
 
-    function fetchCustomers (){
+    bestCtrl.fetchCustomers = function (){
         bestCtrl.customers = [];
         commandeService.getCommandes().then(function (result){
             result.forEach(function (commande){
@@ -108,20 +113,51 @@ angular.module('ecDesktopApp.stats').controller('BestCustomerController', functi
                     } else {
                         bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:1});
                     }
-                }           
+                }
             });
         });
-    }
+    };
 
-    fetchCustomers();
+    bestCtrl.fetchCustomers();
 
     bestCtrl.changeTri = function (){
         if(bestCtrl.tri === "depenses"){
-            bestCtrl.tri = "nbCommandes";   
+            bestCtrl.tri = "nbCommandes";
         } else {
             bestCtrl.tri = "depenses";
         }
-        fetchCustomers();
+        bestCtrl.fetchCustomers();
     };
 });
 
+angular.module('ecDesktopApp.stats').controller('BestCustomersByProductController', function(commandeService, $routeParams){
+
+    var bestCtrl = this;
+
+    bestCtrl.customers = [];
+
+    bestCtrl.fetchCustomers = function (){
+        bestCtrl.customers = [];
+        commandeService.getCommandes().then(function (result){
+            result.forEach(function (commande){
+                commande.commandeProduits.forEach(function (commandeProduit){
+                    if(commandeProduit.produit.id === parseInt($routeParams['idProduct'])){
+                        var self = this;
+                        self.newClient = true;
+                        bestCtrl.customers.forEach(function(customer){
+                            if(commande.client.id === customer.id){
+                                self.newClient = false;
+                                customer.total += commandeProduit.quantite;
+                            }
+                        });
+                        if(self.newClient){
+                            bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:commandeProduit.quantite});
+                        }
+                    }
+                });
+            });
+        });
+    };
+
+    bestCtrl.fetchCustomers();
+});

@@ -1,4 +1,4 @@
-// Déclaration du module 'Customer'
+    // Déclaration du module 'Customer'
 angular.module('ecDesktopApp.customer', [
     'ngRoute',
     'ui.bootstrap',
@@ -110,12 +110,52 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
 
     updatectrl.updateCustomer = function(form){ //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
         //if (form.$invalid) {return ;}
+        //Delete adresses with wrong format
+        var neuAdresses=null;
+        console.log(updatectrl.customer);
+        var nbAdresses=updatectrl.customer.adresses.length;
+
+        for(var i=0;i<nbAdresses;i++){
+            
+            if( updatectrl.customer.adresses[i].numero===null ||
+                updatectrl.customer.adresses[i].rue==="" ||
+                updatectrl.customer.adresses[i].ville===""){
+                updatectrl.customer.adresses.splice(i--, 1);
+                continue;
+            }/*else if($.trim(updatectrl.customer.adresses[i].rue)==="" ||
+                updatectrl.customer.adresses[i].ville.trim()===""){
+                updatectrl.customer.adresses.splice(i--, 1);
+                continue;
+            }*/
+            if(updatectrl.customer.adresses[i].id===null){
+                neuAdresses.push(updatectrl.customer.adresses[i]);
+            }
+        }
+        if(neuAdresses!==null){
+            customerService.addAdressesCustomer(updatectrl.customer.id,neuAdresses)
+            .then(function(succes){
+                
+            },function(fail){
+
+           });
+        }
         customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
         .then(function(succes) { //en cas de succes
             $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
         },function(fail){
 
         });
+    };
+
+    updatectrl.addAdresse = function(){
+        
+        var adresse={
+            'numero':'',
+            'rue':'',
+            'ville':''
+        };
+        updatectrl.customer.adresses.push(adresse);
+        
     };
 });
 
@@ -131,13 +171,4 @@ angular.module('ecDesktopApp.customer').controller("detailsCustomereController",
         detailsctrl.customer = customer;      // que l'on stocke dans detailsctrl.customer
     });
 
-  /*  detailsctrl.detailsCustomer = function(form){ //maj du client appelé lorsqu'on clique sur le bouton enregistrer du formulaire de update
-        //if (form.$invalid) {return ;}
-        customerService.updateCustomer(updatectrl.customer) //fait appel au "updateCustomer" du service qui va envoyer une requete PUT avec les données du updatectrl.customer
-        .then(function(succes) { //en cas de succes
-            $location.path("/customer/listcustomer");       //on redirige sur la page listant tous les clients
-        },function(fail){
-            console.log("Echec de la mise à jour du client");
-        });
-    };*/
 });

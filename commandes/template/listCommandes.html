@@ -1,0 +1,23 @@
+
+<div class="btn-group btn-group-justified">
+  <a  class="btn btn-default" ng-repeat="etat in commandeCtrl.etatsCommandeLibelle" ng-click="commandeCtrl.changerEtat(etat)">{{etat}}</a>
+</div>
+
+<table class="table table-bordered">
+  <caption>Liste des commandes</caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Client</th>
+      <th>Etat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="c in commandeCtrl.commandes" ng-if="c.etat== commandeCtrl.etat">
+      <td> <a ng-click="commandeCtrl.goDetailsProduit(c.client.id,c.id)">{{c.id}}</a></td>
+      <td> {{c.client.id}} {{c.client.nom}} {{c.client.prenom}} </td>
+      <td> {{commandeCtrl.etatLibelle}}</td>
+   </tr>
+
+  </tbody>
+</table>

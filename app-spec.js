@@ -21,36 +21,30 @@ describe('DropdownCtrl', function() {
 		var controller = $controller('DropdownCtrl',{'$scope' : scope});
 
 		var testProductsFunctions = [
-		{affichage:'Afficher Produits',url:'#/product/listproduct'},
-		{affichage:'Créer Produit',url:'#/product/createProduct'},
-		{affichage:'Modifier Produit',url:'#/product/listproduct'},
-		{affichage:'Supprimer Produit',url:'#/product/listproduct'}
+		{affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
+		{affichage:'Créer Produit',url:'#/product/createProduct',id:"creerProduits"}
 		];
 
 		var testClientsFunctions = [
-		{affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-		{affichage:'Créer Client',url:'#/customer/createCustomer'},
-		{affichage:'Modifier Client',url:'#/customer/listcustomer'},
-		{affichage:'Supprimer Client',url:'#/customer/listcustomer'}
+		{affichage:'Afficher Clients',url:'#/customer/listcustomer',id:"afficherClients"},
+		{affichage:'Créer Client',url:'#/customer/createCustomer',id:"creerClients"}
 		];
 
 		var testOrdersFunctions= [
-		{affichage:'Afficher Commandes',url:'#/aaaaa'},
-		{affichage:'Annuler Commande',url:'#/bbbbb'},
-		{affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
-		];
+    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes',id:"afficherCommandes"},
+    {affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande',id:"rechercherCommandes"}
+    ];
 
 		var testStatsFunctions= [
-		{affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
-		{affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
-		{affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-		{affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
-		];
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestCustomers"},
+    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb',id:"bestProducts"},
+    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc',id:"bestClientsOnProduct"},
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
+    ];
 
 		expect(angular.equals(scope.productsFunctions,testProductsFunctions)).toBe(true);
-		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(false);
+		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(true);
 		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(true);
-		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(false);
-
+		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(true);
 	}));
 });

@@ -70,10 +70,9 @@ describe('customerTest', function() { //test du customer.js
 		    nom: "Dillon",
 		    prenom: "Rosalie",
 		    login: "Hammond",
-		    email: "rosaliehammond@helixo.com",
 		    password: "hogan",
-		    address: {"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}
-	};
+		    adresses: [{"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}]
+		};
 
 		var mockPromise =  {
 			then : function(fn) {

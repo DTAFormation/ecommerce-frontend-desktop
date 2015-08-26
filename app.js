@@ -1,16 +1,19 @@
-﻿angular.module('ecDesktopApp', [
+angular.module('ecDesktopApp', [
     'ui.utils',
     'ngRoute',
     'ngAnimate',
     'ngCookies',
     'ecDesktopApp.shared',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.home',
     'ecDesktopApp.product',
     'ecDesktopApp.customer',
+    'ecDesktopApp.commandes',
     'ecDesktopApp.authentification',
     'ecDesktopApp.stats',
     'ui.bootstrap',
-    'chart.js'
+    'chart.js',
+    'ecDesktopApp.commandes'
     ]);
 
 angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
@@ -18,23 +21,11 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
-
-
     $routeProvider
-        .when('/login', {
+    .when('/login', {
         templateUrl : 'authentification/template/login.html',
         controller : 'LoginCtrl',
         controllerAs : 'loginCtrl'
-    })
-    .when('/product/listproduct', { //
-        templateUrl : "product/template/listproduct.html",
-        controller : "productCtrl",
-        controllerAs : "productCtrl"
-    })
-    .when('/customer/listcustomer', { //
-        templateUrl : "customer/template/listcustomer.html",
-        controller : "customerCtrl",
-        controllerAs : "customerCtrl"
     })
     .when('/home',{
         templateUrl : "home/template/home.tpl.html",
@@ -43,7 +34,9 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
     })
     // .otherwise({ redirectTo: '/home' });
     .otherwise({redirectTo:'/login'});
+
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
+
     // maintenir l'utilisateur loggé malgrés les F5 et les changements de pages
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
@@ -54,8 +47,8 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // renvoie vers la page login si non logger
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
-                //$location.path('/login');
-                $location.path('/');
+                $location.path('/login');
+                //$location.path('/');
             }
         });
 
@@ -72,25 +65,26 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService
       $location.path('/login');
     };
 });
+
 // Contrôleur de la navbar
-angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
-    $scope.productsFunctions= [
-    {affichage:'Afficher Produits',url:'#/product/listproduct'},
-    {affichage:'Créer Produit',url:'#/product/createProduct'},
-    {affichage:'Modifier Produit',url:'#/product/listproduct'},
-    {affichage:'Supprimer Produit',url:'#/product/listproduct'}
-    ];
+angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_MENU) {
+    $scope.productsFunctions= DATA_MENU[0];/*[
+    {affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
+    {affichage:'Créer Produit',url:'#/product/createProduct',id:"creerProduits"},
+    {affichage:'Modifier Produit',url:'#/product/listproduct',id:"modifierProduits"},
+    {affichage:'Supprimer Produit',url:'#/product/listproduct',id:"supprProduits"}
+    ];*/
 
-    $scope.clientsFunctions= [
-    {affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-    {affichage:'Créer Client',url:'#/customer/createCustomer'}
-    ];
 
-    $scope.ordersFunctions= [
-    {affichage:'Afficher Commandes',url:'#/aaaaa'},
-    {affichage:'Annuler Commande',url:'#/bbbbb'},
-    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
-    ];
+    $scope.clientsFunctions= DATA_MENU[1];
+    /*{affichage:'Afficher Clients',url:'#/customer/listcustomer',id:"afficherClients"},
+    {affichage:'Créer Client',url:'#/customer/createCustomer',id:"creerClients"}
+    ];*/
+
+    $scope.ordersFunctions= DATA_MENU[2];
+    /*{affichage:'Afficher Commandes',url:'#/commandes/listCommandes',id:"afficherCommandes"},
+    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
+    ];*/
 
     $scope.statsFunctions= [
 
