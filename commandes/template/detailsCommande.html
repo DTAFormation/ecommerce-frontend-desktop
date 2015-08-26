@@ -1,82 +1,126 @@
-<div class="container">
-  <div>
-    <h1>Details de la commande</h1>
-  </div>
-  <!-- bloc d'identification de la commande -->
-  <div>
-    <label>Id de la commande</label>
-    <p>{{dtlCmdCtrl.selectedCommande.id}}</p>
-    <label >Etat de la commande</label>
-    <p >{{dtlCmdCtrl.selectedCommande.etat}}</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 style="text-align:center">Details de la commande</h1>
   </div>
 
-  <!-- bloc d'identification du client -->
-  <div>
-    <h2>Client<h2>
-    <label>Id Client</label>
-    <p>{{dtlCmdCtrl.selectedCommande.client.id}}</p>
-    <label>Nom</label>
-    <p>{{dtlCmdCtrl.selectedCommande.client.nom}}</p>
-    <label>Prenom</label>
-    <p>{{dtlCmdCtrl.selectedCommande.client.prenom}}</p>
-  </div>
+  <div class="panel-body">
+      <!-- bloc d'identification de la commande -->
+      <div class="row">
+        <div class="col-md-3 col-md-offset-1">
+          <label>Id de la commande</label>
+          <span>{{dtlCmdCtrl.selectedCommande.id}}</span>
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+          <label>Etat de la commande</label>
+          <span>{{dtlCmdCtrl.selectedCommande.etat}}</span>
+        </div>
+      </div>
 
-  <!-- bloc d'identification de la facture -->
-  <div>
-    <h2>Facture<h2>
-    <label>Id Facture</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.id}}</p>
-    <label>mode de paiement</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.modepaiement}}</p>
-  </div>
+      <br>
 
-  <!-- bloc adresse de Livraison -->
-  <div>
-    <h2>Adresse de livraison<h2>
-    <label>N°</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.numero}}</p>
-    <label>rue</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.rue}}</p>
-    <label>Ville</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.ville}}</p>
-  </div>
+      <div class="row col-md-12 ">
+        <!-- bloc d'identification du client -->
+        <div class="panel panel-default col-md-6 ">
+          <div class="panel-heading">
+            <h3 style="text-align:center">Client</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <label>Id Client</label>
+              <span>{{dtlCmdCtrl.selectedCommande.client.id}}</span>
+            </div>
+            <div class="row">
+              <label>Nom</label>
+              <span>{{dtlCmdCtrl.selectedCommande.client.nom}}</span>
+            </div>
+            <div class="row">
+              <label>Prenom</label>
+              <span>{{dtlCmdCtrl.selectedCommande.client.prenom}}</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- bloc adresse de Facturation -->
-  <div>
-    <h2>Adresse de facturation<h2>
-    <label>N°</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.numero}}</p>
-    <label>rue</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.rue}}</p>
-    <label>Ville</label>
-    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.ville}}</p>
-  </div>
+        <!-- bloc d'identification de la facture -->
+        <div class="panel panel-default col-md-6">
+          <div class="panel-heading">
+            <h3 style="text-align:center">Facture</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <label>Id Facture</label>
+              <span>{{dtlCmdCtrl.selectedCommande.facture.id}}</span>
+            </div>
+            <div class="row">
+              <label>mode de paiement</label>
+              <span>{{dtlCmdCtrl.selectedCommande.facture.modepaiement}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!--bloc tableau des produits -->
-  <div class="form-group">
-    <h3>Produits de la commande</h3>
-    <label class="sr-only">Nombre de produits</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.nbreProduits}}</p>
-    <label class="sr-only">Montant total</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.montant}}</p>
-  </div>
+      <div class="row col-md-12">
+        <!-- bloc adresse de Livraison -->
+        <div class="panel panel-default col-md-6">
+          <div class="panel-heading">
+            <h3 style="text-align:center">Adresse de livraison</h3>
+          </div>
+          <div class="panel-body">
+            <label>N°</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.numero}}</span>
+            <label>rue</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.rue}}</span>
+            <label>Ville</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.ville}}</span>
+          </div>
+        </div>
 
-  <table class="table table-bordered">
-    <caption>Liste des produits</caption>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Produit</th>
-        <th>Quantite</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="produit in dtlCmdCtrl.selectedCommande.commandeProduits">
-        <td> {{produit.id}} </td>
-        <td> {{produit.produit.libelle}}</td>
-        <td> {{produit.quantite}} </td>
-      </tr>
-    </tbody>
-  </table>
+        <!-- bloc adresse de Facturation -->
+        <div class="panel panel-default col-md-6">
+          <div class="panel-heading">
+            <h3 style="text-align:center">Adresse de facturation</h3>
+          </div>
+          <div class="panel-body">
+            <label>N°</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.numero}}</span>
+            <label>rue</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.rue}}</span>
+            <label>Ville</label>
+            <span>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.ville}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!--bloc tableau des produits -->
+      <div class="row col-md-12">
+        <div class="panel panel-default ">
+          <div class="panel-heading">
+            <h3 style="text-align:center">Produits de la commande</h3>
+          </div>
+          <div class="panel-body">
+            <label>Nombre de produits</label>
+            <span>{{dtlCmdCtrl.nbreProduits}}</span>
+            <label>Montant total</label>
+            <span>{{dtlCmdCtrl.montant}}</span>
+
+            <table class="table table-bordered">
+              <caption>Liste des produits</caption>
+              <thead>
+                <tr>
+                  <th>ID</th> <th>Produit</th> <th>Quantite</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="produit in dtlCmdCtrl.selectedCommande.commandeProduits">
+                  <td> {{produit.id}} </td>
+                  <td> {{produit.produit.libelle}}</td>
+                  <td> {{produit.quantite}} </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>
