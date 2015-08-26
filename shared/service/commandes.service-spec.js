@@ -4,6 +4,37 @@ describe("Test du commandeService", function() {
         module("ecDesktopApp.shared");
     });
 
+    it("Récupère une commande en fonction de l'ID", inject(function(commandeService, $httpBackend, API_URL) {
+        var mockCommande = {
+          "id":2,
+          "client":{
+              "id":2,
+              "actif":false,
+              "nom":"GUILLOTEAU",
+              "prenom":"Nathan",
+              "login":"loginDeNathan",
+              "adresses":[{"id":2,"numero":1,"rue":"rue capitaine corhumel","ville":"Nantes"},{"id":2,"numero":1,"rue":"rue capitaine corhumel","ville":"Nantes"}]
+          },
+          "commandeProduits":[{
+            "id":3,
+            "quantite":3,
+            "produit":{"id":1,"libelle":"Truc High-Tech","caracteristique":"Il sert ? rien mais il est cool","categorie":"High-Tech","image":"http://lorempixel.com/200/200/technics","prix":100.0}
+          }],
+          "etat":"Termin"
+      };
+
+      $httpBackend.expectGET(API_URL + '/user/commande/2').respond(200, mockCommande);
+
+      commandeService.getDetailCommande(2)
+      .then(function(result) {
+          expect(result.length).toEqual(mockCommande.length);
+          expect(result.id).toEqual(mockCommande.id);
+          expect(result.client).toEqual(mockCommande.client);
+          expect(result.commandeProduits).toEqual(mockCommande.commandeProduits);
+          expect(result.etat).toEqual(mockCommande.etat);
+      });
+    }));
+
     it("Récupère tous les produits du panier", inject(function(commandeService, $httpBackend, API_URL){
         var mockCommandes = [
             {
