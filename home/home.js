@@ -22,6 +22,3 @@ angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService)
     var self = this;
 
 });
-
-
-

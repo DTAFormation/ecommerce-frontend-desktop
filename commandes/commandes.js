@@ -31,8 +31,6 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 //controlleur pour formulaire liste des commandes
 angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService, ETATS_COMMANDE, ETATS_COMMANDE_LIBELLE, $routeParams,$location) {
 
-  console.log("cmdctrl");
-
     var commandeCtrl = this;
     commandeCtrl.commandes = null;
     commandeCtrl.etatsCommande = ETATS_COMMANDE;
@@ -81,27 +79,33 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
 
   var dtlCmdCtrl = this;
   dtlCmdCtrl.selectedCommande = null ;
+  dtlCmdCtrl.montant = null;
+  dtlCmdCtrl.nbreProduits = null;
+
 
   dtlCmdCtrl.getDetailCommande = function (){
     commandeService.getDetailCommande($routeParams.id)
       .then(function (result){
         dtlCmdCtrl.selectedCommande = result;
-    });
+      })
+      .then(function(){
+      })
+      .then(function(){
+          dtlCmdCtrl.selectedCommande.commandeProduits.forEach(function(objet){
+            dtlCmdCtrl.montant += (objet.produit.prix * objet.quantite);
+            dtlCmdCtrl.nbreProduits += objet.quantite;
+          });
+      });
   };
 
     dtlCmdCtrl.getDetailCommande();
 
-    dtlCmdCtrl.montant = null;
-    dtlCmdCtrl.nbreProduits = null;
 
-    dtlCmdCtrl.calculMontant_nbreProduits = function (){
-      dtlCmdCtrl.selectedCommande.commandeProduits.forEach(function(objet){
-        dtlCmdCtrl.montant += (objet.quantite.produit.prix * objet.quantite);
-        dtlCmdCtrl.nbreProduits += objet.quantite;
-      });
-    };
-
-    dtlCmdCtrl.calculMontant_nbreProduits();
+    // dtlCmdCtrl.calculMontant_nbreProduits = function (){
+    //
+    // };
+    //
+    // // dtlCmdCtrl.calculMontant_nbreProduits();
 });
 
 angular.module('ecDesktopApp.commandes').controller('rechercheCmdCtrl', function(commandeService, $location) {
