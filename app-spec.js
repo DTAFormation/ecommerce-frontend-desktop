@@ -36,7 +36,7 @@ describe('DropdownCtrl', function() {
     ];
 
 		var testStatsFunctions= [
-    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestCustomers"},
     {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb',id:"bestProducts"},
     {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc',id:"bestClientsOnProduct"},
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
