@@ -90,6 +90,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
     ];*/
 
+
     //$scope.statsFunctions= DATA_MENU[3];
     $scope.statsFunctions= DATA_MENU.stats;
     /*{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
@@ -98,3 +99,15 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
     ];*/
 });
+/*
+=======
+    $scope.statsFunctions= [
+
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
+    {affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits'},
+    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
+    ];
+});
+>>>>>>> master
+*/
