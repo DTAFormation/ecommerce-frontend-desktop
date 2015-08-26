@@ -25,7 +25,7 @@ describe("Test du controlleur de commandes", function() {
     it("Envoie sur la page de la commande 1", inject(function($controller, commandeService, $httpBackend, $location, API_URL) {
         var rechCmdCtrl = $controller("rechercheCmdCtrl");
         rechCmdCtrl.idCmd = 1;
-        $httpBackend.expectGET(API_URL + '/user/commande/1').respond(200, mockCmd);
+        $httpBackend.expectGET(API_URL + '/commande/1').respond(200, mockCmd);
         rechCmdCtrl.goToCommande();
         $httpBackend.flush();
         expect($location.path()).toEqual("/commandes/detailsCommande/1");
@@ -34,7 +34,7 @@ describe("Test du controlleur de commandes", function() {
     it("Ne change pas de page en cas de commande inexistante", inject(function($controller, commandeService, $httpBackend, $location, API_URL) {
         var rechCmdCtrl = $controller("rechercheCmdCtrl");
         rechCmdCtrl.idCmd = 2;
-        $httpBackend.expectGET(API_URL + '/user/commande/2').respond(404);
+        $httpBackend.expectGET(API_URL + '/commande/2').respond(404);
         rechCmdCtrl.goToCommande();
         $httpBackend.flush();
         expect(rechCmdCtrl.err).toEqual(true);
