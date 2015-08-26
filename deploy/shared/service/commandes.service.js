@@ -16,9 +16,11 @@ angular.module('ecDesktopApp.shared')
 
         getDetailCommande : function(idCommande){
             return $http.get(apiRestUrl + "/user/commande/"+idCommande)
-              .then(function(result){
-                return result.data;
-              });
+                .then(function(result){
+                    return result.data;
+                }, function(result){
+                    return null;
+                });
         }
 
     };

@@ -1,5 +1,6 @@
 <div class="container">
     <h2>Recherche d'une commande</h2>
+    <div class="alert alert-danger" role="alert" ng-show="rechercheCmdCtrl.err">Commande non existante</div>
     <form ng-submit="rechercheCmdCtrl.goToCommande()">
         <div class="form-group">
             <label>ID de la commande : </label>
