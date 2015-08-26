@@ -39,8 +39,22 @@ describe('E2E: ecDesktopCtrl', function () {
     expect(browser.getLocationAbsUrl()).toEqual('/home');
 
     //Menu Produits
+    var buttonMenu;
+    var buttonSousMenu;
+    Object.keys(DATA_MENU).foreach(function(key) {
+        var menu = DATA_MENU[key];
+        var titre = menu.titre;
+        var links = menu.links;
+        buttonMenu=element(by.id(titre.id+"Button"));
+        buttonMenu.click;
+        links.foreach(function(link){
+            buttonSousMenu=element(by.id((link.id+"Menu")));
+            buttonSousMenu.click();
+            expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
+        });
+    });
 
-    var buttonProducts=element(by.id('adminProduitsButton'));
+   /* var buttonProducts=element(by.id('adminProduitsButton'));
     var currentButton;
 
     var i;
@@ -68,7 +82,7 @@ describe('E2E: ecDesktopCtrl', function () {
         currentButton=element(by.id((DATA_MENU[2][i].id+"Menu")));
         currentButton.click();
         expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[2][i].url.substring(1));
-    }
+    }*/
     /*
     buttonProducts.click();
     var boutonAfficherProduits=element(by.id('afficherProduitsMenu'));
