@@ -2,6 +2,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th>N°</th>
       <th>ID</th>
       <th>Nom</th>
       <th>Prenom</th>
@@ -11,6 +12,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="c in bestCtrl.customers | orderBy: 'total' : true | limitTo : 10">
+      <td>{{$index + 1}}</td>
       <td>{{c.id}}</td>
       <td>{{c.nom}}</td>
       <td>{{c.prenom}}</td>

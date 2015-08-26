@@ -3,70 +3,80 @@
     <h1>Details de la commande</h1>
   </div>
   <!-- bloc d'identification de la commande -->
-  <div class="form-group">
-    <label class="sr-only">Id de la commande</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.id}}</p>
-    <label class="sr-only">Etat de la commande</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.etat}}</p>
+  <div>
+    <label>Id de la commande</label>
+    <p>{{dtlCmdCtrl.selectedCommande.id}}</p>
+    <label >Etat de la commande</label>
+    <p >{{dtlCmdCtrl.selectedCommande.etat}}</p>
   </div>
 
   <!-- bloc d'identification du client -->
-  <div class="form-group">
+  <div>
     <h2>Client<h2>
-    <label class="sr-only">Id Client</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.client.id}}</p>
-    <label class="sr-only">Nom</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.client.nom}}</p>
-    <label class="sr-only">Prenom</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.client.prenom}}</p>
+    <label>Id Client</label>
+    <p>{{dtlCmdCtrl.selectedCommande.client.id}}</p>
+    <label>Nom</label>
+    <p>{{dtlCmdCtrl.selectedCommande.client.nom}}</p>
+    <label>Prenom</label>
+    <p>{{dtlCmdCtrl.selectedCommande.client.prenom}}</p>
   </div>
 
   <!-- bloc d'identification de la facture -->
-  <div class="form-group">
+  <div>
     <h2>Facture<h2>
-    <label class="sr-only">Id Facture</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.id}}</p>
-    <label class="sr-only">mode de paiement</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.modepaiement}}</p>
+    <label>Id Facture</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.id}}</p>
+    <label>mode de paiement</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.modepaiement}}</p>
   </div>
 
   <!-- bloc adresse de Livraison -->
-  <div class="form-group">
+  <div>
     <h2>Adresse de livraison<h2>
-    <label class="sr-only">N°</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.numero}}</p>
-    <label class="sr-only">rue</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.rue}}</p>
-    <label class="sr-only">Ville</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.ville}}</p>
+    <label>N°</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.numero}}</p>
+    <label>rue</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.rue}}</p>
+    <label>Ville</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adresselivraison.ville}}</p>
   </div>
 
   <!-- bloc adresse de Facturation -->
-  <div class="form-group">
+  <div>
     <h2>Adresse de facturation<h2>
-    <label class="sr-only">N°</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.numero}}</p>
-    <label class="sr-only">rue</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.rue}}</p>
-    <label class="sr-only">Ville</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.ville}}</p>
+    <label>N°</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.numero}}</p>
+    <label>rue</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.rue}}</p>
+    <label>Ville</label>
+    <p>{{dtlCmdCtrl.selectedCommande.facture.adressefacturation.ville}}</p>
   </div>
 
   <!--bloc tableau des produits -->
   <div class="form-group">
+    <h3>Produits de la commande</h3>
     <label class="sr-only">Nombre de produits</label>
     <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.nbreProduits}}</p>
     <label class="sr-only">Montant total</label>
     <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.montant}}</p>
   </div>
 
-  <div class="form-group">
-    <label class="sr-only">Nombre de produits</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.nbreProduits}}</p>
-    <label class="sr-only">Montant total</label>
-    <p class="form-control-static">{{dtlCmdCtrl.selectedCommande.montant}}</p>
-  </div>
-
-
+  <table class="table table-bordered">
+    <caption>Liste des produits</caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Produit</th>
+        <th>Quantite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="produit in dtlCmdCtrl.selectedCommande.commandeProduits">
+        <td> {{produit.id}} </td>
+        <td> {{produit.produit.libelle}}</td>
+        <td> {{produit.quantite}} </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
