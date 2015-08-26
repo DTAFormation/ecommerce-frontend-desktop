@@ -37,7 +37,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
 
 
         // .otherwise({ redirectTo: '/home' });
-        .otherwise({redirectTo:'/home'});
+        .otherwise({redirectTo:'/login'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
 
@@ -70,26 +70,30 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService
     };
 });
 // Contrôleur de la navbar
-angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
-    $scope.productsFunctions= [
-    {affichage:'Afficher Produits',url:'#/product/listproduct'},
-    {affichage:'Créer Produit',url:'#/product/createProduct'}
-    ];
 
-    $scope.clientsFunctions= [
-    {affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-    {affichage:'Créer Client',url:'#/customer/createCustomer'}
-    ];
+angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_MENU) {
+    $scope.productsFunctions= DATA_MENU[0];/*[
+    {affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
+    {affichage:'Créer Produit',url:'#/product/createProduct',id:"creerProduits"},
+    {affichage:'Modifier Produit',url:'#/product/listproduct',id:"modifierProduits"},
+    {affichage:'Supprimer Produit',url:'#/product/listproduct',id:"supprProduits"}
+    ];*/
 
-    $scope.ordersFunctions= [
-    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
-    {affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande'}
-    ];
 
-    $scope.statsFunctions= [
-    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
-    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
-    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
-    ];
+    $scope.clientsFunctions= DATA_MENU[1];
+    /*{affichage:'Afficher Clients',url:'#/customer/listcustomer',id:"afficherClients"},
+    {affichage:'Créer Client',url:'#/customer/createCustomer',id:"creerClients"}
+    ];*/
+
+    $scope.ordersFunctions= DATA_MENU[2];
+    /*{affichage:'Afficher Commandes',url:'#/commandes/listCommandes',id:"afficherCommandes"},
+    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
+    ];*/
+
+    $scope.statsFunctions= DATA_MENU[3];
+    /*{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
+    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb',id:"bestProducts"},
+    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc',id:"bestClientsOnProduct"},
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
+    ];*/
 });

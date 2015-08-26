@@ -1,10 +1,85 @@
 describe('E2E: ecDesktopCtrl', function () {
 
+    var DATA_MENU;
+
+    beforeEach(function(done){
+        browser.get(browser.baseUrl);
+        browser.executeAsyncScript(function(thenCallback) {
+            thenCallback(angular.injector(['ecDesktopApp.shared']).get('DATA_MENU'));
+        }).then(function (service) {
+            DATA_MENU = service;
+        }).thenCatch(function(error){
+            console.log("error", error);
+            // TODO : faire échouer le test
+        }).thenFinally(function(){
+            done();
+        });
+    });
+
   it('should work', function () {
-    browser.get(browser.baseUrl);
+
 
     var appName = element(by.css('h1'));
 
     expect(appName.isPresent()).toBeTruthy();
   });
+
+  it('Go through every pages in the menu without problem', function(){
+
+    expect(browser.getLocationAbsUrl()).toEqual('/login');
+
+    var login=element(by.model('loginCtrl.username'));
+    var password=element(by.model('loginCtrl.password'));
+    var connectButton=element(by.id('loginButton'));
+
+    login.sendKeys('loginAdmin');
+    password.sendKeys('pwdAdmin');
+    connectButton.click();
+
+    expect(browser.getLocationAbsUrl()).toEqual('/home');
+
+    //Menu Produits
+
+    var buttonProducts=element(by.id('adminProduitsButton'));
+    var currentButton;
+
+    var i;
+    //get data from angular
+    for(i=0;i<DATA_MENU[0].length;i=i+1){
+        buttonProducts.click();
+        currentButton=element(by.id((DATA_MENU[0][i].id+"Menu")));
+        currentButton.click();
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[0][i].url.substring(1));
+    }
+
+    var buttonClients=element(by.id('adminClientsButton'));
+
+    for(i=0;i<DATA_MENU[1].length;i=i+1){
+        buttonClients.click();
+        currentButton=element(by.id((DATA_MENU[1][i].id+"Menu")));
+        currentButton.click();
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[1][i].url.substring(1));
+    }
+    /*
+    buttonProducts.click();
+    var boutonAfficherProduits=element(by.id('afficherProduitsMenu'));
+    boutonAfficherProduits.click();
+    expect(browser.getLocationAbsUrl()).toEqual('/product/listproduct');
+
+    buttonProducts.click();
+    var boutoncreerProduits=element(by.id('creerProduits'));
+    boutonAfficherProduits.click();
+    expect(browser.getLocationAbsUrl()).toEqual('/product/createProduct');*/
+
+    //Menu Clients
+
+    /*var buttonClient=element(by.id('adminClientsButton'));
+    buttonClient.click();
+
+    var boutonAfficherClients=element(by.id('afficherClients'));
+    boutonAfficherClients.click();
+    expect(browser.getLocationAbsUrl()).toEqual('/customer/listcustomer');*/
+
+  });
 });
+

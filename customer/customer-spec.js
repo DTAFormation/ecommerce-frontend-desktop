@@ -72,7 +72,7 @@ describe('customerTest', function() { //test du customer.js
 		    login: "Hammond",
 		    password: "hogan",
 		    adresses: [{"number":12, "street":"rue Jean-Jean", "city":"Tomtom"}]
-	};
+		};
 
 		var mockPromise =  {
 			then : function(fn) {
