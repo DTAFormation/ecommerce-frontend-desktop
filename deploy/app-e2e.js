@@ -45,7 +45,7 @@ describe('E2E: ecDesktopCtrl', function () {
 
     var i;
     //get data from angular
-    for(i=0;i<DATA_MENU[0].length;i=i+1){
+    for(i=0;i<DATA_MENU[0].length;i++){
         buttonProducts.click();
         currentButton=element(by.id((DATA_MENU[0][i].id+"Menu")));
         currentButton.click();
@@ -54,11 +54,20 @@ describe('E2E: ecDesktopCtrl', function () {
 
     var buttonClients=element(by.id('adminClientsButton'));
 
-    for(i=0;i<DATA_MENU[1].length;i=i+1){
+    for(i=0;i<DATA_MENU[1].length;i++){
         buttonClients.click();
         currentButton=element(by.id((DATA_MENU[1][i].id+"Menu")));
         currentButton.click();
         expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[1][i].url.substring(1));
+    }
+
+    var buttonCommande=element(by.id('adminCommandesButton'));
+
+    for(i=0;i<DATA_MENU[2].length;i++){
+        buttonCommande.click();
+        currentButton=element(by.id((DATA_MENU[2][i].id+"Menu")));
+        currentButton.click();
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[2][i].url.substring(1));
     }
     /*
     buttonProducts.click();
