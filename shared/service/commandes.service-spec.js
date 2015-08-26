@@ -35,7 +35,7 @@ describe("Test du commandeService", function() {
       });
     }));
 
-    it("Récupère tous les produits du panier", inject(function(commandeService, $httpBackend, API_URL){
+    it("Récupère tous les commandes", inject(function(commandeService, $httpBackend, API_URL){
         var mockCommandes = [
             {
               "id":2,
