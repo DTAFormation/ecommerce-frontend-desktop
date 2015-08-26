@@ -54,7 +54,7 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
         result.forEach(function(commande){
 
             if(parseInt(commande.date.split('/')[2]) === year){
-                //for(var i=0; i<mois.length;i++){
+                //for(var i=0; i<mois.length;i++){}
                 mois.forEach(function(mois){
                     if(commande.date.split('/')[1] === mois){
                         prixTotal[parseInt(mois)-1] += commande.prix_total;
@@ -71,6 +71,43 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
     ventesCtrl.Ventes_data = [quantites];
     ventesCtrl.CA_data = [prixTotal];
     });
+
+    ventesCtrl.products = [];
+
+    function fetchProducts (){
+        ventesCtrl.products = [];
+        ventesService.getCommandes().then(function (result){
+            result.forEach(function (commande){
+                commande.panier.forEach(function(panierProduct){
+                    var self = this;
+                    self.newProduct = true;
+                    ventesCtrl.products.forEach(function(product){
+                        if(panierProduct.id === product.id){
+                            self.newProduct = false;
+                            product.total += panierProduct.quantite;
+                        }
+                    });
+                    if(self.newProduct){
+                        ventesCtrl.products.push({id:panierProduct.id, libelle:panierProduct.libelle, prix:panierProduct.prix, total:panierProduct.quantite});
+                    }
+                }); 
+                          
+            });
+
+            ventesCtrl.products_total = ventesCtrl.products.map(function(produit) {
+                return produit.total;
+            });
+
+            ventesCtrl.products_libelle = ventesCtrl.products.map(function(produit) {
+                return produit.libelle;
+            });
+        });
+    }
+
+    fetchProducts();
+
+  ventesCtrl.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+  ventesCtrl.data = [300, 500, 100, 40, 120];
 
 });
 
