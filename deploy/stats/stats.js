@@ -1,5 +1,6 @@
 angular.module('ecDesktopApp.stats', [
     'ngRoute',
+    'ecDesktopApp.shared',
     'ui.bootstrap',
     'chart.js'
     ]);
@@ -14,7 +15,7 @@ $routeProvider
 	})
     .when('/stats/bestCustomers', {
         templateUrl : 'stats/template/bestCustomers.tpl.html',
-        controller : 'BestCustomerController',
+        controller : 'BestCustomersController',
         controllerAs : 'bestCtrl'
     })
     .when('/stats/topProduits', { 
@@ -166,32 +167,32 @@ angular.module('ecDesktopApp.stats').controller('BestCustomersController', funct
 
 angular.module('ecDesktopApp.stats').controller('BestCustomersByProductController', function(commandeService, $routeParams){
 
-    var bestCtrl = this;
+	var bestByProductCtrl = this;
 
-    bestCtrl.customers = [];
+	bestByProductCtrl.customers = [];
 
-    bestCtrl.fetchCustomers = function (){
-        bestCtrl.customers = [];
-        commandeService.getCommandes().then(function (result){
-            result.forEach(function (commande){
-                commande.commandeProduits.forEach(function (commandeProduit){
-                    if(commandeProduit.produit.id === parseInt($routeParams['idProduct'])){
-                        var self = this;
-                        self.newClient = true;
-                        bestCtrl.customers.forEach(function(customer){
-                            if(commande.client.id === customer.id){
-                                self.newClient = false;
-                                customer.total += commandeProduit.quantite;
-                            }
-                        });
-                        if(self.newClient){
-                            bestCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:commandeProduit.quantite});
-                        }
-                    }
-                });
-            });
-        });
-    };
+	bestByProductCtrl.fetchCustomers = function (){
+		bestByProductCtrl.customers = [];
+		commandeService.getCommandes().then(function (result){
+			result.forEach(function (commande){
+				commande.commandeProduits.forEach(function (commandeProduit){
+					if(commandeProduit.produit.id === parseInt($routeParams['idProduct'])){
+						var self = this;
+						self.newClient = true;
+						bestByProductCtrl.customers.forEach(function(customer){
+							if(commande.client.id === customer.id){
+								self.newClient = false;
+								customer.total += commandeProduit.quantite;
+							}
+						});
+						if(self.newClient){
+							bestByProductCtrl.customers.push({id:commande.client.id, nom:commande.client.nom, prenom:commande.client.prenom, total:commandeProduit.quantite});
+						}
+					}
+				});
+			});
+		});
+	};
 
-    bestCtrl.fetchCustomers();
+	bestByProductCtrl.fetchCustomers();
 });
