@@ -97,12 +97,12 @@
            </ul>
           </div>
           <div class="btn-group" dropdown>
-           <button type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
+           <button id="statButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Statistiques
            <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
             <li ng-repeat="choice in statsFunctions">
-            <a href='{{choice.url}}'>{{choice.affichage}}</a>
+            <a id="{{choice.id}}" href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
           </div>
