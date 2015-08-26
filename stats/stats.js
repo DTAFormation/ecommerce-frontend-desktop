@@ -1,6 +1,7 @@
 angular.module('ecDesktopApp.stats', [
     'ngRoute',
     'ui.bootstrap',
+    'ecDesktopApp',
     'chart.js'
     ]);
 
@@ -14,7 +15,7 @@ $routeProvider
 	})
     .when('/stats/bestCustomers', {
         templateUrl : 'stats/template/bestCustomers.tpl.html',
-        controller : 'BestCustomerController',
+        controller : 'BestCustomersController',
         controllerAs : 'bestCtrl'
     })
     .when('/stats/topProduits', { 
