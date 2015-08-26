@@ -73,9 +73,7 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope) {
     $scope.productsFunctions= [
     {affichage:'Afficher Produits',url:'#/product/listproduct'},
-    {affichage:'Créer Produit',url:'#/product/createProduct'},
-    {affichage:'Modifier Produit',url:'#/product/listproduct'},
-    {affichage:'Supprimer Produit',url:'#/product/listproduct'}
+    {affichage:'Créer Produit',url:'#/product/createProduct'}
     ];
 
     $scope.clientsFunctions= [

@@ -22,35 +22,30 @@ describe('DropdownCtrl', function() {
 
 		var testProductsFunctions = [
 		{affichage:'Afficher Produits',url:'#/product/listproduct'},
-		{affichage:'Créer Produit',url:'#/product/createProduct'},
-		{affichage:'Modifier Produit',url:'#/product/listproduct'},
-		{affichage:'Supprimer Produit',url:'#/product/listproduct'}
+		{affichage:'Créer Produit',url:'#/product/createProduct'}
 		];
 
 		var testClientsFunctions = [
 		{affichage:'Afficher Clients',url:'#/customer/listcustomer'},
-		{affichage:'Créer Client',url:'#/customer/createCustomer'},
-		{affichage:'Modifier Client',url:'#/customer/listcustomer'},
-		{affichage:'Supprimer Client',url:'#/customer/listcustomer'}
+		{affichage:'Créer Client',url:'#/customer/createCustomer'}
 		];
 
 		var testOrdersFunctions= [
-		{affichage:'Afficher Commandes',url:'#/aaaaa'},
-		{affichage:'Annuler Commande',url:'#/bbbbb'},
-		{affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
-		];
+    {affichage:'Afficher Commandes',url:'#/commandes/listCommandes'},
+    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc'}
+    ];
 
 		var testStatsFunctions= [
-		{affichage:'Afficher les meilleurs clients',url:'#/aaaaa'},
-		{affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
-		{affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-		{affichage:'Histogramme des ventes mensuelles cette année',url:'#/ddddd'}
-		];
+    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
+    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb'},
+    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
+    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
+    ];
 
 		expect(angular.equals(scope.productsFunctions,testProductsFunctions)).toBe(true);
-		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(false);
-		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(false);
-		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(false);
+		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(true);
+		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(true);
+		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(true);
 
 	}));
 });
