@@ -78,7 +78,6 @@ describe("Test du commandeService", function() {
         commandeService.getCommandes().then(function (result){
             expect(result.length).toEqual(mockCommandes.length);
             expect(result[0].id).toEqual(mockCommandes[0].id);
-            console.log(mockCommandes[0].client);
             expect(result[0].client).toEqual(mockCommandes[0].client);
             expect(result[0].commandeProduits).toEqual(mockCommandes[0].commandeProduits);
             expect(result[0].etat).toEqual(mockCommandes[0].etat);
