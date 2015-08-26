@@ -10,7 +10,7 @@ angular.module('ecDesktopApp.commandes', [
 angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 
     $routeProvider
-    .when('/commandes/listCommandes', {
+    .when('/commandes/listCommandes/', {
         templateUrl : "commandes/template/listCommandes.html",
         controller : "commandeCtrl",
         controllerAs : "commandeCtrl"
@@ -34,12 +34,17 @@ angular.module('ecDesktopApp.commandes').config(function($routeProvider) {
 
 
 //controlleur pour formulaire liste des commandes
-angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService,$routeParams,$location) {
+angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (commandeService, ETATS_COMMANDE, ETATS_COMMANDE_LIBELLE, $routeParams,$location) {
 
   console.log("cmdctrl");
 
     var commandeCtrl = this;
     commandeCtrl.commandes = null;
+    commandeCtrl.etatsCommande = ETATS_COMMANDE;
+    commandeCtrl.etatsCommandeLibelle = ETATS_COMMANDE_LIBELLE;
+    commandeCtrl.etat="EC";
+    commandeCtrl.etatLibelle="En cours";
+
 
     commandeCtrl.getCommandes = function() {
         commandeService.getCommandes()
@@ -47,6 +52,27 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
             commandeCtrl.commandes = commandes;
         });
     };
+
+    commandeCtrl.changerEtat = function(etat) {
+      commandeService.getCommandes()
+      .then(function(commandes) {
+        commandeCtrl.etat=etat;
+        switch (etat) {
+          case "En cours":
+            commandeCtrl.etat="EC";
+            commandeCtrl.etatLibelle="En cours";
+            break;
+          case "Terminée":
+            commandeCtrl.etat="TR";
+            commandeCtrl.etatLibelle="Terminée";
+            break;
+          case "Annulée":
+            commandeCtrl.etat="AN";
+            commandeCtrl.etatLibelle="Annulée";
+            break;
+        }
+      });
+  };
 
     commandeCtrl.getCommandes();
 
