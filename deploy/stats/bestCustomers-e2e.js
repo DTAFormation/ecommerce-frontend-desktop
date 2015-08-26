@@ -18,7 +18,7 @@ describe('Test protractor : affichage des meilleurs clients', function() {
     // qui lui doit envoyer à la page correspondante
     var statButton = element(by.id('statButton'));
     statButton.click();
-    var bestCustomersNavButton=element(by.id('bestCustomers'));
+    var bestCustomersNavButton=element(by.id('bestCustomersMenu'));
     bestCustomersNavButton.click();
     expect(browser.getLocationAbsUrl()).toEqual('/stats/bestCustomers');
 
