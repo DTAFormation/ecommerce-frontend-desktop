@@ -69,6 +69,7 @@ angular.module('ecDesktopApp.customer').controller('customerCtrl', function (cus
     var customerCtrl = this;
     customerCtrl.customers = null;
 
+
     customerCtrl.displayCustomers = function() {
         return customerService.getCustomers()
         .then(function(customer) {
@@ -112,7 +113,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         var nbAdresses=updatectrl.customer.adresses.length;
 
         for(var i=0;i<nbAdresses;i++){
-            
+
             if( updatectrl.customer.adresses[i].numero===null ||
                 updatectrl.customer.adresses[i].rue==="" ||
                 updatectrl.customer.adresses[i].ville===""){
@@ -130,7 +131,7 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
         if(neuAdresses!==null){
             customerService.addAdressesCustomer(updatectrl.customer.id,neuAdresses)
             .then(function(succes){
-                
+
             },function(fail){
 
            });
@@ -144,14 +145,14 @@ angular.module('ecDesktopApp.customer').controller("updateCustomereController", 
     };
 
     updatectrl.addAdresse = function(){
-        
+
         var adresse={
             'numero':'',
             'rue':'',
             'ville':''
         };
         updatectrl.customer.adresses.push(adresse);
-        
+
     };
 });
 
