@@ -6,13 +6,13 @@
 
 	<div class="row histogramme">
 		<div  ng-show="isBar_CAOpen" class="col-md-6">
-			<canvas  id="bar_CA" class="chart chart-bar " data="ventesCtrl.CA_data"
-			labels="ventesCtrl.labels" legend="true" series="ventesCtrl.CA_series" colours="ventesCtrl.CA_colors"></canvas>
+			<canvas  id="bar_CA" class="chart chart-bar " data="histoCtrl.CA_data"
+			labels="histoCtrl.labels" legend="true" series="histoCtrl.CA_series" colours="histoCtrl.CA_colors"></canvas>
 		</div>
 
 		<div ng-show="isBar_VentesOpen" class="col-md-6">
-			<canvas id="bar_Ventes" class="chart chart-bar" data="ventesCtrl.Ventes_data"
-			labels="ventesCtrl.labels" legend="true" series="ventesCtrl.Ventes_series" colours="ventesCtrl.Ventes_colors"></canvas>
+			<canvas id="bar_Ventes" class="chart chart-bar" data="histoCtrl.Ventes_data"
+			labels="histoCtrl.labels" legend="true" series="histoCtrl.Ventes_series" colours="histoCtrl.Ventes_colors"></canvas>
 		</div>
 
 	</div>
