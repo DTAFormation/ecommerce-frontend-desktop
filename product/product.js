@@ -47,11 +47,36 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
          self.products = product;
      });
 
+     self.displayProduct = function() {
+         return productService.getProducts()
+         .then(function(product) {
+             self.product = product;
+         });
+     };
+
     //lancer le traitement de supprimer produit.
     self.delProduct = function(id){
-        productService.deleteProduct(id);
-        setTimeout(function(){window.location.reload();},100); // recharge la page ( surement mieux a faire avec angular ??)
-    };
+        productService.deleteProduct(id)
+        .then(function(succes){
+            productService.err=false;
+            return self.displayProduct();
+        }, function(error){
+            self.err=true;
+            setTimeout(function(){window.location.reload();},2000);
+
+        });
+
+      };
+
+
+
+
+
+
+
+
+
+
 
     //code pour la modale
     self.animationsEnabled = true;

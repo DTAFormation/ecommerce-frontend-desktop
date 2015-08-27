@@ -12,18 +12,21 @@
       <th>Image</th>
       <th>Libelle</th>
       <th>Catégorie</th>
+      <th>Actif</th>
       <th>Prix</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="product in productCtrl.products | filter:searchProduct">
-      <td>{{product.id}}</td>
+      <td ng-if="product.actif===false" bgcolor="#F28D8B"> {{product.id}}</td>
+      <td ng-if="product.actif===true" bgcolor="#94E4A3"> {{product.id}}</td>
       <td><img data-ng-src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"/></td>
       <td>{{product.libelle}}</td>
 
 
       <td>{{product.categorie}}</td>
+      <td>{{product.actif}}</td>
       <td>{{product.prix}}<span class="glyphicon glyphicon-euro symbolEuro" aria-hidden="true"></td>
 
       <td>
@@ -34,18 +37,18 @@
 
         <script type="text/ng-template" id="modalContent.html">
             <div class="modal-header">
-                <h3 class="modal-title">Détails du produit {{product.id}}</h3>
+                <h3 class="modal-title"><b>{{product.libelle}}</b></h3>
             </div>
             <div class="modal-body">
                 <table>
                   <tr>
+                  <td>
+                    <b>Catégorie :</b> {{product.categorie}} <br>
+                    <b>Détails :</b> {{product.caracteristique}} <br>
+                    <b>Prix : {{product.prix}} €</b>
+                  </td>
                     <td><img data-ng-src="{{product.image}}" alt="le produit {{product.id}}" height="200" width="200"/> </td>
-                    <td>
-                      <b>{{product.libelle}}</b><br>---<br>
-                      <b>Catégorie :</b> {{product.categorie}} <br>
-                      <b>Détails :</b> {{product.caracteristique}} <br>
-                      <b>Prix : {{product.prix}} €</b>
-                    </td>
+
                   </tr>
                 </table>
 
