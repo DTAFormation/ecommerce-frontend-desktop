@@ -33,9 +33,11 @@ $routeProvider
 // Contrôleur principal du module 'product'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('ecDesktopApp.product').controller('productCtrl', function(productService, $modal, $scope, $location) {
-    var self = this;
+    var productCtrl = this;
+    productCtrl.customers = null;
+
     //afficher la liste des produit récupéré par "getProduct".
-    productService.getProducts().then(
+    /*productService.getProducts().then(
         function(response) {
          return response.data;
      }, function(response) {
@@ -43,34 +45,50 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
     })
     .then(
         function(product) {
+         productCtrl.products = product;
+     });*/
 
-         self.products = product;
-     });
+
+     productCtrl.displayProduct = function() {
+         return productService.getProducts()
+         .then(function(product) {
+             productCtrl.products = product.data;
+         });
+     };
 
     //lancer le traitement de supprimer produit.
-    self.delProduct = function(id){
-        productService.deleteProduct(id);
-        setTimeout(function(){window.location.reload();},100); // recharge la page ( surement mieux a faire avec angular ??)
-    };
+    productCtrl.delProduct = function(id){
+        productService.deleteProduct(id)
+        .then(function(succes){
+            productCtrl.err=false;
+            return productCtrl.displayProduct();
+        }, function(error){
+            productCtrl.err=true;
+            setTimeout(function(){window.location.reload();},2000);
+        });
+      };
+
+       productCtrl.displayProduct();
+
 
     //code pour la modale
-    self.animationsEnabled = true;
-    self.open = function (product) {
-        self.product = product;
+    productCtrl.animationsEnabled = true;
+    productCtrl.open = function (product) {
+        productCtrl.product = product;
 
         var modalInstance = $modal.open({
             templateUrl: 'modalContent.html',
             controller: 'ModalInstanceCtrl',
             resolve:{
                     product: function(){
-                        return self.product;
+                        return productCtrl.product;
                     }
                 }
             });
     };
     //fin du code pour la modale
 
-    self.showBestCustomers = function (idProduct){
+    productCtrl.showBestCustomers = function (idProduct){
         $location.path('/stats/bestCustomersByProduct/' + idProduct);
     };
 
@@ -85,16 +103,16 @@ angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
 //controlleur pour formulaire de creation des produits
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService, $location) {
 
-	var self = this;
-	self.addProd = function(product){
+	var productCtrl = this;
+	productCtrl.addProd = function(product){
 		productService.addProduct(product)
 		.then(function(response){ //en cas de succes
 
-			self.err=false;
+			productCtrl.err=false;
 			$location.path("/product/listproduct");
 		},function(error){ //en cas d'erreur
 
-			self.err=true;
+			productCtrl.err=true;
 		});
 	};
 });
