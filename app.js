@@ -32,7 +32,7 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         controllerAs : "homeCtrl"
     })
     // .otherwise({ redirectTo: '/home' });
-    .otherwise({redirectTo:'/login'});
+    .otherwise({redirectTo:'/home'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
 
@@ -42,6 +42,13 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
             //mettre un niveau d'accès de base à Basic pour un utilisateur arrivant, et lui ajouter une autorisation global si connecté
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
         }
+
+        $rootScope.$on( "$routeChangeStart", function(event, next, current)  {
+            if ( !$rootScope.globals.currentUser ) {
+                $location.path('/login');
+            }
+        });
+
         //à chaque changement, verification si l'utilisateur est logger, si il ne l'est pas, renvoie vers la page de login
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // renvoie vers la page login si non logger
