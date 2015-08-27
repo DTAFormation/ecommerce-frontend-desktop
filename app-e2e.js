@@ -61,7 +61,6 @@ describe('E2E: ecDesktopCtrl', function () {
 
     });
 
-
     it('Menu accueil', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
