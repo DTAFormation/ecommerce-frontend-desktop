@@ -14,7 +14,7 @@ describe('E2E: Details customerCtrl', function () {
           expect(browser.getLocationAbsUrl()).toEqual('/home');
 
           /* Chemin pour afficher les clients */
-          var afficherClient=element(by.id('afficherClient'));
+          var afficherClient=element(by.id('afficherClientsAccueil'));
           afficherClient.click();
 
           /* Chemin pour afficher les clients */

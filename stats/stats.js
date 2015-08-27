@@ -2,6 +2,7 @@ angular.module('ecDesktopApp.stats', [
     'ngRoute',
     'ecDesktopApp.shared',
     'ui.bootstrap',
+    'ecDesktopApp',
     'chart.js'
     ]);
 
@@ -31,7 +32,7 @@ $routeProvider
 });
 
 
-angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesService){
+angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesService,$filter){
     var ventesCtrl = this;
 
     ventesCtrl.labels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
@@ -50,21 +51,20 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
     var mois = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 
-
     ventesService.getCommandes().then(function(result){
         result.forEach(function(commande){
 
-            if(parseInt(commande.date.split('/')[2]) === year){
-                //for(var i=0; i<mois.length;i++){}
+            commande.facture.date = $filter('date')(commande.facture.date, "dd/MM/yyyy");
+
+            if(parseInt((commande.facture.date).split('/')[2]) === year){
                 mois.forEach(function(mois){
-                    if(commande.date.split('/')[1] === mois){
-                        prixTotal[parseInt(mois)-1] += commande.prix_total;
+                    if(commande.facture.date.split('/')[1]=== mois){
+                        commande.commandeProduits.forEach(function(objet){
+                       prixTotal[parseInt(mois)-1] += Math.round(objet.produit.prix * objet.quantite);
+                       quantites[parseInt(mois)-1] += objet.quantite;
 
-                        commande.panier.forEach(function(produit){
-                            quantites[parseInt(mois)-1] += produit.quantite;
-                        });
+                     });
                     }
-
                 });
             }
         });
@@ -79,17 +79,17 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
         ventesCtrl.products = [];
         ventesService.getCommandes().then(function (result){
             result.forEach(function (commande){
-                commande.panier.forEach(function(panierProduct){
+                commande.commandeProduits.forEach(function(panierProduct){
                     var self = this;
                     self.newProduct = true;
                     ventesCtrl.products.forEach(function(product){
-                        if(panierProduct.id === product.id){
+                        if(panierProduct.produit.id === product.id){
                             self.newProduct = false;
                             product.total += panierProduct.quantite;
                         }
                     });
                     if(self.newProduct){
-                        ventesCtrl.products.push({id:panierProduct.id, libelle:panierProduct.libelle, prix:panierProduct.prix, total:panierProduct.quantite});
+                        ventesCtrl.products.push({id:panierProduct.produit.id, libelle:panierProduct.produit.libelle, prix:panierProduct.produit.prix, total:panierProduct.quantite});
                     }
                 }); 
                           

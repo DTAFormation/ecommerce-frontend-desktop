@@ -17,8 +17,14 @@ angular.module('ecDesktopApp.home').config(function($routeProvider) {
 });
 
 // Contrôleur principal du module 'home'
-angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService) {
+angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService, DATA_MENU) {
 
-    var self = this;
+    var homeCtrl = this;
+
+    homeCtrl.menuItems = [];
+
+    Object.keys(DATA_MENU).forEach(function(sousmenu){
+        homeCtrl.menuItems.push(Object.getOwnPropertyDescriptor(DATA_MENU, sousmenu).value);
+    });
 
 });

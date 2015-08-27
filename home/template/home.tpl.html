@@ -1,12 +1,11 @@
 <h2>Administration</h2>
 
-<div class="list-group">
-	<a href="#/product/listproduct" class="list-group-item">
-		<h4 class="list-group-item-heading">Administrer Produits:</h4>
+<div id="menuAccueil" class="list-group">
+	<div class="list-group-item" ng-repeat="menuItem in homeCtrl.menuItems">
+		<h4 class="list-group-item-heading">{{menuItem.titre.libelle}}</h4>
 		<p class="list-group-item-text">
 			<ul>
-				<li>Afficher Produits</li>
-				<li>Créer Produit</li>
+				<li ng-repeat="item in menuItem.links"><a href="{{item.url}}" id="{{item.id+'Accueil'}}">{{item.affichage}}</a></li>
 			</ul>
 		</p>
 	</a>

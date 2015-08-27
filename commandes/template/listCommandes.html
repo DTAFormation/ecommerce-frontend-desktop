@@ -10,7 +10,7 @@
       <th>ID</th>
       <th>Client</th>
       <th>Etat</th>
-      <th>Details</th>
+      <th></th>
 
     </tr>
   </thead>
@@ -20,8 +20,13 @@
       <td> {{c.client.id}} {{c.client.nom}} {{c.client.prenom}} </td>
       <td> {{commandeCtrl.etatLibelle}}</td>
       <td>
-        <a ng-click="commandeCtrl.goDetailsProduit(c.client.id,c.id)">
-          <button id="afficherLesDetails" class="btn btn-default pull-left"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></a>
+
+          <a ng-if="c.etat=='EC'" ng-click="commandeCtrl.annulerCommande(c)">
+            <button id="annulerCommande" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          </a>
+          <a ng-click="commandeCtrl.goDetailsProduit(c.client.id,c.id)">
+            <button id="afficherLesDetails" class="btn btn-default pull-right"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+          </a>
       </td>
      </tr>
 

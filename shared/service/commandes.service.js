@@ -7,6 +7,13 @@ angular.module('ecDesktopApp.shared')
 
     return {
 
+        updateCommande : function(commande) {
+            return $http.put(apiRestUrl + "/commande", commande)
+            .then(function(result) {
+                return result.data;
+            });
+        },
+
         getCommandes : function(){
             return $http.get(apiRestUrl + "/commande")
             .then(function (result){
@@ -16,11 +23,11 @@ angular.module('ecDesktopApp.shared')
 
         getDetailCommande : function(idCommande){
             return $http.get(apiRestUrl + "/commande/"+idCommande)
-                .then(function(result){
-                    return result.data;
-                }, function(result){
-                    return null;
-                });
+            .then(function(result){
+                return result.data;
+            }, function(result){
+                return null;
+            });
         }
 
     };
