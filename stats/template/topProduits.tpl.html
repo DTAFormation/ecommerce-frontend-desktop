@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6">
       <h3>Répartition des ventes</h3>
-      <canvas id="pie" class="chart chart-pie" data="ventesCtrl.products_total" labels="ventesCtrl.products_libelle" legend="true"></canvas> 
+      <canvas id="pie" class="chart chart-pie" data="topProduitCtrl.products_total" labels="topProduitCtrl.products_libelle" legend="true"></canvas> 
     </div>
     <div class="col-md-6">
         <h3>Top 10 Produits</h3>
@@ -13,18 +13,16 @@
             <th>ID</th>
             <th>Libelle</th>
             <th>Prix (€)</th>
-            <th>Total vendu sur le site</th>
-            
+            <th>Total vendu sur le site</th>            
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="p in ventesCtrl.products | orderBy: 'total' : true | limitTo : 10">
+          <tr ng-repeat="p in topProduitCtrl.products | orderBy: 'total' : true | limitTo : 10">
             <td>{{$index + 1}}</td>
             <td>{{p.id}}</td>
             <td>{{p.libelle}}</td>
             <td>{{p.prix}}</td>
-            <td>{{p.total}} </td>
-            
+            <td>{{p.total}} </td>            
           </tr>
         </tbody>
       </table>
