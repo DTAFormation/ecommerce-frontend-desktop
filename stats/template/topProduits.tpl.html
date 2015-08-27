@@ -9,15 +9,17 @@
         <table class="table table-bordered">
         <thead>
           <tr>
+            <th>Rang</th>
             <th>ID</th>
             <th>Libelle</th>
-            <th>Prix</th>
+            <th>Prix (€)</th>
             <th>Total vendu sur le site</th>
             
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="p in ventesCtrl.products | orderBy: 'total' : true | limitTo : 10">
+            <td>{{$index + 1}}</td>
             <td>{{p.id}}</td>
             <td>{{p.libelle}}</td>
             <td>{{p.prix}}</td>
