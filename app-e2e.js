@@ -10,7 +10,6 @@ describe('E2E: ecDesktopCtrl', function () {
             DATA_MENU = service;
         }).thenCatch(function(error){
             console.log("error", error);
-            console.log("HO MON DIEU");
             // TODO : faire échouer le test
         }).thenFinally(function(){
             done();
@@ -40,7 +39,7 @@ describe('E2E: ecDesktopCtrl', function () {
     expect(browser.getLocationAbsUrl()).toEqual('/home');
 
     //Menu Produits
-    /*var buttonMenu;
+    var buttonMenu;
     var buttonSousMenu;
     Object.keys(DATA_MENU).foreach(function(key) {
         var menu = DATA_MENU[key];
@@ -53,14 +52,14 @@ describe('E2E: ecDesktopCtrl', function () {
             buttonSousMenu.click();
             expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
         });
-    });*/
+    });
 
     var buttonProducts=element(by.id('adminProduitsButton'));
     var currentButton;
 
     var i;
     //get data from angular
-    for(i=0;i<DATA_MENU.produits.links.length;i++){
+    /*for(i=0;i<DATA_MENU.produits.links.length;i++){
         buttonProducts.click();
         currentButton=element(by.id((DATA_MENU.produits.links[i].id+"Menu")));
         currentButton.click();
@@ -84,7 +83,7 @@ describe('E2E: ecDesktopCtrl', function () {
         currentButton.click();
         expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.commandes.links[i].url.substring(1));
     }
-    /*
+    
     buttonProducts.click();
     var boutonAfficherProduits=element(by.id('afficherProduitsMenu'));
     boutonAfficherProduits.click();
