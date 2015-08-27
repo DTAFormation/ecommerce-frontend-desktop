@@ -15,7 +15,11 @@ describe('E2E: DetailsCommande', function () {
 
 
           /* Chemin pour afficher les commandes */
-          var afficherCommande=element(by.id('afficherCommande'));
+          var button=element(by.id('adminCommandesButton'));
+          button.click();
+
+
+          var afficherCommande=element(by.id('afficherCommandesMenu'));
           afficherCommande.click();
           expect(browser.getLocationAbsUrl()).toEqual('/commandes/listCommandes');
 
