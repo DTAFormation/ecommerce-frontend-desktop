@@ -1,11 +1,11 @@
-<div class="panel panel-default">
+<div id='mainPanel' class="panel panel-default">
   <div class="panel-heading">
     <h2 style="text-align:center">Details de la commande</h1>
   </div>
 
   <div class="panel-body">
       <!-- bloc d'identification de la commande -->
-      <div class="row col-md-12">
+      <div id='dtlCmdPanel' class="row col-md-12">
         <div class="col-md-6">
           <label class="col-md-4">Id de la commande</label>
           <span class="col-md-2">{{dtlCmdCtrl.selectedCommande.id}}</span>
@@ -20,7 +20,7 @@
 
       <div class="row col-md-12 ">
         <!-- bloc d'identification du client -->
-        <div class="panel panel-default col-md-6">
+        <div id='clientIDPanel' class="panel panel-default col-md-6">
           <div class="panel-heading">
             <h3 style="text-align:center">Client</h3>
           </div>
@@ -41,7 +41,7 @@
         </div>
 
         <!-- bloc d'identification de la facture -->
-        <div class="panel panel-default col-md-6">
+        <div id='facturePanel' class="panel panel-default col-md-6">
           <div class="panel-heading">
             <h3 style="text-align:center">Facture</h3>
           </div>
@@ -64,7 +64,7 @@
 
       <div class="row col-md-12">
         <!-- bloc adresse de Livraison -->
-        <div class="panel panel-default col-md-6">
+        <div id='adresseLivraisonPanel' class="panel panel-default col-md-6">
           <div class="panel-heading">
             <h3 style="text-align:center">Adresse de livraison</h3>
           </div>
@@ -85,7 +85,7 @@
         </div>
 
         <!-- bloc adresse de Facturation -->
-        <div class="panel panel-default col-md-6">
+        <div id='adresseFacturationPanel' class="panel panel-default col-md-6">
           <div class="panel-heading">
             <h3 style="text-align:center">Adresse de facturation</h3>
           </div>
@@ -112,13 +112,13 @@
           <div class="panel-heading">
             <h3 style="text-align:center">Produits de la commande</h3>
           </div>
-          <div class="panel-body">
+          <div id='ProduitsPanel' class="panel-body">
             <label class="col-md-2">Nombre de produits</label>
             <span class="col-md-2">{{dtlCmdCtrl.nbreProduits}}</span>
             <label class="col-md-2 col-md-offset-4">Montant total</label>
             <span class="col-md-2">{{dtlCmdCtrl.montant}}</span>
 
-            <table class="table table-bordered">
+            <table id="ProduitsCmdTable"class="table table-bordered">
               <thead>
                 <tr>
                   <th style="text-align:center">ID</th>

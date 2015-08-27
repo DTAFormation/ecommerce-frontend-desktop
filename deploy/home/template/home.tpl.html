@@ -8,5 +8,40 @@
 				<li ng-repeat="item in menuItem.links"><a href="{{item.url}}" id="{{item.id+'Accueil'}}">{{item.affichage}}</a></li>
 			</ul>
 		</p>
-	</div>
+	</a>
+	<a href="#/customer/listcustomer" class="list-group-item">
+		<h4 class="list-group-item-heading">Administrer Clients:</h4>
+		<p class="list-group-item-text">
+			<ul>
+				<li id="afficherClient">Afficher Clients</li>
+				<li>Créer Client</li>
+			</ul>
+		</p>
+	</a>
+	<a href="#/commandes/listCommandes" class="list-group-item">
+		<h4 class="list-group-item-heading">Administrer Commandes:</h4>
+		<p class="list-group-item-text">
+			<ul>
+				<li id="afficherCommande">Afficher Commandes</li>
+				<li>Rehercher Commande par ID,Client,...</li>
+			</ul>
+		</p>
+	</a>
+	<a href="#/stats" class="list-group-item">
+		<h4 class="list-group-item-heading">Statistiques:</h4>
+		<p class="list-group-item-text">
+			<ul>
+				<li>Afficher les meilleurs clients</li>
+				<li>Afficher les produits les plus vendus</li>
+				<li>Afficher les clients ayant acheté le plus un produit donné</li>
+				<li>Histogramme des ventes mensuelles cette année</li>
+			</ul>
+		</p>
+	</a>
+
+  <!--<a href="leCheminVersLaRessource" class="list-group-item active">
+    <h4 class="list-group-item-heading">Nom de la page de gestion</h4>
+    <p class="list-group-item-text">Une description des fonctionnalités</p>
+  </a>
+-->
 </div>
