@@ -39,7 +39,15 @@ angular.module('ecDesktopApp.commandes').controller('commandeCtrl', function (co
     commandeCtrl.etatLibelle="En cours";
 
     commandeCtrl.annulerCommande = function(commande) {
-        console.log("annulation");
+        if (commande.etat === "EC") {
+            commande.etat = "AN";
+            commandeService.updateCommande(commande)
+            .then(function() {
+                commandeCtrl.getCommandes();
+            });
+        } else {
+            console.log("Impossible d'annuler la commande");
+        }
     };
 
     commandeCtrl.getCommandes = function() {
