@@ -17,7 +17,7 @@ angular.module('ecDesktopApp.home').config(function($routeProvider) {
 });
 
 // Contrôleur principal du module 'home'
-angular.module('ecDesktopApp.home').controller('homeCtrl', function(userService, DATA_MENU) {
+angular.module('ecDesktopApp.home').controller('homeCtrl', function(DATA_MENU) {
 
     var homeCtrl = this;
 
