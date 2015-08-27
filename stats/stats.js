@@ -11,8 +11,8 @@ angular.module('ecDesktopApp.stats').config(function($routeProvider) {
 $routeProvider
 	.when('/stats/Ventes', {
 		templateUrl:'stats/template/ventes.tpl.html',
-		controller : "ventesCtrl",
-		controllerAs:"ventesCtrl",
+		controller : "HistogrammeController",
+		controllerAs:"histoCtrl",
 	})
     .when('/stats/bestCustomers', {
         templateUrl : 'stats/template/bestCustomers.tpl.html',
@@ -21,8 +21,8 @@ $routeProvider
     })
     .when('/stats/topProduits', {
         templateUrl:'stats/template/topProduits.tpl.html',
-        controller : "ventesCtrl",
-        controllerAs:"ventesCtrl",
+        controller : "TopProduitsController",
+        controllerAs:"topProduitCtrl",
     })
     .when('/stats/bestCustomersByProduct/:idProduct', {
         templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
@@ -31,17 +31,56 @@ $routeProvider
     });
 });
 
+angular.module('ecDesktopApp.stats').controller('TopProduitsController', function(commandeService){
 
-angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesService,$filter){
-    var ventesCtrl = this;
+    var topProduitCtrl = this;
 
-    ventesCtrl.labels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    topProduitCtrl.products = [];
 
-    ventesCtrl.CA_series = ['Chiffre dAffaire (€)'];
-    ventesCtrl.CA_colors = ['#1EF9A1'];
+    function fetchProducts (){
+        topProduitCtrl.products = [];
+        commandeService.getCommandes().then(function (result){
+            result.forEach(function (commande){
+                commande.commandeProduits.forEach(function(panierProduct){
+                    var self = this;
+                    self.newProduct = true;
+                    topProduitCtrl.products.forEach(function(product){
+                        if(panierProduct.produit.id === product.id){
+                            self.newProduct = false;
+                            product.total += panierProduct.quantite;
+                        }
+                    });
+                    if(self.newProduct){
+                        topProduitCtrl.products.push({id:panierProduct.produit.id, libelle:panierProduct.produit.libelle, prix:panierProduct.produit.prix, total:panierProduct.quantite});
+                    }
+                });
 
-    ventesCtrl.Ventes_series = ['Volume des ventes'];
-    ventesCtrl.Ventes_colors = ['#FD1F5E'];
+            });
+
+            topProduitCtrl.products_total = topProduitCtrl.products.map(function(produit) {
+                return produit.total;
+            });
+
+            topProduitCtrl.products_libelle = topProduitCtrl.products.map(function(produit) {
+                return produit.libelle;
+            });
+        });
+    }
+
+    fetchProducts();
+
+});
+
+angular.module('ecDesktopApp.stats').controller('HistogrammeController', function(commandeService,$filter){
+    var histoCtrl = this;
+
+    histoCtrl.labels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+    histoCtrl.CA_series = ['Chiffre dAffaire (€)'];
+    histoCtrl.CA_colors = ['#1EF9A1'];
+
+    histoCtrl.Ventes_series = ['Volume des ventes'];
+    histoCtrl.Ventes_colors = ['#FD1F5E'];
 
     var currentDate = new Date();
     var year = currentDate.getFullYear();
@@ -51,61 +90,30 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
 
     var mois = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 
-    ventesService.getCommandes().then(function(result){
-        result.forEach(function(commande){
+    function fetchHistogramme(){
+        commandeService.getCommandes().then(function(result){
+            result.forEach(function(commande){
 
-            commande.facture.date = $filter('date')(commande.facture.date, "dd/MM/yyyy");
+                commande.facture.date = $filter('date')(commande.facture.date, "dd/MM/yyyy");
 
-            if(parseInt((commande.facture.date).split('/')[2]) === year){
-                mois.forEach(function(mois){
-                    if(commande.facture.date.split('/')[1]=== mois){
-                        commande.commandeProduits.forEach(function(objet){
-                       prixTotal[parseInt(mois)-1] += Math.round(objet.produit.prix * objet.quantite);
-                       quantites[parseInt(mois)-1] += objet.quantite;
-
-                     });
-                    }
-                });
-            }
-        });
-
-    ventesCtrl.Ventes_data = [quantites];
-    ventesCtrl.CA_data = [prixTotal];
-    });
-
-    ventesCtrl.products = [];
-
-    function fetchProducts (){
-        ventesCtrl.products = [];
-        ventesService.getCommandes().then(function (result){
-            result.forEach(function (commande){
-                commande.commandeProduits.forEach(function(panierProduct){
-                    var self = this;
-                    self.newProduct = true;
-                    ventesCtrl.products.forEach(function(product){
-                        if(panierProduct.produit.id === product.id){
-                            self.newProduct = false;
-                            product.total += panierProduct.quantite;
+                if(parseInt((commande.facture.date).split('/')[2]) === year){
+                    mois.forEach(function(mois){
+                        if(commande.facture.date.split('/')[1]=== mois){
+                            commande.commandeProduits.forEach(function(objet){
+                                prixTotal[parseInt(mois)-1] += Math.round(objet.produit.prix * objet.quantite);
+                                quantites[parseInt(mois)-1] += objet.quantite;
+                            });
                         }
                     });
-                    if(self.newProduct){
-                        ventesCtrl.products.push({id:panierProduct.produit.id, libelle:panierProduct.produit.libelle, prix:panierProduct.produit.prix, total:panierProduct.quantite});
-                    }
-                });
-
+                }
             });
 
-            ventesCtrl.products_total = ventesCtrl.products.map(function(produit) {
-                return produit.total;
-            });
-
-            ventesCtrl.products_libelle = ventesCtrl.products.map(function(produit) {
-                return produit.libelle;
-            });
+            histoCtrl.Ventes_data = [quantites];
+            histoCtrl.CA_data = [prixTotal];
         });
     }
 
-    fetchProducts();
+    fetchHistogramme();
 
 });
 
