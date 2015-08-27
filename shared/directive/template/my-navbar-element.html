@@ -1,0 +1,10 @@
+<div class="btn-group" dropdown>
+	<button id="adminProduitsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+		<li ng-repeat="choice in productsFunctions">
+			<a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
+		</li>
+	</ul>
+</div>
