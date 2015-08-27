@@ -5,11 +5,12 @@ describe('E2E: ecDesktopCtrl', function () {
     beforeEach(function(done){
         browser.get(browser.baseUrl);
         browser.executeAsyncScript(function(thenCallback) {
-            thenCallback(angular.injector(['ecDesktopApp.shared']).get('DATA_MENU'));
+            thenCallback(angular.injector(['ng', 'ecDesktopApp.shared']).get('DATA_MENU'));
         }).then(function (service) {
             DATA_MENU = service;
         }).thenCatch(function(error){
             console.log("error", error);
+            console.log("HO MON DIEU");
             // TODO : faire échouer le test
         }).thenFinally(function(){
             done();
