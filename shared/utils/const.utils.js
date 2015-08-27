@@ -43,33 +43,32 @@ angular.module('ecDesktopApp.shared').constant("DATA_MENU",	[
 
 
 angular.module('ecDesktopApp.shared').constant("DATA_MENU",	{
-	"produits" : {
+	produits : {
 		titre : {libelle: "Administrer Produits", id:"adminProduits"},
 		links : [
 			{affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
 			{affichage:'Créer Produit',url:'#/product/createProduct',id:"creerProduits"}
 		]
 	},
-	"clients" : {
+	clients : {
 		titre : {libelle: "Administrer Clients", id:"adminClients"},
 		links : [
 			{affichage:'Afficher Clients',url:'#/customer/listcustomer',id:"afficherClients"},
 			{affichage:'Créer Client',url:'#/customer/createCustomer',id:"creerClients"}
 		]
 	},
-	"commandes" : {
+	commandes : {
 		titre : {libelle: "Administrer Commandes", id:"adminCommandes"},
 		links : [
 			{affichage:'Afficher Commandes',url:'#/commandes/listCommandes',id:"afficherCommandes"},
 			{affichage:'Rechercher Commande par ID',url:'#/commandes/rechercheCommande',id:"rechercherCommandes"}
 		]
 	},
-	"stats" : {
+	stats : {
 		titre : {libelle:"Statistiques", id:"adminStats"},
 		links : [
 			{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestCustomers"},
 			{affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits',id:"bestProducts"},
-			//{affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc',id:"bestClientsOnProduct"},
 			{affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
 		]
 	}

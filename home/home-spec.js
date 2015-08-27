@@ -5,9 +5,9 @@ describe('homeCtrl', function() {
     });
 
     it('is a functionnal controller', inject(function($rootScope, $controller){
-            var scope = $rootScope.$new();
-            var controller = $controller('homeCtrl');
+        var scope = $rootScope.$new();
+        var controller = $controller('homeCtrl');
 
-            expect(controller).toBeDefined();
-        }));
+        expect(controller).toBeDefined();
+    }));
 });

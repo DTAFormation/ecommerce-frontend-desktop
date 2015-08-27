@@ -54,7 +54,7 @@ describe('E2E: ecDesktopCtrl', function () {
         });
     });*/
 
-   var buttonProducts=element(by.id('adminProduitsButton'));
+    var buttonProducts=element(by.id('adminProduitsButton'));
     var currentButton;
 
     var i;
@@ -120,7 +120,36 @@ describe('E2E: ecDesktopCtrl', function () {
 
         expect(browser.getLocationAbsUrl()).toEqual('/home');
 
-        
+        var currentButton;
+
+        var i;
+        for(i=0;i<DATA_MENU.produits.links.length;i++){
+            currentButton=element(by.id((DATA_MENU.produits.links[i].id+"Accueil")));
+            currentButton.click();
+            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.produits.links[i].url.substring(1));
+            element(by.id('homeButton')).click();
+        }
+
+        for(i=0;i<DATA_MENU.clients.links.length;i++){
+            currentButton=element(by.id((DATA_MENU.clients.links[i].id+"Accueil")));
+            currentButton.click();
+            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.clients.links[i].url.substring(1));
+            element(by.id('homeButton')).click();
+        }
+
+        for(i=0;i<DATA_MENU.commandes.links.length;i++){
+            currentButton=element(by.id((DATA_MENU.commandes.links[i].id+"Accueil")));
+            currentButton.click();
+            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.commandes.links[i].url.substring(1));
+            element(by.id('homeButton')).click();
+        }
+
+        for(i=0;i<DATA_MENU.stats.links.length;i++){
+            currentButton=element(by.id((DATA_MENU.stats.links[i].id+"Accueil")));
+            currentButton.click();
+            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.stats.links[i].url.substring(1));
+            element(by.id('homeButton')).click();
+        }
 
     });
 
