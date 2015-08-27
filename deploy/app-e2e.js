@@ -106,8 +106,8 @@ describe('E2E: ecDesktopCtrl', function () {
 
     });
 
-    
-    /*it('Menu accueil', function(){
+
+    it('Menu accueil', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
 
@@ -128,14 +128,14 @@ describe('E2E: ecDesktopCtrl', function () {
         Object.keys(DATA_MENU).forEach(function(menuItem){
             currentMenuItem = Object.getOwnPropertyDescriptor(DATA_MENU, menuItem).value;
             currentMenuItem.links.forEach(function(link){
-                if(link.id!="histrogramLink"){
+                if(link.id!=="histrogramLink"){
                     currentButton = element(by.id(link.id+"Accueil"));
                     currentButton.click();
                     expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
                     element(by.id('homeButton')).click();
                 }
             });
-        });        
+        });
 
         /*var i;
         for(i=0;i<DATA_MENU.produits.links.length;i++){
@@ -166,7 +166,6 @@ describe('E2E: ecDesktopCtrl', function () {
             element(by.id('homeButton')).click();
         }*/
 
-    });*/
+    });
 
 });
-
