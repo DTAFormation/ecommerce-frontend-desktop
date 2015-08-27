@@ -15,9 +15,6 @@
  </head>
  <body>
 
-	<!-- Livereload script for development only (stripped during dist build) -->
-	<!--script src="http://localhost:35729/livereload.js" data-concat="false"></script-->
-
 	<!-- JS from Bower Components -->
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
@@ -33,6 +30,7 @@
 
 	<!-- Main App JS -->
 	<script src="shared/shared.js"></script>
+  <script src="shared/directive/menu.directive.js"></script>
 	<script src="shared/service/user.service.js"></script>
   <script src="shared/utils/const.utils.js"></script>
 	<script src="home/home.js"></script>
@@ -67,8 +65,8 @@
         <div ng-controller="DropdownCtrl">
          <div class="nav navbar-nav">
 
-        
-          <div class="btn-group" dropdown>
+
+          <!--div class="btn-group" dropdown>
            <button id="adminProduitsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
             <span class="caret"></span>
            </button>
@@ -77,10 +75,15 @@
              <a id='{{choice.id+"Menu"}}' href='{{choice.url}}'>{{choice.affichage}}</a>
             </li>
            </ul>
-          </div>
-          
+          </div-->
 
-          <!--ec-nav-bar-element type="produits"></ec-nav-bar-element-->
+          <ec-nav-bar-element cle="produits"></ec-nav-bar-element>
+
+          <!--ec-nav-bar-element cle="clients"></ec-nav-bar-element>
+
+          <ec-nav-bar-element cle="commandes"></ec-nav-bar-element>
+
+          <ec-nav-bar-element cle="stats"></ec-nav-bar-element-->
 
           <div class="btn-group" dropdown>
            <button id="adminClientsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
@@ -123,7 +126,6 @@
         </ul>
        </div>
       </nav>
-
       <div ng-view></div>
      </div>
     </div>
