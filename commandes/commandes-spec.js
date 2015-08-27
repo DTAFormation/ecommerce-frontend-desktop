@@ -102,7 +102,11 @@ describe("Test du controlleur du détail des commandes", function() {
 
         $httpBackend.flush();
 
-        expect(dtlCmdCtrl.selectedCommande).toEqual(mockCmd);
+        expect(dtlCmdCtrl.selectedCommande.id).toEqual(mockCmd.id);
+        expect(dtlCmdCtrl.selectedCommande.client).toEqual(mockCmd.client);
+        expect(dtlCmdCtrl.selectedCommande.commandeProduits).toEqual(mockCmd.commandeProduits);
+        expect(dtlCmdCtrl.selectedCommande.facture).toEqual(mockCmd.facture);
+
 
         }));
 

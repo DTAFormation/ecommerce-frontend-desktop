@@ -44,6 +44,7 @@ angular.module('ecDesktopApp.customer').controller('CreateCustomerController', f
 
     var self = this;
     self.ajoutClient = function(customer){
+        customer.actif=true;
         customerService.addCustomer(customer)
         .then(function(response){ //en cas de succes
             self.err = false;

@@ -19,11 +19,11 @@ $routeProvider
         controller : 'BestCustomersController',
         controllerAs : 'bestCtrl'
     })
-    .when('/stats/topProduits', { 
+    .when('/stats/topProduits', {
         templateUrl:'stats/template/topProduits.tpl.html',
         controller : "ventesCtrl",
         controllerAs:"ventesCtrl",
-    })  
+    })
     .when('/stats/bestCustomersByProduct/:idProduct', {
         templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
         controller : 'BestCustomersByProductController',
@@ -91,8 +91,8 @@ angular.module('ecDesktopApp.stats').controller('ventesCtrl', function(ventesSer
                     if(self.newProduct){
                         ventesCtrl.products.push({id:panierProduct.produit.id, libelle:panierProduct.produit.libelle, prix:panierProduct.produit.prix, total:panierProduct.quantite});
                     }
-                }); 
-                          
+                });
+
             });
 
             ventesCtrl.products_total = ventesCtrl.products.map(function(produit) {
