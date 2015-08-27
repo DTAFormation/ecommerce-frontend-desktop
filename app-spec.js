@@ -16,7 +16,7 @@ describe('DropdownCtrl', function() {
 		module('ecDesktopApp');
 	});
 
-	/*it('links to the right places', inject(function($rootScope, $controller){
+	it('links to the right places', inject(function($rootScope, $controller){
 		var scope = $rootScope.$new();
 		var controller = $controller('DropdownCtrl',{'$scope' : scope});
 
@@ -47,5 +47,5 @@ describe('DropdownCtrl', function() {
 		expect(angular.equals(scope.clientsFunctions,testClientsFunctions)).toBe(true);
 		expect(angular.equals(scope.ordersFunctions,testOrdersFunctions)).toBe(true);
 		expect(angular.equals(scope.statsFunctions,testStatsFunctions)).toBe(true);
-	}));*/
+	}));
 });
