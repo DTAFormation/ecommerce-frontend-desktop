@@ -15,9 +15,6 @@
  </head>
  <body>
 
-	<!-- Livereload script for development only (stripped during dist build) -->
-	<script src="http://localhost:35729/livereload.js" data-concat="false"></script>
-
 	<!-- JS from Bower Components -->
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
@@ -50,7 +47,7 @@
   <script src="authentification/service/login.service.js"></script>
   <!-- Ajout des appels stats-->
   <script src="stats/stats.js"></script>
-  <script src="stats/service/ventes.service.js"></script>
+  <!--script src="stats/service/ventes.service.js"></script-->
   <!-- Ajout des appels commandes-->
   <script src="shared/service/commandes.service.js"></script>
   <script src="commandes/commandes.js"></script>
@@ -68,7 +65,7 @@
         <div ng-controller="DropdownCtrl">
          <div class="nav navbar-nav">
 
-        
+
           <!--div class="btn-group" dropdown>
            <button id="adminProduitsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Produits
             <span class="caret"></span>
@@ -79,7 +76,7 @@
             </li>
            </ul>
           </div-->
-    
+
           <ec-nav-bar-element cle="produits"></ec-nav-bar-element>
           <ec-nav-bar-element cle="clients"></ec-nav-bar-element>
 
@@ -122,7 +119,7 @@
         <ul class="nav navbar-nav navbar-right">
          <li>
           <div role="navigation">
-            <button id="logoutButton" class="btn btn-default navbar-btn logoutEcommerce" ng-click="ecDesktopCtrl.logout()">Logout</button></a>
+            <button id="logoutButton" class="btn btn-default navbar-btn logoutEcommerce" ng-click="ecDesktopCtrl.logout()" ng-show="globals.currentUser">Logout</button></a>
           </div>
           </li>
         </ul>
