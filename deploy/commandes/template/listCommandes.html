@@ -22,6 +22,9 @@
       <td>
         <a ng-click="commandeCtrl.goDetailsProduit(c.client.id,c.id)">
           <button id="afficherLesDetails" class="btn btn-default pull-left"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></a>
+          <a ng-if="c.etat=='EC'" ng-click="commandeCtrl.annulerCommande(c)">
+            <button id="annulerCommande" class="btn btn-danger pull-left"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+          </a>
       </td>
      </tr>
 
