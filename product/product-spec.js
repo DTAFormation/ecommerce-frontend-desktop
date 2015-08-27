@@ -8,9 +8,9 @@ describe("createProductCtrl Tests", function(){
     it("test unitaire createProductCtrl.addProduct en cas de error:404",inject(function($controller, $httpBackend, API_URL){
         var apiUrl=API_URL + "/produit/";
         var createProductCtrl = $controller('createProductCtrl');
-        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        var product={id:'1', actif:true, libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
+        $httpBackend.expectPOST(apiUrl, {id:'1', actif:true, libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(404, '');
 
         createProductCtrl.addProd(product);
 
@@ -22,9 +22,9 @@ describe("createProductCtrl Tests", function(){
     it("test unitaire createProductCtrl.addProduct en cas de succes:201",inject(function($controller, $httpBackend, API_URL){
         var apiUrl=API_URL + "/produit/";
         var createProductCtrl = $controller('createProductCtrl');
-        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        var product={id:'1', actif:true, libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
-        $httpBackend.expectPOST(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
+        $httpBackend.expectPOST(apiUrl, {id:'1', actif:true, libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(201, '');
 
         createProductCtrl.addProd(product);
 
@@ -35,8 +35,8 @@ describe("createProductCtrl Tests", function(){
 
     //test du controller d'update
     it("test unitaire updateCtrl.updateProduct",inject(function($controller, $httpBackend, API_URL){
-        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
-        var apiUrl=API_URL + "/produit/";   
+        var product={id:'1', actif:'true', libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        var apiUrl=API_URL + "/produit/";
         $httpBackend.when('GET',apiUrl+1).respond(200,product);
         var updateProductCtrl = $controller('updateProductController', {
             '$routeParams' : {
@@ -45,7 +45,7 @@ describe("createProductCtrl Tests", function(){
         });
 
         $httpBackend.flush();
-        $httpBackend.expectPUT(apiUrl, {id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
+        $httpBackend.expectPUT(apiUrl, {id:'1', actif:'true', libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12}).respond(200, '');
         updateProductCtrl.updateProduct(product); //ici bug
         $httpBackend.flush();
     }));
@@ -53,7 +53,7 @@ describe("createProductCtrl Tests", function(){
     //test du controleur => meilleure manière (cf Rémi)
     //on mock les services = on fait croire que le service marche sans vraiment le lancer
     it("test unitaire updateCtrl.updateProduct 2 better way",inject(function($controller, productService, $location){
-        var product={id:'1',libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
+        var product={id:'1', actif:'true', libelle:'libelle',caracteristique:'caracteristique',categorie:'categorie',image:'image',prix:12};
 
         var mockPromise =  {
             then : function(fn) {

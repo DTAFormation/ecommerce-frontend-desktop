@@ -105,6 +105,7 @@ angular.module('ecDesktopApp.product').controller('createProductCtrl', function(
 
 	var productCtrl = this;
 	productCtrl.addProd = function(product){
+        product.actif=true;
 		productService.addProduct(product)
 		.then(function(response){ //en cas de succes
 
