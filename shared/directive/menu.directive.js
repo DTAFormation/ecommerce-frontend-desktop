@@ -1,10 +1,11 @@
 angular.module('ecDesktopApp.shared')
-.directive('menuDirective',function(DATA_MENU){
-	var data;
+.directive('ecNavBarElements',function(DATA_MENU){
 
-	function(){
-	return{
-		//html créé...
-		data;
-	}};
 });
+
+/*return {
+scope: {
+type: '=type'
+},
+templateUrl: 'template/my-navbar-element.html';
+};*/

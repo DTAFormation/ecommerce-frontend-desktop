@@ -39,50 +39,50 @@ describe('E2E: ecDesktopCtrl', function () {
     expect(browser.getLocationAbsUrl()).toEqual('/home');
 
     //Menu Produits
-    var buttonMenu;
+    /*var buttonMenu;
     var buttonSousMenu;
     Object.keys(DATA_MENU).foreach(function(key) {
         var menu = DATA_MENU[key];
         var titre = menu.titre;
         var links = menu.links;
         buttonMenu=element(by.id(titre.id+"Button"));
-        buttonMenu.click;
+        buttonMenu.click();
         links.foreach(function(link){
             buttonSousMenu=element(by.id((link.id+"Menu")));
             buttonSousMenu.click();
             expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
         });
-    });
+    });*/
 
-   /* var buttonProducts=element(by.id('adminProduitsButton'));
+   var buttonProducts=element(by.id('adminProduitsButton'));
     var currentButton;
 
     var i;
     //get data from angular
-    for(i=0;i<DATA_MENU[0].length;i++){
+    for(i=0;i<DATA_MENU.produits.links.length;i++){
         buttonProducts.click();
-        currentButton=element(by.id((DATA_MENU[0][i].id+"Menu")));
+        currentButton=element(by.id((DATA_MENU.produits.links[i].id+"Menu")));
         currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[0][i].url.substring(1));
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.produits.links[i].url.substring(1));
     }
 
     var buttonClients=element(by.id('adminClientsButton'));
 
-    for(i=0;i<DATA_MENU[1].length;i++){
+    for(i=0;i<DATA_MENU.clients.links.length;i++){
         buttonClients.click();
-        currentButton=element(by.id((DATA_MENU[1][i].id+"Menu")));
+        currentButton=element(by.id((DATA_MENU.clients.links[i].id+"Menu")));
         currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[1][i].url.substring(1));
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.clients.links[i].url.substring(1));
     }
 
     var buttonCommande=element(by.id('adminCommandesButton'));
 
-    for(i=0;i<DATA_MENU[2].length;i++){
+    for(i=0;i<DATA_MENU.commandes.links.length;i++){
         buttonCommande.click();
-        currentButton=element(by.id((DATA_MENU[2][i].id+"Menu")));
+        currentButton=element(by.id((DATA_MENU.commandes.links[i].id+"Menu")));
         currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU[2][i].url.substring(1));
-    }*/
+        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.commandes.links[i].url.substring(1));
+    }
     /*
     buttonProducts.click();
     var boutonAfficherProduits=element(by.id('afficherProduitsMenu'));

@@ -110,7 +110,7 @@ describe("Test des controllers du module stats", function() {
     module("ecDesktopApp.stats");
   });
 
-  it("BestCustomersController : Récupérer les dix meilleurs clients", inject(function($controller, commandeService) {
+  /*it("BestCustomersController : Récupérer les dix meilleurs clients", inject(function($controller, commandeService) {
 
     var bestCtrl = $controller("BestCustomersController");
     spyOn(commandeService, "getCommandes").and.returnValue(mockPromise2);
@@ -126,7 +126,7 @@ describe("Test des controllers du module stats", function() {
     expect(bestCtrl.customers[0]).toEqual({id : 2, nom : "GUILLOTEAU", prenom : "Nathan", total : 1});
     expect(bestCtrl.customers[1]).toEqual({id : 3, nom : "LEBON", prenom : "Jonathan", total : 2});
 
-  }));
+  }));*/
 
   
 

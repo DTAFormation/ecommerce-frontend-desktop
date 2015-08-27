@@ -63,7 +63,7 @@ angular.module('ecDesktopApp.shared').constant("DATA_MENU",	{
 		]
 	},
 	"stats" : {
-		titre : {libelle:"Statistiques",id:"adminStats"}
+		titre : {libelle:"Statistiques", id:"adminStats"},
 		links : [
 			{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestCustomers"},
 			{affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits',id:"bestProducts"},

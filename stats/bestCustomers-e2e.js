@@ -16,7 +16,7 @@ describe('Test protractor : affichage des meilleurs clients', function() {
 
     // Un clic sur le bouton Statistiques déroule le menu et permet le clic sur le lien "Afficher les meilleurs clients"
     // qui lui doit envoyer à la page correspondante
-    var statButton = element(by.id('statButton'));
+    var statButton = element(by.id('adminStatsButton'));
     statButton.click();
     var bestCustomersNavButton=element(by.id('bestCustomersMenu'));
     bestCustomersNavButton.click();
