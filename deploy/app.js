@@ -89,8 +89,6 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
     ];*/
 
-
-
     //$scope.statsFunctions= DATA_MENU[3];
     $scope.statsFunctions= DATA_MENU.stats.links;
     /*{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
@@ -100,5 +98,6 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     ];*/
 
     $scope.menuFunctions=DATA_MENU;
+
 
 });
