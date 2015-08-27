@@ -92,8 +92,6 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
         dtlCmdCtrl.selectedCommande = result;
       })
       .then(function(){
-      })
-      .then(function(){
           dtlCmdCtrl.selectedCommande.commandeProduits.forEach(function(objet){
             dtlCmdCtrl.montant += (objet.produit.prix * objet.quantite);
             dtlCmdCtrl.nbreProduits += objet.quantite;

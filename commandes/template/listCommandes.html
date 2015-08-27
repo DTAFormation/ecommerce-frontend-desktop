@@ -1,9 +1,9 @@
 
 <div class="btn-group btn-group-justified">
-  <a  class="btn btn-default" ng-repeat="etat in commandeCtrl.etatsCommandeLibelle" ng-click="commandeCtrl.changerEtat(etat)">{{etat}}</a>
+  <a  id="ongletEtat" class="btn btn-default" ng-repeat="etat in commandeCtrl.etatsCommandeLibelle" ng-click="commandeCtrl.changerEtat(etat)">{{etat}}</a>
 </div>
 
-<table class="table table-bordered">
+<table id="CommandeTable" class="table table-bordered">
   <caption>Liste des commandes</caption>
   <thead>
     <tr>

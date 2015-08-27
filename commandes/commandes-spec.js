@@ -39,5 +39,44 @@ describe("Test du controlleur de commandes", function() {
         $httpBackend.flush();
         expect(rechCmdCtrl.err).toEqual(true);
     }));
+});
+
+describe("Test du controlleur du détail des commandes", function() {
+
+    var mockCmd = {
+      "id":14,
+      "client":{
+          "id":8,
+          "actif":true,
+          "nom":"KLEIN",
+          "prenom":"Pauline",
+          "login":"loginPauline",
+          "adresses":[{"id":8,"numero":1,"rue":"rue capitaine corhumel","ville":"Nantes"}]},
+      "commandeProduits":[{
+          "id":17,
+          "quantite":4,
+          "produit":{"id":2,"libelle":"Moto","caracteristique":"Elle a 2 roues et un guidon","categorie":"Vehicule","image":"http://lorempixel.com/200/200/transport","prix":2999.99,"actif":true}}],
+      "facture":{"id":14,"date":1167606000000,"modePaiement":"Par CB","adresseLivraison":{"id":8,"numero":1,"rue":"rue capitaine corhumel","ville":"Nantes"},"adresseFacturation":{"id":8,"numero":1,"rue":"rue capitaine corhumel","ville":"Nantes"}},
+      "etat":"EC"
+    };
+
+    beforeEach(function() {
+        module("ecDesktopApp.commandes");
+    });
+
+    it("Affiche les informations de la bonne commande", inject(function($controller, commandeService, $httpBackend, $routeParams, API_URL ){
+        $httpBackend.expectGET(API_URL + '/commande/14').respond(200,mockCmd);
+
+        var dtlCmdCtrl = $controller("detailCommandeCtrl", {
+          '$routeParams' : {
+            id: 14
+          }
+        });
+
+        $httpBackend.flush();
+
+        expect(dtlCmdCtrl.selectedCommande).toEqual(mockCmd);
+
+        }));
 
 });
