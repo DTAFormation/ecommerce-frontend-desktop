@@ -10,7 +10,6 @@ describe('E2E: ecDesktopCtrl', function () {
             DATA_MENU = service;
         }).thenCatch(function(error){
             console.log("error", error);
-            console.log("HO MON DIEU");
             // TODO : faire échouer le test
         }).thenFinally(function(){
             done();
@@ -106,7 +105,7 @@ describe('E2E: ecDesktopCtrl', function () {
 
     });
 
-    
+
     /*it('Menu accueil', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
@@ -155,4 +154,3 @@ describe('E2E: ecDesktopCtrl', function () {
     });*/
 
 });
-
