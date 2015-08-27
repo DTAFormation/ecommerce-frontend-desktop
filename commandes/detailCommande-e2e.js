@@ -81,5 +81,7 @@ describe('E2E: DetailsCommande', function () {
           retourBtn.click();
           expect(browser.getLocationAbsUrl()).toEqual('/commandes/listCommandes');
 
+          var buttonLogout=element(by.id('logoutButton'));
+          buttonLogout.click();
       });
 });
