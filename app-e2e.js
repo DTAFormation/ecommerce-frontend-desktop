@@ -16,15 +16,15 @@ describe('E2E: ecDesktopCtrl', function () {
         });
     });
 
-  it('should work', function () {
+    it('should work', function () {
 
 
     var appName = element(by.css('h1'));
 
     expect(appName.isPresent()).toBeTruthy();
-  });
+    });
 
-  it('Go through every pages in the menu without problem', function(){
+    it('Go through every pages in the menu without problem', function(){
 
     expect(browser.getLocationAbsUrl()).toEqual('/login');
 
@@ -89,6 +89,26 @@ describe('E2E: ecDesktopCtrl', function () {
     boutonAfficherClients.click();
     expect(browser.getLocationAbsUrl()).toEqual('/customer/listcustomer');*/
 
-  });
+    });
+
+    
+    it('Menu accueil', function(){
+
+        expect(browser.getLocationAbsUrl()).toEqual('/login');
+
+        var login=element(by.model('loginCtrl.username'));
+        var password=element(by.model('loginCtrl.password'));
+        var connectButton=element(by.id('loginButton'));
+
+        login.sendKeys('loginAdmin');
+        password.sendKeys('pwdAdmin');
+        connectButton.click();
+
+        expect(browser.getLocationAbsUrl()).toEqual('/home');
+
+        
+
+    });
+
 });
 
