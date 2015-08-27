@@ -23,7 +23,7 @@ describe("Test du commandeService", function() {
           "etat":"Termin"
       };
 
-      $httpBackend.expectGET(API_URL + '/user/commande/2').respond(200, mockCommande);
+      $httpBackend.expectGET(API_URL + '/commande/2').respond(200, mockCommande);
 
       commandeService.getDetailCommande(2)
       .then(function(result) {
@@ -35,7 +35,7 @@ describe("Test du commandeService", function() {
       });
     }));
 
-    it("Récupère tous les produits du panier", inject(function(commandeService, $httpBackend, API_URL){
+    it("Récupère tous les commandes", inject(function(commandeService, $httpBackend, API_URL){
         var mockCommandes = [
             {
               "id":2,
@@ -104,7 +104,7 @@ describe("Test du commandeService", function() {
             }
           ];
 
-        $httpBackend.expectGET(API_URL + '/user/commande').respond(200, mockCommandes);
+        $httpBackend.expectGET(API_URL + '/commande').respond(200, mockCommandes);
 
         commandeService.getCommandes().then(function (result){
             expect(result.length).toEqual(mockCommandes.length);

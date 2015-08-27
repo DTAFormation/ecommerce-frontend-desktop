@@ -12,8 +12,7 @@ angular.module('ecDesktopApp', [
     'ecDesktopApp.authentification',
     'ecDesktopApp.stats',
     'ui.bootstrap',
-    'chart.js',
-    'ecDesktopApp.commandes'
+    'chart.js'
     ]);
 
 angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$cookieStoreProvider', function($routeProvider, $locationProvider, $cookieStoreProvider) {
@@ -91,6 +90,7 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     ];*/
 
 
+
     //$scope.statsFunctions= DATA_MENU[3];
     $scope.statsFunctions= DATA_MENU.stats.links;
     /*{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
@@ -102,15 +102,3 @@ angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_
     $scope.menuFunctions=DATA_MENU;
 
 });
-/*
-=======
-    $scope.statsFunctions= [
-
-    {affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers'},
-    {affichage:'Afficher les produits les plus vendus',url:'#/stats/topProduits'},
-    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc'},
-    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes'}
-    ];
-});
->>>>>>> master
-*/

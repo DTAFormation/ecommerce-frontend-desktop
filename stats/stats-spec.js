@@ -128,6 +128,15 @@ describe("Test des controllers du module stats", function() {
 
   }));*/
 
-  
+  it("BestCustomersByProductController : Récupérer les dix meilleurs clients pour un produit", inject(function($controller, commandeService, $routeParams) {
+
+    var bestByProductCtrl = $controller("BestCustomersByProductController", { $routeParams : { idProduct : '1' } });
+    spyOn(commandeService, "getCommandes").and.returnValue(mockPromise2);
+    bestByProductCtrl.fetchCustomers();
+    expect(bestByProductCtrl.customers.length).toEqual(2);
+    expect(bestByProductCtrl.customers[0]).toEqual({id : 2, nom : "GUILLOTEAU", prenom : "Nathan", total : 3});
+    expect(bestByProductCtrl.customers[1]).toEqual({id : 3, nom : "LEBON", prenom : "Jonathan", total : 12});
+
+  }));
 
 });
