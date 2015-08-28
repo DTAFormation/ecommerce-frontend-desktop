@@ -61,6 +61,7 @@ describe('E2E: ecDesktopCtrl', function () {
 
     });
 
+
     it('Menu accueil', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
@@ -89,11 +90,6 @@ describe('E2E: ecDesktopCtrl', function () {
                     element(by.id('homeButton')).click();
                 }
             });
-        });
-
-        var buttonLogout=element(by.id('logoutButton'));
-        buttonLogout.click();
-
-    });
-
+          });
+      });
 });
