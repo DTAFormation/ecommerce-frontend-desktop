@@ -19,11 +19,11 @@ $routeProvider
         controller : 'BestCustomersController',
         controllerAs : 'bestCtrl'
     })
-    .when('/stats/topProduits', { 
+    .when('/stats/topProduits', {
         templateUrl:'stats/template/topProduits.tpl.html',
         controller : "TopProduitsController",
         controllerAs:"topProduitCtrl",
-    })  
+    })
     .when('/stats/bestCustomersByProduct/:idProduct', {
         templateUrl : 'stats/template/bestCustomersByProduct.tpl.html',
         controller : 'BestCustomersByProductController',
@@ -53,8 +53,8 @@ angular.module('ecDesktopApp.stats').controller('TopProduitsController', functio
                     if(self.newProduct){
                         topProduitCtrl.products.push({id:panierProduct.produit.id, libelle:panierProduct.produit.libelle, prix:panierProduct.produit.prix, total:panierProduct.quantite});
                     }
-                }); 
-                          
+                });
+
             });
 
             topProduitCtrl.products_total = topProduitCtrl.products.map(function(produit) {
@@ -113,7 +113,7 @@ angular.module('ecDesktopApp.stats').controller('HistogrammeController', functio
         });
     }
 
-    fetchHistogramme();    
+    fetchHistogramme();
 
 });
 

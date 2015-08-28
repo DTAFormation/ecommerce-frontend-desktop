@@ -98,6 +98,17 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
     commandeService.getDetailCommande($routeParams.id)
       .then(function (result){
         dtlCmdCtrl.selectedCommande = result;
+        switch(dtlCmdCtrl.selectedCommande.etat){
+          case "EC":
+            dtlCmdCtrl.selectedCommande.etat = "En cours";
+            break;
+          case "TR":
+            dtlCmdCtrl.selectedCommande.etat = "Terminée";
+            break;
+          case "AN":
+            dtlCmdCtrl.selectedCommande.etat = "Annulée";
+            break;
+        }
       })
       .then(function(){
           dtlCmdCtrl.selectedCommande.commandeProduits.forEach(function(objet){
