@@ -19,94 +19,50 @@ describe('E2E: ecDesktopCtrl', function () {
     it('should work', function () {
 
 
-    var appName = element(by.css('h1'));
+        var appName = element(by.css('h1'));
 
-    expect(appName.isPresent()).toBeTruthy();
-    });
-
-    it('Go through every pages in the menu without problem', function(){
-
-    expect(browser.getLocationAbsUrl()).toEqual('/login');
-
-    var login=element(by.model('loginCtrl.username'));
-    var password=element(by.model('loginCtrl.password'));
-    var connectButton=element(by.id('loginButton'));
-
-    login.sendKeys('loginAdmin');
-    password.sendKeys('pwdAdmin');
-    connectButton.click();
-
-    expect(browser.getLocationAbsUrl()).toEqual('/home');
-
-    //Menu Produits
-    /*var buttonMenu;
-    var buttonSousMenu;
-    Object.keys(DATA_MENU).foreach(function(key) {
-        var menu = DATA_MENU[key];
-        var titre = menu.titre;
-        var links = menu.links;
-        buttonMenu=element(by.id(titre.id+"Button"));
-        buttonMenu.click();
-        links.foreach(function(link){
-            buttonSousMenu=element(by.id((link.id+"Menu")));
-            buttonSousMenu.click();
-            expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
+        expect(appName.isPresent()).toBeTruthy();
         });
-    });*/
 
-    var buttonProducts=element(by.id('adminProduitsButton'));
-    var currentButton;
+        it('Go through every pages in the menu without problem', function(){
 
-    var i;
-    //get data from angular
-    for(i=0;i<DATA_MENU.produits.links.length;i++){
-        buttonProducts.click();
-        currentButton=element(by.id((DATA_MENU.produits.links[i].id+"Menu")));
-        currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.produits.links[i].url.substring(1));
-    }
+        expect(browser.getLocationAbsUrl()).toEqual('/login');
 
-    var buttonClients=element(by.id('adminClientsButton'));
+        var login=element(by.model('loginCtrl.username'));
+        var password=element(by.model('loginCtrl.password'));
+        var connectButton=element(by.id('loginButton'));
 
-    for(i=0;i<DATA_MENU.clients.links.length;i++){
-        buttonClients.click();
-        currentButton=element(by.id((DATA_MENU.clients.links[i].id+"Menu")));
-        currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.clients.links[i].url.substring(1));
-    }
+        login.sendKeys('loginAdmin');
+        password.sendKeys('pwdAdmin');
+        connectButton.click();
 
-    var buttonCommande=element(by.id('adminCommandesButton'));
+        expect(browser.getLocationAbsUrl()).toEqual('/home');
 
-    for(i=0;i<DATA_MENU.commandes.links.length;i++){
-        buttonCommande.click();
-        currentButton=element(by.id((DATA_MENU.commandes.links[i].id+"Menu")));
-        currentButton.click();
-        expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.commandes.links[i].url.substring(1));
-    }
-    /*
-    buttonProducts.click();
-    var boutonAfficherProduits=element(by.id('afficherProduitsMenu'));
-    boutonAfficherProduits.click();
-    expect(browser.getLocationAbsUrl()).toEqual('/product/listproduct');
+        //Menu Produits
+        var buttonMenu;
+        var buttonSousMenu;
+        Object.keys(DATA_MENU).forEach(function(key) {
+            var menu = Object.getOwnPropertyDescriptor(DATA_MENU,key).value;
+            var titre = menu.titre;
+            var links = menu.links;
+            buttonMenu=element(by.id(titre.id+"Button"));
+            links.forEach(function(link){
+                if(link.id!=="histrogramLink"){
+                    buttonMenu.click();
+                    buttonSousMenu=element(by.id((link.id+"Menu")));
+                    buttonSousMenu.click();
+                    expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
+                }
+            });
+        });
 
-    buttonProducts.click();
-    var boutoncreerProduits=element(by.id('creerProduits'));
-    boutonAfficherProduits.click();
-    expect(browser.getLocationAbsUrl()).toEqual('/product/createProduct');*/
-
-    //Menu Clients
-
-    /*var buttonClient=element(by.id('adminClientsButton'));
-    buttonClient.click();
-
-    var boutonAfficherClients=element(by.id('afficherClients'));
-    boutonAfficherClients.click();
-    expect(browser.getLocationAbsUrl()).toEqual('/customer/listcustomer');*/
+        var buttonLogout=element(by.id('logoutButton'));
+        buttonLogout.click();
 
     });
 
 
-    /*it('Menu accueil', function(){
+    it('Menu accueil', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
 
@@ -127,44 +83,13 @@ describe('E2E: ecDesktopCtrl', function () {
         Object.keys(DATA_MENU).forEach(function(menuItem){
             currentMenuItem = Object.getOwnPropertyDescriptor(DATA_MENU, menuItem).value;
             currentMenuItem.links.forEach(function(link){
-                if(link.id!="histrogramLink"){
+                if(link.id!=="histrogramLink"){
                     currentButton = element(by.id(link.id+"Accueil"));
                     currentButton.click();
                     expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
                     element(by.id('homeButton')).click();
                 }
             });
-        });        
-
-        /*var i;
-        for(i=0;i<DATA_MENU.produits.links.length;i++){
-            currentButton=element(by.id((DATA_MENU.produits.links[i].id+"Accueil")));
-            currentButton.click();
-            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.produits.links[i].url.substring(1));
-            element(by.id('homeButton')).click();
-        }
-
-        for(i=0;i<DATA_MENU.clients.links.length;i++){
-            currentButton=element(by.id((DATA_MENU.clients.links[i].id+"Accueil")));
-            currentButton.click();
-            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.clients.links[i].url.substring(1));
-            element(by.id('homeButton')).click();
-        }
-
-        for(i=0;i<DATA_MENU.commandes.links.length;i++){
-            currentButton=element(by.id((DATA_MENU.commandes.links[i].id+"Accueil")));
-            currentButton.click();
-            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.commandes.links[i].url.substring(1));
-            element(by.id('homeButton')).click();
-        }
-
-        for(i=0;i<DATA_MENU.stats.links.length;i++){
-            currentButton=element(by.id((DATA_MENU.stats.links[i].id+"Accueil")));
-            currentButton.click();
-            expect(browser.getLocationAbsUrl()).toEqual(DATA_MENU.stats.links[i].url.substring(1));
-            element(by.id('homeButton')).click();
-        }*/
-
-    });*/
-
+          });
+      });
 });

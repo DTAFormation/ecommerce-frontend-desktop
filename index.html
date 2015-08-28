@@ -31,6 +31,7 @@
 	<!-- Main App JS -->
 	<script src="shared/shared.js"></script>
   <script src="shared/directive/menu.directive.js"></script>
+  <script src="shared/directive/menuAccueil.directive.js"></script>
 	<script src="shared/service/user.service.js"></script>
   <script src="shared/utils/const.utils.js"></script>
 	<script src="home/home.js"></script>
@@ -78,14 +79,13 @@
           </div-->
 
           <ec-nav-bar-element cle="produits"></ec-nav-bar-element>
-
-          <!--ec-nav-bar-element cle="clients"></ec-nav-bar-element>
+          <ec-nav-bar-element cle="clients"></ec-nav-bar-element>
 
           <ec-nav-bar-element cle="commandes"></ec-nav-bar-element>
 
-          <ec-nav-bar-element cle="stats"></ec-nav-bar-element-->
+          <ec-nav-bar-element cle="stats"></ec-nav-bar-element>
 
-          <div class="btn-group" dropdown>
+          <!--div class="btn-group" dropdown>
            <button id="adminClientsButton" type="button" class="btn btn-default navbar-btn" dropdown-toggle>Administrer Clients
            <span class="caret"></span>
            </button>
@@ -116,11 +116,11 @@
            </ul>
           </div>
          </div>
-        </div>
+        </div-->
         <ul class="nav navbar-nav navbar-right">
          <li>
           <div role="navigation">
-            <button id="logoutButton" class="btn btn-default navbar-btn logoutEcommerce" ng-click="ecDesktopCtrl.logout()">Logout</button></a>
+            <button id="logoutButton" class="btn btn-default navbar-btn logoutEcommerce" ng-click="ecDesktopCtrl.logout()" ng-show="globals.currentUser">Logout</button></a>
           </div>
           </li>
         </ul>

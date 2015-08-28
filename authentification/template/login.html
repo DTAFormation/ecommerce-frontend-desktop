@@ -1,8 +1,9 @@
 
 <!-- positionnement et largeur de la colonne de la page  -->
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 col-md-offset-3" ng-hide="globals.currentUser">
     <h2>Login</h2>
     <!-- utilisation d'un formualaire pour se connecter, on envoie un couple de données username/password  -->
+    <p ng-show="loginCtrl.dataLoading" class="alert alert-danger">Echec de la connection</p>
     <form name="form" ng-submit="loginCtrl.login()" role="form">
         <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
             <label for="username">Username</label>
@@ -22,6 +23,8 @@
     </form>
 </div>
 
-<div class="col-md-6 col-md-offset-3" style="margin-top: 1em;">
-    <p ng-show="loginCtrl.dataLoading" style="color:red;"> Echec de la connection</p>
+<div class="col-md-6 col-md-offset-3" ng-show="globals.currentUser">
+    <p class="alert alert-warning">
+        <b>Attention !</b> Vous êtes déjà connecté.
+    </p>
 </div>

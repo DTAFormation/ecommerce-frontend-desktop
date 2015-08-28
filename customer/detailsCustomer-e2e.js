@@ -33,5 +33,7 @@ describe('E2E: Details customerCtrl', function () {
           expect(allRows.count()).toBeGreaterThan(4);
           var allTd = allRows.all(by.css("td"));
           expect(allTd.count()).toBeGreaterThan(1);
+          var buttonLogout=element(by.id('logoutButton'));
+          buttonLogout.click();
       });
 });
