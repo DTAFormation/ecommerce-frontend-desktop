@@ -40,3 +40,6 @@ grunt test-e2e
 ## Utilisation de l'application
 * Aller sur l'adresse
 [http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/](http://dtaformation.github.io/ecommerce-frontend-desktop/deploy/)
+
+login administrateur : loginAdmin
+mot de passe administrateur : pwdAdmin
