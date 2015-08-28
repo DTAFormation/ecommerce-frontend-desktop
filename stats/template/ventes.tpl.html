@@ -1,20 +1,19 @@
 <div class="container-fluid">
 	<h1>Statistiques Ventes</h1>
 
-	<button class="btn btn-primary" ng-click="isBar_CAOpen = !isBar_CAOpen">Statistiques mensuelles Chiffre d'affaires</button>
-	<button class="btn btn-primary" ng-click="isBar_VentesOpen = !isBar_VentesOpen">Statistiques mensuelles Volume Ventes</button>
+	<button class="btn btn-primary" ng-click="histoCtrl.showHisto('CA')">Afficher/Cacher Statistiques Chiffre d'affaires</button>
+	<button class="btn btn-primary" ng-click="histoCtrl.showHisto('ventes')">Afficher/Cacher Statistiques Volume Ventes</button>
 
 	<div class="row histogramme">
-		<div  ng-show="isBar_CAOpen" class="col-md-6">
+		<div ng-show="histoCtrl.isBar_CAOpen" class="col-md-6">
 			<canvas  id="bar_CA" class="chart chart-bar " data="histoCtrl.CA_data"
 			labels="histoCtrl.labels" legend="true" series="histoCtrl.CA_series" colours="histoCtrl.CA_colors"></canvas>
 		</div>
 
-		<div ng-show="isBar_VentesOpen" class="col-md-6">
+		<div ng-show="histoCtrl.isBar_VentesOpen" class="col-md-6">
 			<canvas id="bar_Ventes" class="chart chart-bar" data="histoCtrl.Ventes_data"
 			labels="histoCtrl.labels" legend="true" series="histoCtrl.Ventes_series" colours="histoCtrl.Ventes_colors"></canvas>
 		</div>
-
 	</div>
 
 

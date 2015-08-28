@@ -22,9 +22,10 @@ describe('E2E: ecDesktopCtrl', function () {
         var appName = element(by.css('h1'));
 
         expect(appName.isPresent()).toBeTruthy();
-        });
 
-        it('Go through every pages in the menu without problem', function(){
+    });
+
+    it('Go through every pages in the menu without problem', function(){
 
         expect(browser.getLocationAbsUrl()).toEqual('/login');
 
@@ -47,12 +48,10 @@ describe('E2E: ecDesktopCtrl', function () {
             var links = menu.links;
             buttonMenu=element(by.id(titre.id+"Button"));
             links.forEach(function(link){
-                if(link.id!=="histrogramLink"){
-                    buttonMenu.click();
-                    buttonSousMenu=element(by.id((link.id+"Menu")));
-                    buttonSousMenu.click();
-                    expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
-                }
+                buttonMenu.click();
+                buttonSousMenu=element(by.id((link.id+"Menu")));
+                buttonSousMenu.click();
+                expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
             });
         });
 
@@ -62,34 +61,35 @@ describe('E2E: ecDesktopCtrl', function () {
     });
 
 
-    // it('Menu accueil', function(){
-    //
-    //     expect(browser.getLocationAbsUrl()).toEqual('/login');
-    //
-    //     var login=element(by.model('loginCtrl.username'));
-    //     var password=element(by.model('loginCtrl.password'));
-    //     var connectButton=element(by.id('loginButton'));
-    //
-    //     login.sendKeys('loginAdmin');
-    //     password.sendKeys('pwdAdmin');
-    //     connectButton.click();
-    //
-    //     expect(browser.getLocationAbsUrl()).toEqual('/home');
-    //
-    //     var currentButton;
-    //     var currentMenuItem;
-    //     var item;
-    //
-    //     Object.keys(DATA_MENU).forEach(function(menuItem){
-    //         currentMenuItem = Object.getOwnPropertyDescriptor(DATA_MENU, menuItem).value;
-    //         currentMenuItem.links.forEach(function(link){
-    //             if(link.id!=="histrogramLink"){
-    //                 currentButton = element(by.id(link.id+"Accueil"));
-    //                 currentButton.click();
-    //                 expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
-    //                 element(by.id('homeButton')).click();
-    //             }
-    //         });
-    //       });
-    //   });
+    it('Menu accueil', function(){
+    
+        expect(browser.getLocationAbsUrl()).toEqual('/login');
+    
+        var login=element(by.model('loginCtrl.username'));
+        var password=element(by.model('loginCtrl.password'));
+        var connectButton=element(by.id('loginButton'));
+    
+        login.sendKeys('loginAdmin');
+        password.sendKeys('pwdAdmin');
+        connectButton.click();
+    
+        expect(browser.getLocationAbsUrl()).toEqual('/home');
+    
+        var currentButton;
+        var currentMenuItem;
+        var item;
+    
+        Object.keys(DATA_MENU).forEach(function(menuItem){
+            currentMenuItem = Object.getOwnPropertyDescriptor(DATA_MENU, menuItem).value;
+            currentMenuItem.links.forEach(function(link){
+                currentButton = element(by.id(link.id+"Accueil"));
+                currentButton.click();
+                expect(browser.getLocationAbsUrl()).toEqual(link.url.substring(1));
+                element(by.id('homeButton')).click();
+            });
+        });
+
+        var buttonLogout=element(by.id('logoutButton'));
+        buttonLogout.click();
+    });
 });
