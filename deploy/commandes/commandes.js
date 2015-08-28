@@ -90,7 +90,6 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
 
   var dtlCmdCtrl = this;
   dtlCmdCtrl.selectedCommande = null ;
-  dtlCmdCtrl.montant = null;
   dtlCmdCtrl.nbreProduits = null;
 
 
@@ -112,7 +111,6 @@ angular.module('ecDesktopApp.commandes').controller('detailCommandeCtrl', functi
       })
       .then(function(){
           dtlCmdCtrl.selectedCommande.commandeProduits.forEach(function(objet){
-            dtlCmdCtrl.montant += (objet.produit.prix * objet.quantite);
             dtlCmdCtrl.nbreProduits += objet.quantite;
           });
       });
