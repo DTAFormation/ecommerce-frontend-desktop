@@ -1,6 +1,6 @@
 describe('E2E: Details customerCtrl', function () {
 
-  it ('Find details', function(){
+     it ('Find details', function(){
           browser.get(browser.baseUrl);
           expect(browser.getLocationAbsUrl()).toEqual('/login');
 
@@ -35,5 +35,6 @@ describe('E2E: Details customerCtrl', function () {
           expect(allTd.count()).toBeGreaterThan(1);
           var buttonLogout=element(by.id('logoutButton'));
           buttonLogout.click();
-      });
+     });
+
 });

@@ -21,12 +21,11 @@ $routeProvider
 		controller : "productCtrl",
 		controllerAs : "productCtrl"
 	})
-
 	.when("/product/updateProduct/:id",{
 		templateUrl : "product/template/updateProduct.tpl.html",
 		controller: "updateProductController",
 		controllerAs: "updateProductCtrl"
-    });
+  });
 
 });
 
@@ -49,42 +48,42 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
      });*/
 
 
-     productCtrl.displayProduct = function() {
-         return productService.getProducts()
-         .then(function(product) {
-             productCtrl.products = product.data;
-         });
-     };
+    productCtrl.displayProduct = function() {
+      return productService.getProducts()
+      .then(function(product) {
+        productCtrl.products = product.data;
+      });
+    };
 
     //lancer le traitement de supprimer produit.
     productCtrl.delProduct = function(id){
-        productService.deleteProduct(id)
-        .then(function(succes){
-            productCtrl.err=false;
-            return productCtrl.displayProduct();
-        }, function(error){
-            productCtrl.err=true;
-            setTimeout(function(){window.location.reload();},2000);
-        });
-      };
+      productService.deleteProduct(id)
+      .then(function(succes){
+        productCtrl.err=false;
+        return productCtrl.displayProduct();
+      }, function(error){
+        productCtrl.err=true;
+        setTimeout(function(){window.location.reload();},2000);
+      });
+    };
 
-       productCtrl.displayProduct();
+    productCtrl.displayProduct();
 
 
     //code pour la modale
     productCtrl.animationsEnabled = true;
     productCtrl.open = function (product) {
-        productCtrl.product = product;
+      productCtrl.product = product;
 
-        var modalInstance = $modal.open({
-            templateUrl: 'modalContent.html',
-            controller: 'ModalInstanceCtrl',
-            resolve:{
-                    product: function(){
-                        return productCtrl.product;
-                    }
-                }
-            });
+      var modalInstance = $modal.open({
+        templateUrl: 'modalContent.html',
+        controller: 'ModalInstanceCtrl',
+        resolve:{
+            product: function(){
+                return productCtrl.product;
+            }
+        }
+      });
     };
     //fin du code pour la modale
 
@@ -95,24 +94,23 @@ angular.module('ecDesktopApp.product').controller('productCtrl', function(produc
 });
 
 //controlleur pour la modale
-angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl',
-    function ($scope, $modalInstance, product){
-        $scope.product = product;
-    });
+angular.module('ecDesktopApp.product').controller('ModalInstanceCtrl', function ($scope, $modalInstance, product){
+  
+  $scope.product = product;
+
+});
 
 //controlleur pour formulaire de creation des produits
 angular.module('ecDesktopApp.product').controller('createProductCtrl', function(productService, $location) {
 
 	var productCtrl = this;
 	productCtrl.addProd = function(product){
-        product.actif=true;
+    product.actif=true;
 		productService.addProduct(product)
 		.then(function(response){ //en cas de succes
-
-			productCtrl.err=false;
-			$location.path("/product/listproduct");
+  		productCtrl.err=false;
+  		$location.path("/product/listproduct");
 		},function(error){ //en cas d'erreur
-
 			productCtrl.err=true;
 		});
 	};

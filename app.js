@@ -31,7 +31,6 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
         controller : "homeCtrl",
         controllerAs : "homeCtrl"
     })
-    // .otherwise({ redirectTo: '/home' });
     .otherwise({redirectTo:'/home'});
 
     }]).run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope, $location, $cookieStore, $http) {
@@ -54,7 +53,6 @@ angular.module('ecDesktopApp').config(['$routeProvider', '$locationProvider', '$
             // renvoie vers la page login si non logger
             if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
                 $location.path('/login');
-                //$location.path('/');
             }
         });
 
@@ -74,37 +72,11 @@ angular.module('ecDesktopApp').controller("ecDesktopCtrl", function(loginService
 
 // Contrôleur de la navbar
 angular.module('ecDesktopApp').controller('DropdownCtrl', function ($scope,DATA_MENU) {
-    //$scope.productsFunctions= DATA_MENU[0];
+    
     $scope.productsFunctions= DATA_MENU.produits.links;
-    /*[
-    {affichage:'Afficher Produits',url:'#/product/listproduct',id:"afficherProduits"},
-    {affichage:'Créer Produit',url:'#/product/createProduct',id:"creerProduits"},
-    {affichage:'Modifier Produit',url:'#/product/listproduct',id:"modifierProduits"},
-    {affichage:'Supprimer Produit',url:'#/product/listproduct',id:"supprProduits"}
-    ];*/
-
-
-    //$scope.clientsFunctions= DATA_MENU[1];
     $scope.clientsFunctions= DATA_MENU.clients.links;
-    /*{affichage:'Afficher Clients',url:'#/customer/listcustomer',id:"afficherClients"},
-    {affichage:'Créer Client',url:'#/customer/createCustomer',id:"creerClients"}
-    ];*/
-
-    //$scope.ordersFunctions= DATA_MENU[2];
     $scope.ordersFunctions= DATA_MENU.commandes.links;
-    /*{affichage:'Afficher Commandes',url:'#/commandes/listCommandes',id:"afficherCommandes"},
-    {affichage:'Rechercher Commande par ID,Client,...',url:'#/ccccc',id:"rechercherCommandes"}
-    ];*/
-
-    //$scope.statsFunctions= DATA_MENU[3];
     $scope.statsFunctions= DATA_MENU.stats.links;
-    /*{affichage:'Afficher les meilleurs clients',url:'#/stats/bestCustomers',id:"bestClients"},
-    {affichage:'Afficher les produits les plus vendus',url:'#/bbbbb',id:"bestProducts"},
-    {affichage:'Afficher les clients ayant acheté le plus un produit donné',url:'#/ccccc',id:"bestClientsOnProduct"},
-    {affichage:'Histogramme des ventes mensuelles cette année',url:'#/stats/Ventes',id:"histrogramLink"}
-    ];*/
-
     $scope.menuFunctions=DATA_MENU;
-
 
 });
