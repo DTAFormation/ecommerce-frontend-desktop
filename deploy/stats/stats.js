@@ -71,8 +71,11 @@ angular.module('ecDesktopApp.stats').controller('TopProduitsController', functio
 
 });
 
-angular.module('ecDesktopApp.stats').controller('HistogrammeController', function(commandeService,$filter){
+angular.module('ecDesktopApp.stats').controller('HistogrammeController', function(commandeService, $filter){
     var histoCtrl = this;
+
+    histoCtrl.isBar_CAOpen = true;
+    histoCtrl.isBar_VentesOpen = true;
 
     histoCtrl.labels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 
@@ -93,12 +96,11 @@ angular.module('ecDesktopApp.stats').controller('HistogrammeController', functio
     function fetchHistogramme(){
         commandeService.getCommandes().then(function(result){
             result.forEach(function(commande){
+                var date = $filter('date')(commande.facture.date, "dd/MM/yyyy");
 
-                commande.facture.date = $filter('date')(commande.facture.date, "dd/MM/yyyy");
-
-                if(parseInt((commande.facture.date).split('/')[2]) === year){
+                if(parseInt((date).split('/')[2]) === year){
                     mois.forEach(function(mois){
-                        if(commande.facture.date.split('/')[1]=== mois){
+                        if(date.split('/')[1]=== mois){
                             commande.commandeProduits.forEach(function(objet){
                                 prixTotal[parseInt(mois)-1] += Math.round(objet.produit.prix * objet.quantite);
                                 quantites[parseInt(mois)-1] += objet.quantite;
@@ -114,6 +116,14 @@ angular.module('ecDesktopApp.stats').controller('HistogrammeController', functio
     }
 
     fetchHistogramme();
+
+    histoCtrl.showHisto = function(histo){
+        if(histo === "CA"){
+            histoCtrl.isBar_CAOpen = !histoCtrl.isBar_CAOpen;
+        } else {
+            histoCtrl.isBar_VentesOpen = !histoCtrl.isBar_VentesOpen;
+        }
+    };
 
 });
 
